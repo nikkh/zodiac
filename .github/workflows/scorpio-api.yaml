@@ -3,7 +3,7 @@ name: Scorpio-api
 on:
   push:
     paths:
-    - scorpio-api/Application/scorpio-api/**
+    - scorpio-api/Application/**
       
 jobs:
   build:
