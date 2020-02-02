@@ -1,5 +1,6 @@
 name: Scorpio-api
-
+env:
+  WEB_SITE_NAME: zodiac  
 on:
   push:
     paths:
