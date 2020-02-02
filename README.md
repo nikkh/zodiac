@@ -3,7 +3,7 @@ Zodiac is a microservices application that exists solely to generate telemetry f
 
 I have decided to make this available as an open source project on GitHub and in doing so learn a little more about GitHub actions.
 
-Currently under construction...
+Currently under construction....
 
 ![Sirmione-Web](https://github.com/nikkh/zodiac/workflows/Sirmione-Web/badge.svg)
 ![Libra Queue Handler](https://github.com/nikkh/zodiac/workflows/Libra%20Queue%20Handler/badge.svg)
