@@ -12,7 +12,7 @@ namespace scorpio_api
 {
 #pragma warning disable CS1591
     public class Program
-    {
+    { 
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();
