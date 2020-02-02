@@ -5,3 +5,4 @@ Currently under construction...
 
 ![Sirmione-Web](https://github.com/nikkh/zodiac/workflows/Sirmione-Web/badge.svg)
 ![Libra Queue Handler](https://github.com/nikkh/zodiac/workflows/Libra%20Queue%20Handler/badge.svg)
+![Virgo Queue Handler](https://github.com/nikkh/zodiac/workflows/Virgo%20Queue%20Handler/badge.svg)
