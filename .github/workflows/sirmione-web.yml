@@ -3,7 +3,7 @@ name: .NET Core
 on:
   push:
     paths:
-    - 'sirmione-web/*'
+    - 'sirmione-web/**'
       
 jobs:
   build:
