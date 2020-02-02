@@ -17,4 +17,4 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Build with dotnet
-      run: dotnet build sirmione-web/Application/Sirmione.Web/Sirmione.Web.csproj--configuration Release
+      run: dotnet build sirmione-web/Application/Sirmione.Web/Sirmione.Web.csproj --configuration Release
