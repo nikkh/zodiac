@@ -1,5 +1,7 @@
 # zodiac
-Zodiac is a microservices application that exists solely to generate telemetry for understanding and demonstrating Microsoft application insights.  Over time, it would be create if others could contribute and build out to cover different hosting options and more of the infrastructure monitoring
+Zodiac is a microservices application that exists solely to generate telemetry for understanding and demonstrating Microsoft Application Insights.  Over time, it would be great if others could contribute and build out to cover different hosting options and more of the infrastructure monitoring :-)
+
+I have decided to make this available as an open source project on GitHub and in doing so learn a little more about GitHub actions.
 
 Currently under construction...
 
