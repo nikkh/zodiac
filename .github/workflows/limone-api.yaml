@@ -3,7 +3,7 @@ name: Limone-api
 on:
   push:
     paths:
-    - limone-api/Application/limone-api/**
+    - limone-api/Application/**
       
 jobs:
   build:
