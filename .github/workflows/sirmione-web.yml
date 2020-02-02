@@ -1,5 +1,9 @@
 name: Sirmione-Web
 
+env:
+  WEB_SITE_NAME: zodiac
+  LIMONE_BASE_URL: https://zodiac-limone-api.azurewebsites.net/   
+
 on:
   push:
     paths:
