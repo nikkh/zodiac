@@ -348,3 +348,7 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/sienna-api/Application/VotingWeb/appsettings.Development.json
+/sienna-api/Application/VotingData/appsettings.Development.json
+/limone-api/Application/appsettings.Development.json
+/sirmione-web/Application/Sirmione.Web/appsettings.Development.json
