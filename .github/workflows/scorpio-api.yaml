@@ -1,6 +1,8 @@
 name: Scorpio-api
 env:
-  WEB_SITE_NAME: zodiac  
+  WEB_SITE_NAME: zodiac
+  LIMONE_BASE_URL: https://zodiac-limone-api.azurewebsites.net/   
+
 on:
   push:
     paths:
@@ -19,3 +21,8 @@ jobs:
         dotnet-version: 3.1.101
     - name: Build with dotnet
       run: dotnet build scorpio-api/Application/scorpio-api.csproj --configuration Release
+      
+    - name: Azure Login
+      uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
