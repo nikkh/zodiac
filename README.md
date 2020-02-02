@@ -6,6 +6,7 @@ I have decided to make this available as an open source project on GitHub and in
 Currently under construction....
 
 ![Sirmione-Web](https://github.com/nikkh/zodiac/workflows/Sirmione-Web/badge.svg)
+![Limone-api](https://github.com/nikkh/zodiac/workflows/Limone-api/badge.svg)
 ![Scorpio-api](https://github.com/nikkh/zodiac/workflows/Scorpio-api/badge.svg)
 ![Libra Queue Handler](https://github.com/nikkh/zodiac/workflows/Libra%20Queue%20Handler/badge.svg)
 ![Virgo Queue Handler](https://github.com/nikkh/zodiac/workflows/Virgo%20Queue%20Handler/badge.svg)
