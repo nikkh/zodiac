@@ -3,4 +3,4 @@ Zodiac is a microservices application that exists solely to generate telemetry f
 
 Currently under construction...
 
-![.NET Core](https://github.com/nikkh/zodiac/workflows/.NET%20Core/badge.svg)
+![Libra Queue Handler](https://github.com/nikkh/zodiac/workflows/Libra%20Queue%20Handler/badge.svg)
