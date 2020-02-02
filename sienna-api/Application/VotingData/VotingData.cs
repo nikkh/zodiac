@@ -49,7 +49,7 @@ namespace VotingData
                                             .AddSingleton<IReliableStateManager>(this.StateManager))
                                     .UseContentRoot(Directory.GetCurrentDirectory())
                                     .UseStartup<Startup>()
-                                   .UseApplicationInsights("600c14ed-6125-425c-ac96-883aa898d1ae")
+                                    .UseApplicationInsights("600c14ed-6125-425c-ac96-883aa898d1ae")
                                     .UseServiceFabricIntegration(listener, ServiceFabricIntegrationOptions.UseUniqueServiceUrl)
                                     .UseUrls(url)
                                     .Build();

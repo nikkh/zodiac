@@ -28,6 +28,11 @@ namespace VotingData
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var appInsightsKey = Configuration["ApplicationInsights:InstrumentationKey"];
+            var aiOptions = new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions();
+            aiOptions.InstrumentationKey = appInsightsKey;
+
+            services.AddApplicationInsightsTelemetry(aiOptions);
             // Add framework services.
             services.AddMvc();
         }
@@ -40,5 +45,7 @@ namespace VotingData
 
             app.UseMvc();
         }
+
+       
     }
 }
