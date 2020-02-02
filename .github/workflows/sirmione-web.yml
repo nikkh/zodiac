@@ -22,3 +22,7 @@ jobs:
         dotnet-version: 3.1.101
     - name: Build with dotnet
       run: dotnet build sirmione-web/Application/Sirmione.Web/Sirmione.Web.csproj --configuration Release
+    - name: Azure Login
+      uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
