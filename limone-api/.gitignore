@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Application/.vs/limone-api/v15/Server/sqlite3
+/Application/bin/Debug/netcoreapp2.2
+/Application/obj
+/Application/.vs/limone-api/v16
+/Application/bin/Debug/netcoreapp3.1/runtimes
+/Application/bin/Debug/netcoreapp3.1
+/.vs/limone-api/v16
+/.vs

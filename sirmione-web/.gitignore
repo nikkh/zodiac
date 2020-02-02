@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Application/Sirmione.Web/.vs/Sirmione.Web
+/Application/Sirmione.Web/bin/Debug/netcoreapp3.1
+/Application/Sirmione.Web/obj
+/Application/aspnet-core-dotnet-core
+/.vs

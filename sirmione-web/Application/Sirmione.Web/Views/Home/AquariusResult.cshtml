@@ -1,0 +1,23 @@
+﻿@model Sirmione.Web.Models.AquariusViewModel
+
+@{
+    ViewData["Title"] = "Aquarius";
+}
+
+    <h1>Aquarius</h1>
+<p>Use  <b>@Html.DisplayFor(model => model.TraceGuid)</b> to identify the record set for this transaction in application insights search</p>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ResponseData)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ResponseData)
+        </dd>
+    </dl>
+</div>
+<div>
+   
+    <a asp-action="Index">Back to List</a>
+</div>

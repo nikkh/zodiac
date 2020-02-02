@@ -1,0 +1,34 @@
+﻿@using  Sirmione.Web.Models
+@model IndexViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Zodiac</h1>
+    <p>Zodiac enables you to run mock transactions to test Application Insights distributed tracing.  There are twelve transactions to choose from in the list below.</p>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col"><partial name="SignPartial.cshtml" model='@Model.Signs["ARIES"]' /></div>
+        <div class="col"><partial name="SignPartial.cshtml" model='@Model.Signs["TAURUS"]' /></div>
+        <div class="col"><partial name="SignPartial.cshtml" model='@Model.Signs["GEMINI"]' /></div>
+        <div class="col"><partial name="SignPartial.cshtml" model='@Model.Signs["CANCER"]' /></div>
+    </div>
+    <div class="row">
+        <div class="col"><partial name="SignPartial.cshtml" model='@Model.Signs["LEO"]' /></div>
+        <div class="col"><partial name="SignPartial.cshtml" model='@Model.Signs["VIRGO"]' /></div>
+        <div class="col"><partial name="SignPartial.cshtml" model='@Model.Signs["LIBRA"]' /></div>
+        <div class="col"><partial name="SignPartial.cshtml" model='@Model.Signs["SCORPIO"]' /></div>
+    </div>
+    <div class="row">
+        <div class="col"><partial name="SignPartial.cshtml" model='@Model.Signs["SAGITTARIUS"]' /></div>
+        <div class="col"><partial name="SignPartial.cshtml" model='@Model.Signs["CAPRICORN"]' /></div>
+        <div class="col"><partial name="SignPartial.cshtml" model='@Model.Signs["AQUARIUS"]' /></div>
+        <div class="col"><partial name="SignPartial.cshtml" model='@Model.Signs["PISCES"]' /></div>
+    </div>
+</div>
+<div class="btn btn-lg">
+    @Html.ActionLink("First call to Limone", "TempAPICall", "Home")
+</div>

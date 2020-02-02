@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sirmione.Web", "Sirmione.Web.csproj", "{6E3CECED-DB77-4B21-8263-EB199D39C09A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirmioneInsightsGenerator", "..\SirmioneInsightsGenerator\SirmioneInsightsGenerator.csproj", "{8BC2ADD7-4CA1-45BA-8092-A844E1CB18F8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E3CECED-DB77-4B21-8263-EB199D39C09A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E3CECED-DB77-4B21-8263-EB199D39C09A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E3CECED-DB77-4B21-8263-EB199D39C09A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E3CECED-DB77-4B21-8263-EB199D39C09A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BC2ADD7-4CA1-45BA-8092-A844E1CB18F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BC2ADD7-4CA1-45BA-8092-A844E1CB18F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BC2ADD7-4CA1-45BA-8092-A844E1CB18F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BC2ADD7-4CA1-45BA-8092-A844E1CB18F8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4383FE2D-B037-4331-8EC0-D8DE4DEF037B}
+	EndGlobalSection
+EndGlobal

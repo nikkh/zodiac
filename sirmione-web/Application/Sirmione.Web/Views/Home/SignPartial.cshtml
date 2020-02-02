@@ -1,0 +1,10 @@
+﻿@using  Sirmione.Web.Models
+@model SignPartialViewModel
+
+    <div class="card">
+        <div class="card-body text-center">
+            <p><a href="@Url.Action(Model.Name,"Home")"><img alt="@Model.Name symbol" src="@Model.Image" class="img-fluid" /></a></p>
+            <h4 class="card-title">@Model.Name</h4>
+            <p class="card-text">@Model.Description</p>
+        </div>
+    </div>
