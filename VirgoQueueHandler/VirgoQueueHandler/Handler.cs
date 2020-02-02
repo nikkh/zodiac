@@ -40,7 +40,7 @@ namespace VirgoQueueHandler
                     try
                     {
                         
-                        _telemetryClient.TrackTrace("This is where processing would happen for VirgoQueueHandler", SeverityLevel.Information);
+                        _telemetryClient.TrackTrace("This is where processing would happen for VirgoQueueHandler.", SeverityLevel.Information);
                     }
                     catch (Exception ex)
                     {
