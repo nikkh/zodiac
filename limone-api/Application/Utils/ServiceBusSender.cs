@@ -36,7 +36,7 @@ namespace limone_api.Utils
             _queueClient = new QueueClient(csb);
             string data = JsonConvert.SerializeObject(messageModel);
             Message message = new Message(Encoding.UTF8.GetBytes(data));
-
+//
             try
             {
                 await _queueClient.SendAsync(message);
