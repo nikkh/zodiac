@@ -1,3 +1,9 @@
+# This workflow will deploy the front end component of the application.
+# The project is called Sirmione-Web, but you deploy it an application name of your choice by editing the 
+# GITHUB_ROOT_NAME environment variable in this file.  Choose something that wil be unique and avoid name clashes
+# I have used zodiac, you could use z99u88 or something similar.
+# To get this workflow to trigger you need to edit one of the files in the Sirmione-Web project.
+
 on:
   push:
     paths:
