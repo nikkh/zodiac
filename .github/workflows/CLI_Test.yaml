@@ -1,10 +1,6 @@
 on: [push]
-
-
 name: CLI_Test
-
 jobs:
-
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
@@ -19,21 +15,21 @@ jobs:
 
     - name: Azure CLI script file
       env:
-        WEB_APP_NAME: zodiac-web
-        HOSTiNG_PLAN_NAME: zodiac-web-plan
-        AI_LOCATION: UK South
-        SKU: S1 Standard
-        DB_SERVER_NAME: zodiac-db-server
-        DB_USER: dbadmin
-        DB_PASSWORD: ${{ secrets.DB_ADMIN_PASSWORD }}
-        DB_LOCATION: UK South
-        DB_NAME: zodiac-web-db
+        GITHUB_WEB_APP_NAME: zodiac-web
+        GITHUB_HOSTiNG_PLAN_NAME: zodiac-web-plan
+        GITHUB_AI_LOCATION: UK South
+        GITHUB_SKU: S1 Standard
+        GITHUB_DB_SERVER_NAME: zodiac-db-server
+        GITHUB_DB_USER: dbadmin
+        GITHUB_DB_PASSWORD: ${{ secrets.DB_ADMIN_PASSWORD }}
+        GITHUB_DB_LOCATION: UK South
+        GITHUB_DB_NAME: zodiac-web-db
         GITHUB_LIMONE_BASE_URL: https://zodiac-limone-api.azurewebsites.net/   
       uses: azure/CLI@v1
       with:
         azcliversion: latest
         inlineScript: |
-          echo "DB_SERVER_NAME: $DB_SERVER_NAME"
+          echo "DB_SERVER_NAME: $GITHUB_DB_SERVER_NAME"
           chmod +x $GITHUB_WORKSPACE/deployment_scripts/test.sh
-          $GITHUB_WORKSPACE/deployment_scripts/test.sh $WEB_APP_NAME arg2
+          $GITHUB_WORKSPACE/deployment_scripts/test.sh $GITHUB_WEB_APP_NAME arg2
        
