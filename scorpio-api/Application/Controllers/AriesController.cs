@@ -36,7 +36,7 @@ namespace scorpio_api.Controllers
             _telemetryClient.TrackEvent(message);
             _telemetryClient.GetMetric(metricName).TrackValue(1);
             _logger.LogInformation(message);
-            return "Hello World from Aries!!";
+            return "Hello World from Aries!";
         }
 
        
