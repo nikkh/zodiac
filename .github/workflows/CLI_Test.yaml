@@ -1,6 +1,6 @@
 on: [push]
 
-name: AzureLoginSamplex
+name: CLI_Test
 
 jobs:
 
@@ -21,6 +21,6 @@ jobs:
       with:
         azcliversion: latest
         inlineScript: |
-          chmod +x $GITHUB_WORKSPACE/test.sh
-          $GITHUB_WORKSPACE/test.sh
+          chmod +x $GITHUB_WORKSPACE/deployment_scripts/test.sh
+          $GITHUB_WORKSPACE/deployment_scripts/test.sh
        
