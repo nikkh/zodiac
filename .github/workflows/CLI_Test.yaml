@@ -16,7 +16,7 @@ jobs:
     - name: Azure CLI script file
       env:
         GITHUB_ROOT_NAME: zodiac
-        GITHUB_LOCATION: UK South
+        GITHUB_LOCATION: uksouth
         GITHUB_SKU: S1 Standard
         GITHUB_DB_USER: dbadmin
         GITHUB_DB_PASSWORD: ${{ secrets.DB_ADMIN_PASSWORD }}
