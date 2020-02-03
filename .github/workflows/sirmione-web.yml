@@ -1,5 +1,4 @@
 name: Sirmione-Web
-
 env:
   WEB_SITE_NAME: zodiac
   LIMONE_BASE_URL: https://zodiac-limone-api.azurewebsites.net/   
@@ -11,9 +10,7 @@ on:
       
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core
@@ -22,13 +19,5 @@ jobs:
         dotnet-version: 3.1.101
     - name: Build with dotnet
       run: dotnet build sirmione-web/Application/Sirmione.Web/Sirmione.Web.csproj --configuration Release
-    - name: Azure Login
-      uses: Azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - name: Azure - Deploy ARM Template - Resource Group Level with parameters
-      uses: wilfriedwoivre/github-actions/Azure/arm@master
-      env:
-        AZURE_RESOURCE_GROUP: test-github-action-rg
-        AZURE_TEMPLATE_LOCATION: https://github.com/nikkh/zodiac/blob/master/sirmione-web/ArmTemplates/windows-webapp-sql-template.json
-        AZURE_TEMPLATE_PARAM_LOCATION: arm-deployment-rg.parameters.json  needs = ["Azure Login"] 
+      
+  
