@@ -29,8 +29,7 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         
-    - run: publishProfile=$(az webapp deployment list-publishing-credentials --name zodiac-web --resource-group zodiac-rg)
-
+  
  #   - name: Azure CLI script file
  #     env:
  #       GITHUB_ROOT_NAME: zodiac
@@ -50,6 +49,5 @@ jobs:
     - name: 'Run Azure webapp deploy action using publish profile credentials'
       uses: azure/webapps-deploy@v1
       with: 
-        app-name: sirmione-web # Replace with your app name
-        publish-profile: $publishProfile # Define secret variable in repository settings as per action documentation
+        app-name: sirmione-web 
         package: ${{env.DOTNET_ROOT}}/myapp 
