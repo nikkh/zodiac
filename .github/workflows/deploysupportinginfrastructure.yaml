@@ -3,13 +3,11 @@ on:
     paths:
     - global/**
  
-name: Read-Global-Parameters
-env:
-  GITHUB_ROOT_NAME: zodiac
-  GITHUB_LOCATION: uksouth
+name: Deploy-Supporting-Infrastructure
+
 
 jobs:
-  retrieve-and-process-file:
+  Get-Parameters-and-Deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
