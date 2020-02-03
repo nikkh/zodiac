@@ -22,8 +22,9 @@ jobs:
        
     - name: 'Test Thing'
       run: |
-        chmod +x deployment_scripts/test_env_vars.sh
-        chmod +x deployment_scripts/set_env_vars.sh
-        deployment_scripts/test_env_vars.sh
-        echo $DEFAULT_LOCATION 
+        chmod +x $GITHUB_WORKSPACE/deployment_scripts/set_env_vars.sh
+        source $GITHUB_WORKSPACE/deployment_scripts/test_env_vars.sh
+        
+    - name: 'Test Thing 2'
+      run: echo $DEFAULT_LOCATION 
         
