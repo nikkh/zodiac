@@ -16,11 +16,10 @@ jobs:
     - name: Checkout Repo
       uses: actions/checkout@v2
  
-    - name: Read file
-      run:  env.TEST=cat global/parameters.json | jq -r '.sirmione_alias'
-      
-    - name: Write variable to console
-      run:  echo {{env.TEST}}
+    - name: Dump strategy context
+      env:
+          SIRMIONE_ALIAS: ${{ cat global/parameters.json | jq -r '.sirmione_alias' }}
+      run: echo "$SIRMIONE_ALIAS"
       
    
 
