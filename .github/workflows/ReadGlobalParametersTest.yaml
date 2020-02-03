@@ -1,0 +1,23 @@
+on:
+  push:
+    paths:
+    - global/**
+ 
+name: Read-Global_Parameters
+env:
+  GITHUB_ROOT_NAME: zodiac
+  GITHUB_LOCATION: uksouth
+
+jobs:
+  retrieve-and-process-file:
+    runs-on: ubuntu-latest
+    steps:
+  
+    - name: Checkout Repo
+      uses: actions/checkout@v2
+ 
+    - name: 'Read file'
+      run:  sirmione-alias=`cat global/parameters.json | json select '.sirmione-alias'`
+      run:  echo "Sirmione Alias: $sirmione-alias
+
+
