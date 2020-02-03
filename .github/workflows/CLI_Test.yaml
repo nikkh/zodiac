@@ -32,6 +32,7 @@ jobs:
       with:
         azcliversion: latest
         inlineScript: |
+          echo "DB_SERVER_NAME: $DB_SERVER_NAME"
           chmod +x $GITHUB_WORKSPACE/deployment_scripts/test.sh
           $GITHUB_WORKSPACE/deployment_scripts/test.sh $WEB_APP_NAME arg2
        
