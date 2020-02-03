@@ -25,7 +25,7 @@ echo "Hosting Plan: $hostingPlanName"
 echo "DB Server Name: $dbServerName"
 echo "DB Name: $dbName"
 
-az group create -l "${location}" --n $resouceGroupName --tags  Application=$applicationName
+az group create -l "$GITHUB_LOCATION" --n "$resourceGroupName" --tags  Application=$applicationName
 az group deployment create -g $resourceGroupName --template-file sirmione-web/ArmTemplates/windows-webapp-sql-template.json --parameters '{
          "webAppName": {
             "value": "$webAppName"
