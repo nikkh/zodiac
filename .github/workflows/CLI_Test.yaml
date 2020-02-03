@@ -13,18 +13,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
 
-    - name: Azure CLI script file
-      env:
-        GITHUB_ROOT_NAME: zodiac
-        GITHUB_LOCATION: uksouth
-        GITHUB_SKU: S1 Standard
-        GITHUB_DB_USER: dbadmin
-        GITHUB_DB_PASSWORD: ${{ secrets.DB_ADMIN_PASSWORD }}
-        GITHUB_LIMONE_BASE_URL: https://zodiac-limone-api.azurewebsites.net/   
+### insert here       
+    - name: Get Publish Profile
       uses: azure/CLI@v1
       with:
         azcliversion: latest
         inlineScript: |
-          chmod +x $GITHUB_WORKSPACE/deployment_scripts/test.sh
-          $GITHUB_WORKSPACE/deployment_scripts/test.sh 
-       
+          test=$(az webapp deployment list-publishing-credentials --name zodiac-web --resource-group zodiac-rg)
+          echo $test
