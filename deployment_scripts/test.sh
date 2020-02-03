@@ -33,7 +33,7 @@ az group deployment create -g $resourceGroupName --template-file sirmione-web/Ar
             "value": "$hostingPlanName"
         },
         "appInsightsLocation": {
-            "value": "$GITHUB_LOCATION"
+            "value": "uksouth"
         },
         "databaseServerName": {
             "value": "$dbServerName"
@@ -45,7 +45,7 @@ az group deployment create -g $resourceGroupName --template-file sirmione-web/Ar
             "value": "$GITHUB_DB_PASSWORD"
         },
         "databaseLocation": {
-            "value": "$GITHUB_LOCATION"
+            "value": "uksouth"
         },
         "databaseName": {
             "value": "$dbName"
