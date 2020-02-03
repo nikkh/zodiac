@@ -1,0 +1,53 @@
+on:
+  push:
+    paths:
+    - sirmione-web/Application/Sirmione.Web/**
+
+name: Sirmione-Web
+env:
+  GITHUB_ROOT_NAME: zodiac
+  GITHUB_LOCATION: uksouth
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+  
+    - name: Checkout Repo
+      uses: actions/checkout@v2
+      
+    - name: Setup .NET Core 3.1.101
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.101
+        
+    - name: Build Application
+      run: dotnet build sirmione-web/Application/Sirmione.Web/Sirmione.Web.csproj --configuration Release
+
+    - name: Publish Application
+      run: |
+        dotnet publish sirmione-web/Application/Sirmione.Web/Sirmione.Web.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp 
+        
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+   
+    - name: Deploy Web Infrastructure (App service)
+      env:
+        GITHUB_SKU: S1 Standard
+        GITHUB_DB_USER: dbadmin
+        GITHUB_DB_PASSWORD: ${{ secrets.DB_ADMIN_PASSWORD }}
+        GITHUB_LIMONE_BASE_URL: https://zodiac-limone-api.azurewebsites.net/   
+      uses: azure/CLI@v1
+      with:
+        azcliversion: latest
+        inlineScript: |
+          chmod +x $GITHUB_WORKSPACE/deployment_scripts/deploy_sirmione_web_infrastructure.sh
+          $GITHUB_WORKSPACE/deployment_scripts/deploy_sirmione_web_infrastructure.sh        
+ 
+    - name: 'Deploy Web Application'
+      uses: azure/webapps-deploy@v1
+      with: 
+        app-name: "${GITHUB_ROOT_NAME}-web"
+        package: ${{env.DOTNET_ROOT}}/myapp 
