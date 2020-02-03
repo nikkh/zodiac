@@ -5,18 +5,58 @@ on:
     paths:
     - scorpio-api/Application/**
       
+# This workflow will deploy the front end component of the application.
+# The project is called Sirmione-Web, but you deploy it an application name of your choice by editing the 
+# GITHUB_ROOT_NAME environment variable in this file.  Choose something that wil be unique and avoid name clashes
+# I have used zodiac, you could use z99u88 or something similar.
+# To get this workflow to trigger you need to edit one of the files in the Sirmione-Web project.
+
+env:
+  GITHUB_ROOT_NAME: scorpio
+  GITHUB_LOCATION: uksouth
+
 jobs:
-  build:
-
+  build_and_deploy:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET Core
+  
+    - name: Checkout Repo
+      uses: actions/checkout@v2
+      
+    - name: Setup .NET Core 3.1.101
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101
-    - name: Build with dotnet
+        
+    - name: Build Application
       run: dotnet build scorpio-api/Application/scorpio-api.csproj --configuration Release
-      
-    - 
+
+    - name: Publish Application
+      run: |
+        dotnet publish scorpio-api/Application/scorpio-api.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp 
+        
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+   
+    - name: Deploy Web Infrastructure (App service)
+      env:
+        GITHUB_SKU: S1 Standard
+        GITHUB_DB_USER: dbadmin
+        GITHUB_DB_PASSWORD: ${{ secrets.DB_ADMIN_PASSWORD }}
+        
+      uses: azure/CLI@v1
+      with:
+        azcliversion: latest
+        inlineScript: |
+          chmod +x $GITHUB_WORKSPACE/deployment_scripts/deploy_scorpio_api_infrastructure.sh
+          $GITHUB_WORKSPACE/deployment_scripts/deploy_scorpio_api_infrastructure.sh        
+ 
+    - name: 'Deploy Web Application'
+      uses: azure/webapps-deploy@v1
+      with: 
+        app-name: ${{env.GITHUB_ROOT_NAME}}-api
+        package: ${{env.DOTNET_ROOT}}/myapp 
+       
+    
