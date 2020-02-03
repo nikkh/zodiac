@@ -16,8 +16,10 @@ jobs:
     - name: Checkout Repo
       uses: actions/checkout@v2
  
-    - name: 'Read file'
-      run:  sirmione-alias=`cat global/parameters.json | json select '.sirmione-alias'`
-      run:  echo "Sirmione Alias: $sirmione-alias"
+    - name: Read file
+      run:  sirmionealias=`cat global/parameters.json | json select '.sirmione-alias'`
+      
+    - name: output the value
+      run:  echo $sirmionealias
 
 
