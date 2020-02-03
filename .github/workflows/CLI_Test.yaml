@@ -15,6 +15,7 @@ jobs:
 
     - name: Azure CLI script file
       env:
+        GITHUB_ROOT_NAME: zodiac
         GITHUB_WEB_APP_NAME: zodiac-web
         GITHUB_HOSTiNG_PLAN_NAME: zodiac-web-plan
         GITHUB_AI_LOCATION: UK South
