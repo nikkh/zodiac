@@ -14,11 +14,10 @@ hostingPlanName="${webAppName}-plan"
 dbServerName="${GITHUB_ROOT_NAME}-db-server"
 dbName="${GITHUB_ROOT_NAME}-web-db"
 resourceGroupName="${GITHUB_ROOT_NAME}-rg"
-location="${GITHUB_LOCATION}"
+
 
 echo Derived Variables...
 echo "Application Name: $applicationName"
-echo "Location: $location"
 echo "Resource Group Name: $resourceGroupName"
 echo "Web App Name: $webAppName"
 echo "Hosting Plan: $hostingPlanName"
@@ -34,7 +33,7 @@ az group deployment create -g $resourceGroupName --template-file sirmione-web/Ar
             "value": "$hostingPlanName"
         },
         "appInsightsLocation": {
-            "value": "$location"
+            "value": "$GITHUB_LOCATION"
         },
         "databaseServerName": {
             "value": "$dbServerName"
@@ -46,7 +45,7 @@ az group deployment create -g $resourceGroupName --template-file sirmione-web/Ar
             "value": "$GITHUB_DB_PASSWORD"
         },
         "databaseLocation": {
-            "value": "$location"
+            "value": "$GITHUB_LOCATION"
         },
         "databaseName": {
             "value": "$dbName"
