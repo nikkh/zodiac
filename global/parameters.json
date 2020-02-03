@@ -1,7 +1,7 @@
 {
     "sirmione_alias": "sirmionenrh",
-    "limone-alias": "limonenh",
-    "scorpio-alias": "scorpionh",
-    "virgo-alias": "virgonh",
-    "libra-alias": "libranh"
+    "limone_alias": "limonenh",
+    "scorpio_alias": "scorpionh",
+    "virgo_alias": "virgonh",
+    "libra_alias": "libranh"
 }
