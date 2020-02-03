@@ -25,30 +25,8 @@ echo "DB Server Name: $dbServerName"
 echo "DB Name: $dbName"
 
 az group create -l "$GITHUB_LOCATION" --n "$resourceGroupName" --tags  Application=$applicationName
-az group deployment create -g $resourceGroupName --template-file sirmione-web/ArmTemplates/windows-webapp-sql-template.json --parameters '{
-         "webAppName": {
-            "value": "$webAppName"
-        },
-        "hostingPlanName": {
-            "value": "$hostingPlanName"
-        },
-        "appInsightsLocation": {
-            "value": "uksouth"
-        },
-        "databaseServerName": {
-            "value": "$dbServerName"
-        },
-        "databaseUsername": {
-            "value": "$GITHUB_DB_USER"
-        },
-        "databasePassword": {
-            "value": "$GITHUB_DB_PASSWORD"
-        },
-        "databaseLocation": {
-            "value": "uksouth"
-        },
-        "databaseName": {
-            "value": "$dbName"
-        }
-       
-    }'
+
+az group deployment create -g $resourceGroupName --template-file sirmione-web/ArmTemplates/windows-webapp-sql-template.json \
+    --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=uksouth databaseServerName=$databaseServerName \
+         databaseUsername=$GITHUB_DB_USER databasePassword=$GITHUB_DB_PASSWORD databaseLocation=uksouth databaseName=$dbName
+    
