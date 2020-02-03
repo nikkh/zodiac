@@ -37,7 +37,7 @@ az group deployment create -g $resourceGroupName --template-file sirmione-web/Ar
             "value": "$location"
         },
         "databaseServerName": {
-            "value": "dbServerName"
+            "value": "$dbServerName"
         },
         "databaseUsername": {
             "value": "$GITHUB_DB_USER"
