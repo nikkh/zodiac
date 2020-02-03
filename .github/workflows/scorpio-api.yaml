@@ -20,7 +20,8 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
        
-    - name: Test Thing
-        run:|
-          deployment_scripts/test_env_vars.sh
+    - name: 'Test Thing'
+      run: |
+        deployment_scripts/test_env_vars.sh
+        echo $DEFAULT_LOCATION 
         
