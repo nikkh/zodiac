@@ -28,7 +28,7 @@ jobs:
         DB_PASSWORD: ${{ secrets.DB_ADMIN_PASSWORD }}
         DB_LOCATION: UK South
         DB_NAME: zodiac-web-db
-        LIMONE_BASE_URL: https://zodiac-limone-api.azurewebsites.net/   
+        GITHUB_LIMONE_BASE_URL: https://zodiac-limone-api.azurewebsites.net/   
       uses: azure/CLI@v1
       with:
         azcliversion: latest
