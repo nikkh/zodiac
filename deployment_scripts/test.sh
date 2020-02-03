@@ -27,8 +27,11 @@ echo "DB Name: $dbName"
 ls
 az group create -l "$GITHUB_LOCATION" --n "$resourceGroupName" --tags  Application=$applicationName
 
-az group deployment create -g $resourceGroupName \
-    --template-uri https://raw.githubusercontent.com/nikkh/zodiac/master/sirmione-web/ArmTemplates/windows-webapp-sql-template.json \
-    --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=uksouth databaseServerName=$databaseServerName \
-         databaseUsername=$GITHUB_DB_USER databasePassword=$GITHUB_DB_PASSWORD databaseLocation=uksouth databaseName=$dbName
+#az group deployment create -g $resourceGroupName \
+#    --template-file sirmione-web/ArmTemplates/windows-webapp-sql-template.json \
+#    --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=uksouth databaseServerName=$databaseServerName \
+#         databaseUsername=$GITHUB_DB_USER databasePassword=$GITHUB_DB_PASSWORD databaseLocation=uksouth databaseName=$dbName
     
+az group deployment create -g zodiac-rg \
+    --template-file sirmione-web/ArmTemplates/windows-webapp-sql-template.json  \
+    --parameters webAppName=zodiac-web hostingPlanName=zodiac-web-plan appInsightsLocation=uksouth databaseServerName=zodiac-db-server databaseUsername=dbadmin databasePassword=Boldmere1883@@@ databaseLocation=uksouth databaseName=zodiac-db sku="S1 Standard" databaseEdition=Basic
