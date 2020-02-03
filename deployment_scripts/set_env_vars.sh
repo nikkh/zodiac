@@ -12,17 +12,15 @@ libra_alias=$(curl -s https://raw.githubusercontent.com/nikkh/zodiac/master/glob
 limone_rg="${limone_alias}-rg"
 scorpio_rg="${scorpio_alias}-rg"
 
-echo "default_location: $default_location"
-echo "sirmione_alias: $sirmione_alias"
-echo "limone_alias: $limone_alias"
-echo "limone_servicebus_namespace: $limone_servicebus_namespace"
-echo "limone_storageaccount_name: $limone_storageaccount_name"
-echo "scorpio_alias: $scorpio_alias"
-echo "scorpio_servicebus_namespace: $scorpio_servicebus_namespace"
-echo "scorpio_storageaccount_name: $scorpio_storageaccount_name"
-echo "virgo_alias: $virgo_alias"
-echo "libra_alias: $libra_alias"
-echo "limone_rg: $limone_rg"
-echo "scorpio_rg: $scorpio_rg"
-
-export nicksvar=$scorpio_rg
+export DEFAULT_LOCATION=$default_location
+export SIRMIONE_ALIAS=$sirmione_alias
+export LIMONE_ALIAS=$limone_alias
+export LIMONE_SERVICEBUS_NAMESPACE=$limone_servicebus_namespace
+export LIMONE_STORAGEACCOUNT_NAME=$limone_storageaccount_name
+export SCORPIO_ALIAS=$scorpio_alias
+export SCORPIO_SERVICEBUS_NAMESPACE=$scorpio_servicebus_namespace
+export SCORPIO_STORAGEACCOUNT_NAME=$scorpio_storageaccount_name
+export VIRGO_ALIAS=$$virgo_alias
+export LIBRA_ALIAS=$libra_alias
+export SIRMIONE_ALIAS=$sirmione_alias
+export SCORPIO_RG=$scorpio_rg
