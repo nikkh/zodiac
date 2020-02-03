@@ -1,15 +1,5 @@
 on: [push]
-env:
-  WEB_APP_NAME: zodiac-web
-  HOSTiNG_PLAN_NAME: zodiac-web-plan
-  AI_LOCATION: UK South
-  SKU: S1 Standard
-  DB_SERVER_NAME: zodiac-db-server
-  DB_USER: dbadmin
-  DB_PASSWORD: ${{ secrets.DB_ADMIN_PASSWORD }}
-  DB_LOCATION: UK South
-  DB_NAME: zodiac-web-db
-  LIMONE_BASE_URL: https://zodiac-limone-api.azurewebsites.net/   
+
 
 name: CLI_Test
 
@@ -28,6 +18,17 @@ jobs:
       uses: actions/checkout@v1
 
     - name: Azure CLI script file
+      env:
+        WEB_APP_NAME: zodiac-web
+        HOSTiNG_PLAN_NAME: zodiac-web-plan
+        AI_LOCATION: UK South
+        SKU: S1 Standard
+        DB_SERVER_NAME: zodiac-db-server
+        DB_USER: dbadmin
+        DB_PASSWORD: ${{ secrets.DB_ADMIN_PASSWORD }}
+        DB_LOCATION: UK South
+        DB_NAME: zodiac-web-db
+        LIMONE_BASE_URL: https://zodiac-limone-api.azurewebsites.net/   
       uses: azure/CLI@v1
       with:
         azcliversion: latest
