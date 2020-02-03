@@ -49,5 +49,5 @@ jobs:
     - name: 'Deploy Web Application'
       uses: azure/webapps-deploy@v1
       with: 
-        app-name: "${GITHUB_ROOT_NAME}-web"
+        app-name: ${{env.GITHUB_ROOT_NAME}}-web
         package: ${{env.DOTNET_ROOT}}/myapp 
