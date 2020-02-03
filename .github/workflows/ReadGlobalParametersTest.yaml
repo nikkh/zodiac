@@ -17,7 +17,7 @@ jobs:
       uses: actions/checkout@v2
  
     - name: Read file
-      run:  sirmionealias=`jq '.sirmione-alias' global/parameters.json`
+      run:  sirmionealias=`jq '.sirmione' global/parameters.json`
       
     - name: output the value
       run:  echo $sirmionealias
