@@ -1,6 +1,5 @@
 #!/bin/bash
-echo *********************
-echo Helo from the script
-echo *********************
-echo $WEB_APP_NAME
+echo Hello from the script
+echo "First arg: $1"
+echo "Second arg: $2"
 # az webapp list --query "[?state=='Running']"
