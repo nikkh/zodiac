@@ -12,6 +12,9 @@ jobs:
   retrieve-and-process-file:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+        
       - name: Login to Azure
         uses: azure/login@v1
         with:
