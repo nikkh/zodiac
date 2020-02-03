@@ -2,7 +2,7 @@ on:
   push:
     paths:
     - sirmione-web/Application/Sirmione.Web/**
-      - 
+
 name: CLI_Test
 jobs:
   build:
@@ -16,6 +16,7 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101
+        
     - name: Build with dotnet
       run: dotnet build sirmione-web/Application/Sirmione.Web/Sirmione.Web.csproj --configuration Release
 
