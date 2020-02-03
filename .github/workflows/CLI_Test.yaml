@@ -8,9 +8,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
-    - uses: azure/login@v1
+    - name: Azure Login
+      uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    
-    - run: |
-        deployment_scripts/test.sh
+
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Azure CLI script file
+      uses: azure/CLI@v1
+      with:
+        azcliversion: latest
+        inlineScript: |
+          chmod +x $GITHUB_WORKSPACE/test.sh
+          $GITHUB_WORKSPACE/test.sh
+       
