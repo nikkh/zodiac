@@ -35,4 +35,4 @@ az group create -l "$GITHUB_LOCATION" --n "$resourceGroupName" --tags  Applicati
 az group deployment create -g $resourceGroupName \
     --template-file sirmione-web/ArmTemplates/windows-webapp-sql-template.json  \
     --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=uksouth databaseServerName=$dbServerName databaseUsername=$GITHUB_DB_USER databasePassword=$GITHUB_DB_PASSWORD databaseLocation=uksouth databaseName=$dbName \
-        sku=$GITHUB_SKU databaseEdition=Basic
+        sku="${GITHUB_SKU}" databaseEdition=Basic
