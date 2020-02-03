@@ -1,4 +1,5 @@
 #!/bin/bash
+default_location=$(curl -s https://raw.githubusercontent.com/nikkh/zodiac/master/global/parameters.json | jq -r '.default_location')
 sirmione_alias=$(curl -s https://raw.githubusercontent.com/nikkh/zodiac/master/global/parameters.json | jq -r '.sirmione_alias')
 limone_alias=$(curl -s https://raw.githubusercontent.com/nikkh/zodiac/master/global/parameters.json | jq -r '.limone_alias')
 limone_servicebus_namespace=$(curl -s https://raw.githubusercontent.com/nikkh/zodiac/master/global/parameters.json | jq -r '.limone_servicebus_namespace')
@@ -8,6 +9,7 @@ scorpio_servicebus_namespace=$(curl -s https://raw.githubusercontent.com/nikkh/z
 scorpio_storageaccount_name=$(curl -s https://raw.githubusercontent.com/nikkh/zodiac/master/global/parameters.json | jq -r '.scorpio_storageaccount_name')
 virgo_alias=$(curl -s https://raw.githubusercontent.com/nikkh/zodiac/master/global/parameters.json | jq -r '.virgo_alias')
 libra_alias=$(curl -s https://raw.githubusercontent.com/nikkh/zodiac/master/global/parameters.json | jq -r '.libra_alias')
+echo "default_location: $default_location"
 echo "sirmione_alias: $sirmione_alias"
 echo "limone_alias: $limone_alias"
 echo "limone_servicebus_namespace: $limone_servicebus_namespace"
@@ -20,10 +22,12 @@ echo "libra_alias: $libra_alias"
 
 limone_rg="${limone_alias}-rg"
 echo "limone_rg: $limone_rg"
-az servicebus namespace create -g $limone-rg -n $limone_servicebus_namespace
-az storage account create -g $limone-rg -n $limone_storageaccount_name
+az group create -l $default_location --n $limone_rg --tags  Application=sirmione_alias
+az servicebus namespace create -g $limone_rg -n $limone_servicebus_namespace
+az storage account create -g $limone_rg -n $limone_storageaccount_name
 
 scorpio_rg="${scorpio_alias}-rg"
 echo "scorpio_rg: $scorpio_rg"
-az servicebus namespace create -g $scorpio-rg -n $scorpio_servicebus_namespace
-az storage account create -g $scorpio-rg -n $scorpio_storageaccount_name
+az group create -l $default_location --n $scorpio_rg --tags  Application=sirmione_alias
+az servicebus namespace create -g $scorpio_rg -n $scorpio_servicebus_namespace
+az storage account create -g $scorpio_rg -n $scorpio_storageaccount_name
