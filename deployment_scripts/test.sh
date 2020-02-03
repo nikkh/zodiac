@@ -13,13 +13,15 @@ webAppName="${GITHUB_ROOT_NAME}-web"
 hostingPlanName="${webAppName}-plan"
 dbServerName="${GITHUB_ROOT_NAME}-db-server"
 dbName="${GITHUB_ROOT_NAME}-web-db"
+resourceGroupName="${GITHUB_ROOT_NAME}-rg"
 
 echo Derived Variables...
 echo "Application Name: $applicationName"
+echo "Resource GroupName: $resourceGroupName"
 echo "Web App Name: $webAppName"
 echo "Hosting Plan: $hostingPlanName"
 echo "DB Server Name: $dbServerName"
 echo "DB Name: $dbName"
 
-az group create --location $location --name $resouceGroupName  --tags  Application=$applicationName
+az group create --location $GITHUB_LOCATION --name $resouceGroupName  --tags  Application=$applicationName
 #az group deployment create --resource-group <resource-group-name> --template-file <path-to-template>
