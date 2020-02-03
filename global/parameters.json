@@ -1,7 +1,11 @@
 {
-    "sirmione_alias": "sirmionenrh",
+    "sirmione_alias": "sirmionenh",
     "limone_alias": "limonenh",
+    "limone_servicebus_namespace": "limonenhsb",
+    "limone_storageaccount_name": "limonenhsa",
     "scorpio_alias": "scorpionh",
+    "scorpio_servicebus_namespace": "scorpionhsa",
+    "scorpio_storageaccount_name": "scorpionhsb",
     "virgo_alias": "virgonh",
     "libra_alias": "libranh"
 }
