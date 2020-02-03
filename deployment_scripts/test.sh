@@ -24,10 +24,11 @@ echo "Hosting Plan: $hostingPlanName"
 echo "DB Server Name: $dbServerName"
 echo "DB Name: $dbName"
 
+ls
 az group create -l "$GITHUB_LOCATION" --n "$resourceGroupName" --tags  Application=$applicationName
 
 az group deployment create -g $resourceGroupName \
-    --template-file https://raw.githubusercontent.com/nikkh/zodiac/master/sirmione-web/ArmTemplates/windows-webapp-sql-template.json \
+    --template-uri https://raw.githubusercontent.com/nikkh/zodiac/master/sirmione-web/ArmTemplates/windows-webapp-sql-template.json \
     --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=uksouth databaseServerName=$databaseServerName \
          databaseUsername=$GITHUB_DB_USER databasePassword=$GITHUB_DB_PASSWORD databaseLocation=uksouth databaseName=$dbName
     
