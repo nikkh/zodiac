@@ -18,6 +18,6 @@ jobs:
  
     - name: 'Read file'
       run:  sirmione-alias=`cat global/parameters.json | json select '.sirmione-alias'`
-      run:  echo "Sirmione Alias: $sirmione-alias
+      run:  echo "Sirmione Alias: $sirmione-alias"
 
 
