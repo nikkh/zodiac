@@ -17,7 +17,10 @@ jobs:
       uses: actions/checkout@v2
  
     - name: Read file
-      run:  cat global/parameters.json | jq -r '.sirmione_alias'
+      run:  test=cat global/parameters.json | jq -r '.sirmione_alias'
+      
+    - name: Write variable to console
+      run:  echo $test
       
    
 
