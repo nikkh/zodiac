@@ -17,3 +17,13 @@ echo "scorpio_servicebus_namespace: $scorpio_servicebus_namespace"
 echo "scorpio_storageaccount_name: $scorpio_storageaccount_name"
 echo "virgo_alias: $virgo_alias"
 echo "libra_alias: $libra_alias"
+
+limone_rg="${limone_alias}-rg"
+echo "limone_rg: $limone_rg"
+az servicebus namespace create -g $limone-rg -n $limone_servicebus_namespace
+az storage account create -g $limone-rg -n $limone_storageaccount_name
+
+scorpio_rg="${scorpio_alias}-rg"
+echo "scorpio_rg: $scorpio_rg"
+az servicebus namespace create -g $scorpio-rg -n $scorpio_servicebus_namespace
+az storage account create -g $scorpio-rg -n $scorpio_storageaccount_name
