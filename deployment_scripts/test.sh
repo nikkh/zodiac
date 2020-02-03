@@ -1,4 +1,6 @@
+#!/bin/bash
 echo *********************
 echo Helo from the script
 echo *********************
-az webapp list --query "[?state=='Running']"
+echo $WEB_APP_NAME
+# az webapp list --query "[?state=='Running']"
