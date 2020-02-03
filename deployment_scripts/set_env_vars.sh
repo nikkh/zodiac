@@ -25,4 +25,4 @@ echo "libra_alias: $libra_alias"
 echo "limone_rg: $limone_rg"
 echo "scorpio_rg: $scorpio_rg"
 
-export nicksvar=$scorpio_rg"
+export nicksvar=$scorpio_rg
