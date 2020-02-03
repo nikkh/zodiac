@@ -14,14 +14,42 @@ hostingPlanName="${webAppName}-plan"
 dbServerName="${GITHUB_ROOT_NAME}-db-server"
 dbName="${GITHUB_ROOT_NAME}-web-db"
 resourceGroupName="${GITHUB_ROOT_NAME}-rg"
+location="${GITHUB_LOCATION}"
 
 echo Derived Variables...
 echo "Application Name: $applicationName"
+echo "Location: $location"
 echo "Resource Group Name: $resourceGroupName"
 echo "Web App Name: $webAppName"
 echo "Hosting Plan: $hostingPlanName"
 echo "DB Server Name: $dbServerName"
 echo "DB Name: $dbName"
 
-az group create -l "$GITHUB_LOCATION" --n "$resourceGroupName" --tags  Application=$applicationName
-#az group deployment create --resource-group <resource-group-name> --template-file <path-to-template>
+az group create -l $location --n $resouceGroupName --tags  Application=$applicationName
+az group deployment create -g $resourceGroupName --template-file sirmione-web/ArmTemplates/windows-webapp-sql-template.json --parameters '{
+         "webAppName": {
+            "value": "$webAppName"
+        },
+        "hostingPlanName": {
+            "value": "$hostingPlanName"
+        },
+        "appInsightsLocation": {
+            "value": "$location"
+        },
+        "databaseServerName": {
+            "value": "dbServerName"
+        },
+        "databaseUsername": {
+            "value": "$GITHUB_DB_USER"
+        },
+        "databasePassword": {
+            "value": "$GITHUB_DB_PASSWORD"
+        },
+        "databaseLocation": {
+            "value": "$location"
+        },
+        "databaseName": {
+            "value": "$dbName"
+        }
+       
+    }'
