@@ -41,7 +41,7 @@ echo
 echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
 # az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  Application=$applicationName
 
-echo "Creating app service $webAppName in $DEFAULT_LOCATION"
+echo "Creating app service $webAppName in group $resourceGroupName"
 # az group deployment create -g $resourceGroupName \
 #    --template-file sirmione-web/ArmTemplates/windows-webapp-sql-template.json  \
 #    --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=$DEFAULT_LOCATION \
