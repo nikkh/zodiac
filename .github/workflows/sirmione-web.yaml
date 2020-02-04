@@ -1,7 +1,4 @@
 # This workflow will deploy the front end component of the application.
-# The project is called Sirmione-Web, but you deploy it an application name of your choice by editing the 
-# GITHUB_ROOT_NAME environment variable in this file.  Choose something that wil be unique and avoid name clashes
-# I have used zodiac, you could use z99u88 or something similar.
 # To get this workflow to trigger you need to edit one of the files in the Sirmione-Web project.
 
 on:
@@ -11,22 +8,21 @@ on:
 
 name: Sirmione-Web
 env:
-   LOCATION: uksouth
+  DEFAULT_LOCATION: ${{ secrets.DEFAULT_LOCATION }}
+  SIRMIONE_ALIAS: ${{ secrets.SIRMIONE_ALIAS }}
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-        
+    - name: Check Environment Variables
+      run: |
+             echo $SIRMIONE_ALIAS
+             echo $DEFAULT_LOCATION
+             
     - name: Checkout Repo
       uses: actions/checkout@v2
 
-    - name: Set Environment Variables from global/parameters.json
-      run: |
-             chmod +x deployment_scripts/set_environment.sh
-             source deployment_scripts/set_environment.sh
-             echo $SIRMIONE_ALIAS
-    
     - name: Setup .NET Core 3.1.101
       uses: actions/setup-dotnet@v1
       with:
@@ -47,7 +43,7 @@ jobs:
     - name: 'Deploy Web Application'
       uses: azure/webapps-deploy@v1
       with: 
-        app-name: ${{env.SIRMIONE-ALIAS}}-web
+        app-name: ${{env.SIRMIONE_ALIAS}}-web
         package: ${{env.DOTNET_ROOT}}/myapp 
        
     
