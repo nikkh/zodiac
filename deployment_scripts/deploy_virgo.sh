@@ -37,3 +37,8 @@ echo "Creating serverless function app $functionAppName in $resourceGroupName"
 #  --storage-account $storageAccountName \
 #  --consumption-plan-location $DEFAULT_LOCATION \
 #  --resource-group $resourceGroupName
+
+echo "Updating App Settings for $functionAppName"
+storageConnectionString="dummy-value"
+serviceBusConnectionString="dummy-value"
+# az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings AzureWebJobsStorage=$storageConnectionString ServiceBusConnection=$serviceBusConnectionString
