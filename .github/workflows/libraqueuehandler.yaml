@@ -1,7 +1,7 @@
 name: Libra Queue Handler
 env:
   DEFAULT_LOCATION: ${{ secrets.DEFAULT_LOCATION }}
-  SCORPIO_ALIAS: ${{ secrets.LIBRA_ALIAS }}
+  LIBRA_ALIAS: ${{ secrets.LIBRA_ALIAS }}
 on:
   push:
     paths:
