@@ -32,10 +32,11 @@ namespace LibraQueueHandler
                 _logger.LogInformation($"TraceGuid={messageModel.TraceGuid}, MessageId={message.MessageId}");
                 var activity = message.ExtractActivity();
                 _logger.LogDebug($"activity.RootId={activity.RootId}, activity.ParentID={activity.ParentId}");
-                using var operation = _telemetryClient.StartOperation<RequestTelemetry>(activity);
+                var operation = _telemetryClient.StartOperation<RequestTelemetry>(activity);
                 try
                 {
                     _telemetryClient.TrackTrace("This is where processing would happen for LibraQueueHandler....", SeverityLevel.Information);
+                    operation.Telemetry.Success = true;
                     // dont do anything else with this message
                 }
                 catch (Exception ex)
