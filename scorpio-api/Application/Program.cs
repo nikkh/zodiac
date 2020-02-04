@@ -28,7 +28,7 @@ namespace scorpio_api
                         // Providing an instrumentation key here is required if you're using
                         // standalone package Microsoft.Extensions.Logging.ApplicationInsights
                         // or if you want to capture logs from early in the application startup
-                        // pipeline from Startup.cs or Program.cs itself...
+                        // pipeline from Startup.cs or Program.cs itself.....
                         builder.AddApplicationInsights("dc02feb8-39cd-4612-802a-e9a602085700");
 
 
