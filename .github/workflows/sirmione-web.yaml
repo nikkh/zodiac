@@ -21,7 +21,7 @@ jobs:
     - name: Checkout Repo
       uses: actions/checkout@v2
 
-    - name: Set Environment Variables from global/parameters
+    - name: Set Environment Variables from global/parameters.json
       run: |
              chmod +x deployment_scripts/set_environment.sh
              source deployment_scripts/set_environment.sh
