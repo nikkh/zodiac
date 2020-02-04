@@ -39,15 +39,15 @@ echo "Scorpio base url: $scorpioBaseUrl"
 echo
 
 echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
-# az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  Application=$applicationName
+az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  Application=zodiac Micrososervice=$applicationName PendingDelete=true
 
 echo "Creating app service $webAppName in group $resourceGroupName"
-# az group deployment create -g $resourceGroupName \
-#    --template-file sirmione-web/ArmTemplates/windows-webapp-sql-template.json  \
-#    --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=$DEFAULT_LOCATION \
-#        databaseServerName=$dbServerName databaseUsername=$DBADMIN_USER databasePassword=$DBADMIN_USER_PASSWORD_DO_DIFFERENTLY databaseLocation=$DEFAULT_LOCATION \
-#        databaseName=$dbName \
-#        sku="${appservice_webapp_sku}" databaseEdition=$database_edition
+ az group deployment create -g $resourceGroupName \
+    --template-file sirmione-web/ArmTemplates/windows-webapp-sql-template.json  \
+    --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=$DEFAULT_LOCATION \
+        databaseServerName=$dbServerName databaseUsername=$DBADMIN_USER databasePassword=$DBADMIN_USER_PASSWORD_DO_DIFFERENTLY databaseLocation=$DEFAULT_LOCATION \
+        databaseName=$dbName \
+        sku="${appservice_webapp_sku}" databaseEdition=$database_edition
 
 echo "Updating App Settings for $webAppName"
-# az webapp config appsettings set -g $resourceGroupName -n $webAppName --settings LimoneBaseUrl=$limoneBaseUrl ScorpioBaseUrl=$scorpioBaseUrl
+ az webapp config appsettings set -g $resourceGroupName -n $webAppName --settings LimoneBaseUrl=$limoneBaseUrl ScorpioBaseUrl=$scorpioBaseUrl
