@@ -1,1 +1,2 @@
-
+echo Deploying scorpio-api...
+echo "I dont do anything"
