@@ -16,5 +16,5 @@ jobs:
         run: |
                 chmod +x .github/workflows/experiment.sh
                 source .github/workflows/experiment.sh
-                echo $test
+                echo $SIRMIONE_ALIAS
 
