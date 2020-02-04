@@ -57,5 +57,5 @@ echo "Updating App Settings for $webAppName"
 storageConnectionString="dummy-value"
 serviceBusConnectionString="dummy-value"
 databaseConnectionString="dummy-value"
- az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings AZURE_STORAGE_CONNECTIONSTRING=$storageConnectionString \ 
-  AZURE_SERVICEBUS_CONNECTIONSTRING=$serviceBusConnectionString AZURE_A3SSDEVDB_CONNECTIONSTRING=$databaseConnectionString
+ az webapp config appsettings set -g $resourceGroupName -n $webAppName \
+ --settings AZURE_STORAGE_CONNECTIONSTRING=$storageConnectionString AZURE_SERVICEBUS_CONNECTIONSTRING=$serviceBusConnectionString AZURE_A3SSDEVDB_CONNECTIONSTRING=$databaseConnectionString
