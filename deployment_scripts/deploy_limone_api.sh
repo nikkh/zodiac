@@ -23,7 +23,7 @@ webAppName="${applicationName}-api"
 hostingPlanName="${applicationName}-plan"
 resourceGroupName="${applicationName}-rg"
 acrRegistryName="${applicationName}acr"
-serviceBusNamespace="${applicationName}-sb"
+serviceBusNamespace="${applicationName}sb"
 storageAccountName=${applicationName}$RANDOM
 
 echo ---Derived Variables
