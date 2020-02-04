@@ -1,12 +1,14 @@
 name: Libra Queue Handler
-
+env:
+  DEFAULT_LOCATION: ${{ secrets.DEFAULT_LOCATION }}
+  SCORPIO_ALIAS: ${{ secrets.LIBRA_ALIAS }}
 on:
   push:
     paths:
     - LibraQueueHandler/LibraQueueHandler/**
       
 jobs:
-  build:
+  build-and-deploy:
 
     runs-on: ubuntu-latest
 
@@ -16,5 +18,26 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101
+      
     - name: Build with dotnet
       run: dotnet build LibraQueueHandler/LibraQueueHandler/LibraQueueHandler.csproj --configuration Release
+      
+
+    - name: Publish Application
+      run: |
+        dotnet LibraQueueHandler/LibraQueueHandler/LibraQueueHandler.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp 
+        
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+   
+    - name: 'Run Azure Functions Action'
+      uses: Azure/functions-action@v1
+      id: fa
+      with:
+        app-name: ${{env.LIBRA_ALIAS}}-func
+        package: ${{env.DOTNET_ROOT}}/myapp
+       
+
+
