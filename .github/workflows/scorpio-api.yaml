@@ -36,7 +36,7 @@ jobs:
     - name: 'Deploy Web Application'
       uses: azure/webapps-deploy@v1
       with: 
-        app-name: ${{env.SCORPIO_ALIAS}}-web
+        app-name: ${{env.SCORPIO_ALIAS}}-api
         package: ${{env.DOTNET_ROOT}}/myapp 
 
 
