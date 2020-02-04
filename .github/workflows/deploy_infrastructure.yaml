@@ -34,4 +34,9 @@ jobs:
       - name: Run Deployment Scripts
         run: |
                 chmod +x deployment_scripts/deploy_infrastructure.sh
-                source deployment_scripts/deploy_infrastructure.sh
+                chmod +x deployment_scripts/deploy_sirmione_web.sh
+                chmod +x deployment_scripts/deploy_scorpio_api.sh
+                chmod +x deployment_scripts/deploy_limone_api.sh
+                chmod +x deployment_scripts/deploy_virgo.sh
+                chmod +x deployment_scripts/deploy_libra.sh
+                deployment_scripts/deploy_infrastructure.sh
