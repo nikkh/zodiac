@@ -21,24 +21,24 @@ echo "Function App Name: $functionAppName"
 echo
 
 echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
-# az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  Application=$applicationName
+az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  Application=zodiac Micrososervice=$applicationName PendingDelete=true
 
 echo "Creating storage account $storageAccountName in $resourceGroupName"
-# Create an Azure storage account in the resource group.
-# az storage account create \
-#  --name $storageAccountName \
-#  --location $DEFAULT_LOCATION \
-#  --resource-group $resourceGroupName \
-#  --sku Standard_LRS
+Create an Azure storage account in the resource group.
+az storage account create \
+ --name $storageAccountName \
+ --location $DEFAULT_LOCATION \
+ --resource-group $resourceGroupName \
+ --sku Standard_LRS
 
 echo "Creating serverless function app $functionAppName in $resourceGroupName"
-# az functionapp create \
-#  --name $functionAppName \
-#  --storage-account $storageAccountName \
-#  --consumption-plan-location $DEFAULT_LOCATION \
-#  --resource-group $resourceGroupName
+az functionapp create \
+ --name $functionAppName \
+  --storage-account $storageAccountName \
+  --consumption-plan-location $DEFAULT_LOCATION \
+  --resource-group $resourceGroupName
 
 echo "Updating App Settings for $functionAppName"
 storageConnectionString="dummy-value"
 serviceBusConnectionString="dummy-value"
-# az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings AzureWebJobsStorage=$storageConnectionString ServiceBusConnection=$serviceBusConnectionString
+ az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings AzureWebJobsStorage=$storageConnectionString ServiceBusConnection=$serviceBusConnectionString
