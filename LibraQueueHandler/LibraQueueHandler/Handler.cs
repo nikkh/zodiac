@@ -35,7 +35,7 @@ namespace LibraQueueHandler
                 using var operation = _telemetryClient.StartOperation<RequestTelemetry>(activity);
                 try
                 {
-                    _telemetryClient.TrackTrace("This is where processing would happen for LibraQueueHandler.....", SeverityLevel.Information);
+                    _telemetryClient.TrackTrace("This is where processing would happen for LibraQueueHandler", SeverityLevel.Information);
                     // dont do anything else with this message
                 }
                 catch (Exception ex)
