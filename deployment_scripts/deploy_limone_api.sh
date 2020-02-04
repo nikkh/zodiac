@@ -3,7 +3,7 @@ echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo         Deploying limone-api
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo ---Global Variables
-echo "LIMONE_ALIAS: $SCORPIO_ALIAS"
+echo "LIMONE_ALIAS: $LIMONE_ALIAS"
 echo "DEFAULT_LOCATION: $DEFAULT_LOCATION"
 echo
 
