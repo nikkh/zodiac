@@ -61,4 +61,8 @@ echo "Creating app service $webAppName in group $resourceGroupName"
 #    --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=$DEFAULT_LOCATION \
 #        sku="${appservice_webapp_sku}" imageName="$imageName" registryLocation="$DEFAULT_LOCATION" registrySku="$acrSku"
 
-
+echo "Updating App Settings for $webAppName"
+storageConnectionString="dummy-value"
+serviceBusConnectionString="dummy-value"
+# az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings AZURE_STORAGE_CONNECTIONSTRING=$storageConnectionString \ 
+#  AZURE_SERVICEBUS_CONNECTIONSTRING=$serviceBusConnectionString 
