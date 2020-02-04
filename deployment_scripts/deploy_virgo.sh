@@ -1,2 +1,2 @@
-echo
+echo Deploying virgo...
 echo "I dont do anything"
