@@ -63,8 +63,7 @@ echo "Creating app service $webAppName in group $resourceGroupName"
 echo "Updating App Settings for $webAppName"
 storageConnectionString="dummy-value"
 serviceBusConnectionString="dummy-value"
- az webapp config appsettings set -g $resourceGroupName -n $webAppName \ 
- --settings AZURE_STORAGE_CONNECTIONSTRING=$storageConnectionString AZURE_SERVICEBUS_CONNECTIONSTRING=$serviceBusConnectionString 
+az webapp config appsettings set -g $resourceGroupName -n $webAppName --settings AZURE_STORAGE_CONNECTIONSTRING=$storageConnectionString AZURE_SERVICEBUS_CONNECTIONSTRING=$serviceBusConnectionString 
   
   
 
