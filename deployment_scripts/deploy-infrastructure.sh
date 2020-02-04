@@ -11,7 +11,7 @@ virgo_alias=$(curl -s https://raw.githubusercontent.com/nikkh/zodiac/master/glob
 libra_alias=$(curl -s https://raw.githubusercontent.com/nikkh/zodiac/master/global/parameters.json | jq -r '.libra_alias')
 limone_rg="${limone_alias}-rg"
 scorpio_rg="${scorpio_alias}-rg"
-dbadmin_user=$(curl -s https://raw.githubusercontent.com/nikkh/zodiac/master/global/parameters.json | jq -r 'dbadmin_user')
+dbadmin_user=$(curl -s https://raw.githubusercontent.com/nikkh/zodiac/master/global/parameters.json | jq -r '.dbadmin_user')
 dbadmin_user_password_do_differently=$(curl -s https://raw.githubusercontent.com/nikkh/zodiac/master/global/parameters.json | jq -r '.dbadmin_user_password_do_differently')
 
 export DEFAULT_LOCATION=$default_location
