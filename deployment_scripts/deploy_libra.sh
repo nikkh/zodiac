@@ -10,8 +10,8 @@ echo
 # Derive as many variables as possible
 applicationName="${LIBRA_ALIAS}"
 resourceGroupName="${applicationName}-rg"
-storageAccountName=mystorageaccount$RANDOM
-functionAppName=myserverlessfunc$RANDOM
+storageAccountName=${applicationName}$RANDOM
+functionAppName=${applicationName-fa}
 
 echo ---Derived Variables
 echo "Application Name: $applicationName"
