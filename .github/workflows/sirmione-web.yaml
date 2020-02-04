@@ -17,10 +17,15 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-  
+        
     - name: Checkout Repo
       uses: actions/checkout@v2
 
+    - name: Set Environment Variables from global/parameters
+      run: |
+             chmod +x deployment_scripts/set_environment.sh
+             source deployment_scripts/set_environment.sh
+             echo $SIRMIONE_ALIAS
     
     - name: Setup .NET Core 3.1.101
       uses: actions/setup-dotnet@v1
@@ -42,7 +47,7 @@ jobs:
     - name: 'Deploy Web Application'
       uses: azure/webapps-deploy@v1
       with: 
-        app-name: ${{env.GITHUB_ROOT_NAME}}-web
+        app-name: ${{env.SIRMIONE-ALIAS}}-web
         package: ${{env.DOTNET_ROOT}}/myapp 
        
     
