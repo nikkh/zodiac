@@ -5,8 +5,14 @@ on:
  
 name: Deploy Infrastructure
 env:
+  DB_ADMIN_PASSWORD: ${{ secrets.DB_ADMIN_PASSWORD }}
+  DB_ADMIN_USER: ${{ secrets.DB_ADMIN_USER }} 
   DEFAULT_LOCATION: ${{ secrets.DEFAULT_LOCATION }}
+  LIBRA_ALIAS: ${{ secrets.LIBRA_ALIAS }}
+  LIMONE_ALIAS: ${{ secrets.LIMONE_ALIAS }}
+  SCORPIO_ALIAS: ${{ secrets.SCORPIO_ALIAS }}
   SIRMIONE_ALIAS: ${{ secrets.SIRMIONE_ALIAS }}
+  VIRGO_ALIAS: ${{ secrets.VIRGO_ALIAS }}
 
 jobs:
   job1:
@@ -14,12 +20,7 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
-    
-      - name: Test printing your secret (Remove this step in production)
-        run: |
-                chmod +x .github/workflows/experiment.sh
-                source .github/workflows/experiment.sh
-                
+                    
       - name: Setup .NET Core 3.1.101
         uses: actions/setup-dotnet@v1
         with:
@@ -30,4 +31,7 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
    
-   
+      - name: Run Deployment Scripts
+        run: |
+                chmod +x deployment_scripts/deploy_infrastructure.sh
+                source deployment_scripts/deploy_infrastructure.sh
