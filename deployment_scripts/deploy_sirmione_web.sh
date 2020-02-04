@@ -15,7 +15,7 @@ echo "App service Sku: $appservice_webapp_sku"
 echo "Database Edition: $database_edition"
 
 # Derive as many variables as possible
-applicationName="${SiRMIONE_ALIAS}"
+applicationName="${SIRMIONE_ALIAS}"
 webAppName="${applicationName}-web"
 hostingPlanName="${applicationName}-plan"
 dbServerName="${applicationName}-db-server"
