@@ -5,8 +5,8 @@ echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo ---Global Variables
 echo "SCORPIO_ALIAS: $SCORPIO_ALIAS"
 echo "DEFAULT_LOCATION: $DEFAULT_LOCATION"
-echo "DBADMIN_USER: $DBADMIN_USER"
-echo "DBADMIN_USER_PASSWORD_DO_DIFFERENTLY: $DBADMIN_USER_PASSWORD_DO_DIFFERENTLY"
+echo "DB_ADMIN_USER: $DB_ADMIN_USER"
+echo "DB_ADMIN_PASSWORD: $DB_ADMIN_PASSWORD"
 echo
 
 # set local variables
@@ -21,7 +21,7 @@ applicationName="${SCORPIO_ALIAS}"
 webAppName="${applicationName}-api"
 hostingPlanName="${applicationName}-plan"
 resourceGroupName="${applicationName}-rg"
-databaseConnectionString="Server=tcp:$dbServerName.database.windows.net;Database=$dbName;User ID=$DBADMIN_USER;Password=$DBADMIN_USER_PASSWORD_DO_DIFFERENTLY;Encrypt=True;Connection Timeout=30;"
+databaseConnectionString="Server=tcp:$dbServerName.database.windows.net;Database=$dbName;User ID=$DB_ADMIN_USER;Password=$DB_ADMIN_PASSWORD;Encrypt=True;Connection Timeout=30;"
 dbServerName="${applicationName}-db-server"
 dbName="${applicationName}-web-db"
 storageAccountName=${applicationName}$RANDOM
