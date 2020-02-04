@@ -19,9 +19,7 @@ jobs:
       with:
         dotnet-version: '2.2.300'
       
-    - name: Build with dotnet
-      run: dotnet build LibraQueueHandler/LibraQueueHandler/LibraQueueHandler.csproj --configuration Release
-      
+    
     - name: 'Run dotnet build'
       shell: bash
       run: |
