@@ -50,4 +50,4 @@ echo "Creating app service $webAppName in group $resourceGroupName"
 #        sku="${appservice_webapp_sku}" databaseEdition=$database_edition
 
 echo "Updating App Settings for $webAppName"
-az webapp config appsettings set -g $resourceGroupName -n $webAppName --settings LimoneBaseUrl=$limoneBaseUrl ScorpioBaseUrl=$scorpioBaseUrl
+# az webapp config appsettings set -g $resourceGroupName -n $webAppName --settings LimoneBaseUrl=$limoneBaseUrl ScorpioBaseUrl=$scorpioBaseUrl
