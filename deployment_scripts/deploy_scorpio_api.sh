@@ -38,25 +38,24 @@ echo "Storage account name: $storageAccountName"
 echo
 
 echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
-# az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  Application=$applicationName
+# az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  Application=zodiac Micrososervice=$applicationName PendingDelete=true
 
 echo "Creating storage account $storageAccountName in group $resourceGroupName"
-# Create an Azure storage account in the resource group.
-# az storage account create \
-#  --name $storageAccountName \
-#  --location $DEFAULT_LOCATION \
-#  --resource-group $resourceGroupName \
-#  --sku Standard_LRS
+ az storage account create \
+  --name $storageAccountName \
+  --location $DEFAULT_LOCATION \
+  --resource-group $resourceGroupName \
+  --sku Standard_LRS
 
 echo "Creating app service $webAppName in group $resourceGroupName "
-# az group deployment create -g $resourceGroupName \
-#    --template-file scorpio-api/ArmTemplates/windows-webapp-template.json  \
-#    --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=$DEFAULT_LOCATION \
-#        sku="${appservice_webapp_sku}" databaseConnectionString="{$databaseConnectionString}"
+ az group deployment create -g $resourceGroupName \
+    --template-file scorpio-api/ArmTemplates/windows-webapp-template.json  \
+    --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=$DEFAULT_LOCATION \
+        sku="${appservice_webapp_sku}" databaseConnectionString="{$databaseConnectionString}"
 
 echo "Updating App Settings for $webAppName"
 storageConnectionString="dummy-value"
 serviceBusConnectionString="dummy-value"
 databaseConnectionString="dummy-value"
-# az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings AZURE_STORAGE_CONNECTIONSTRING=$storageConnectionString \ 
-#  AZURE_SERVICEBUS_CONNECTIONSTRING=$serviceBusConnectionString AZURE_A3SSDEVDB_CONNECTIONSTRING=$databaseConnectionString
+ az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings AZURE_STORAGE_CONNECTIONSTRING=$storageConnectionString \ 
+  AZURE_SERVICEBUS_CONNECTIONSTRING=$serviceBusConnectionString AZURE_A3SSDEVDB_CONNECTIONSTRING=$databaseConnectionString
