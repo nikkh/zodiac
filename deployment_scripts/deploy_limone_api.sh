@@ -58,7 +58,7 @@ echo "Creating app service $webAppName in group $resourceGroupName"
  az group deployment create -g $resourceGroupName \
     --template-file limone-api/ArmTemplates/container-webapp-template.json  \
     --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=$DEFAULT_LOCATION \
-        sku="${appservice_webapp_sku}" imageName="$imageName" registryLocation="$DEFAULT_LOCATION" registrySku="$acrSku"
+        sku="${appservice_webapp_sku}" registryName=$acrRegistryName imageName="$imageName" registryLocation="$DEFAULT_LOCATION" registrySku="$acrSku"
 
 echo "Updating App Settings for $webAppName"
 storageConnectionString="dummy-value"
