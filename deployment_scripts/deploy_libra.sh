@@ -37,15 +37,6 @@ az functionapp create \
  --consumption-plan-location $DEFAULT_LOCATION \
  --resource-group $resourceGroupName
 
-echo "Try to update to V3 function app ($functionAppName)"
-functionsExtensionVersion="~3"
-functionsWorkerRuntime="dotnet"
-serviceBusConnectionString="dummy-value"
-az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings FUNCTIONS_WORKER_RUNTIME=$functionsWorkerRuntime FUNCTIONS_EXTENSION_VERSION=$functionsExtensionVersion
-
-echo "Restart function app $functionAppName"
-az functionapp restart --name $functionAppName --resource-group $resourceGroupName
-
 echo "Updating App Settings for $functionAppName"
 storageConnectionString="dummy-value"
 serviceBusConnectionString="dummy-value"

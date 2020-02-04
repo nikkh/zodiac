@@ -17,15 +17,17 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.101
+        dotnet-version: '2.2.300'
       
-    - name: Build with dotnet
-      run: dotnet build LibraQueueHandler/LibraQueueHandler/LibraQueueHandler.csproj --configuration Release
-      
-
-    - name: Publish Application
+    
+    - name: 'Run dotnet build'
+      shell: bash
       run: |
-        dotnet publish LibraQueueHandler/LibraQueueHandler/LibraQueueHandler.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp 
+        # If your function app project is not located in your repository's root
+        # Please consider using pushd to change your path
+        pushd LibraQueueHandler/LibraQueueHandler
+        dotnet build --configuration Release --output ./output
+        popd 
         
     - name: Login to Azure
       uses: azure/login@v1
@@ -37,7 +39,10 @@ jobs:
       id: fa
       with:
         app-name: ${{env.LIBRA_ALIAS}}-func
-        package: ${{env.DOTNET_ROOT}}/myapp
+        # If your function app project is not located in your repository's root
+        # Please consider prefixing the project path in this package parameter
+        package: 'LibraQueueHandler/LibraQueueHandler/output'
+        
        
 
 
