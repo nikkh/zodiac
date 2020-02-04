@@ -24,6 +24,7 @@ resourceGroupName="${applicationName}-rg"
 databaseConnectionString="Server=tcp:$dbServerName.database.windows.net;Database=$dbName;User ID=$DBADMIN_USER;Password=$DBADMIN_USER_PASSWORD_DO_DIFFERENTLY;Encrypt=True;Connection Timeout=30;"
 dbServerName="${applicationName}-db-server"
 dbName="${applicationName}-web-db"
+storageAccountName=${applicationName}$RANDOM
 
 echo ---Derived Variables
 echo "Application Name: $applicationName"
@@ -33,12 +34,21 @@ echo "Hosting Plan: $hostingPlanName"
 echo "DB Server Name: $dbServerName"
 echo "DB Name: $dbName"
 echo "Database connection string: $databaseConnectionString"
+echo "Storage account name: $storageAccountName"
 echo
 
 echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
 # az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  Application=$applicationName
-   
-echo "Creating app service $webAppName in $DEFAULT_LOCATION"
+
+echo "Creating storage account $storageAccountName in group $resourceGroupName"
+# Create an Azure storage account in the resource group.
+# az storage account create \
+#  --name $storageAccountName \
+#  --location $DEFAULT_LOCATION \
+#  --resource-group $resourceGroupName \
+#  --sku Standard_LRS
+
+echo "Creating app service $webAppName in group $resourceGroupName "
 # az group deployment create -g $resourceGroupName \
 #    --template-file scorpio-api/ArmTemplates/windows-webapp-template.json  \
 #    --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=$DEFAULT_LOCATION \
