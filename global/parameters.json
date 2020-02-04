@@ -8,5 +8,7 @@
     "scorpio_servicebus_namespace": "scorpionhsa",
     "scorpio_storageaccount_name": "scorpionhsb",
     "virgo_alias": "virgonh",
-    "libra_alias": "libranh"
+    "libra_alias": "libranh",
+    "dbadmin_user" : "dbadmin",
+    "dbadmin_user_password_do_differently" : "Boldmere1883@@@"
 }
