@@ -21,7 +21,7 @@ applicationName="${SCORPIO_ALIAS}"
 webAppName="${applicationName}-api"
 hostingPlanName="${applicationName}-plan"
 resourceGroupName="${applicationName}-rg"
-
+databaseConnectionString="Server=tcp:$dbServerName.database.windows.net;Database=$dbName;User ID=$DBADMIN_USER;Password=$DBADMIN_USER_PASSWORD_DO_DIFFERENTLY;Encrypt=True;Connection Timeout=30;"
 dbServerName="${applicationName}-db-server"
 dbName="${applicationName}-web-db"
 
@@ -32,14 +32,13 @@ echo "Web App Name: $webAppName"
 echo "Hosting Plan: $hostingPlanName"
 echo "DB Server Name: $dbServerName"
 echo "DB Name: $dbName"
+echo "Database connection string: $databaseConnectionString"
 echo
 
-databaseConnectionString="Server=tcp:$dbServerName.database.windows.net;Database=$dbName;User ID=$DBADMIN_USER;Password=$DBADMIN_USER_PASSWORD_DO_DIFFERENTLY;Encrypt=True;Connection Timeout=30;"
-echo "Database connection string: $databaseConnectionString"
-echo "I dont do anything else"
-
+echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
 # az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  Application=$applicationName
    
+echo "Creating app service $webAppName in $DEFAULT_LOCATION"
 # az group deployment create -g $resourceGroupName \
 #    --template-file scorpio-api/ArmTemplates/windows-webapp-template.json  \
 #    --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=$DEFAULT_LOCATION \
