@@ -37,32 +37,31 @@ echo "Storage account name: $storageAccountName"
 echo
 
 echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
-# az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  Application=$applicationName
+az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" Application=zodiac Micrososervice=$applicationName PendingDelete=true
 
 echo "Creating service bus namespace $serviceBusNamespace in group $resourceGroupName"
-# az servicebus namespace create -g $scorpio_rg -n $scorpio_servicebus_namespace
+az servicebus namespace create -g $scorpio_rg -n $scorpio_servicebus_namespace
 
 echo "Creating storage account $storageAccountName in $resourceGroupName"
-# Create an Azure storage account in the resource group.
-# az storage account create \
-#  --name $storageAccountName \
-#  --location $DEFAULT_LOCATION \
-#  --resource-group $resourceGroupName \
-#  --sku Standard_LRS
+ az storage account create \
+  --name $storageAccountName \
+  --location $DEFAULT_LOCATION \
+  --resource-group $resourceGroupName \
+  --sku Standard_LRS
 
 echo "Creating azure container registry $acrRegistryName in group $resourceGroupName"
-# az group deployment create -g $resourceGroupName \
-#    --template-file limone-api/ArmTemplates/containerRegistry-template.json  \
-#    --parameters registryName=$acrRegistryName registryLocation=$DEFAULT_LOCATION registrySku=$acrSku
+ az group deployment create -g $resourceGroupName \
+    --template-file limone-api/ArmTemplates/containerRegistry-template.json  \
+    --parameters registryName=$acrRegistryName registryLocation=$DEFAULT_LOCATION registrySku=$acrSku
 
 echo "Creating app service $webAppName in group $resourceGroupName"
-# az group deployment create -g $resourceGroupName \
-#    --template-file limone-api/ArmTemplates/container-webapp-template.json  \
-#    --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=$DEFAULT_LOCATION \
-#        sku="${appservice_webapp_sku}" imageName="$imageName" registryLocation="$DEFAULT_LOCATION" registrySku="$acrSku"
+ az group deployment create -g $resourceGroupName \
+    --template-file limone-api/ArmTemplates/container-webapp-template.json  \
+    --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=$DEFAULT_LOCATION \
+        sku="${appservice_webapp_sku}" imageName="$imageName" registryLocation="$DEFAULT_LOCATION" registrySku="$acrSku"
 
 echo "Updating App Settings for $webAppName"
 storageConnectionString="dummy-value"
 serviceBusConnectionString="dummy-value"
-# az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings AZURE_STORAGE_CONNECTIONSTRING=$storageConnectionString \ 
-#  AZURE_SERVICEBUS_CONNECTIONSTRING=$serviceBusConnectionString 
+ az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings AZURE_STORAGE_CONNECTIONSTRING=$storageConnectionString \ 
+  AZURE_SERVICEBUS_CONNECTIONSTRING=$serviceBusConnectionString 
