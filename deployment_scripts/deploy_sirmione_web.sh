@@ -2,7 +2,7 @@
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo         Deploying sirmione-web
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-echo >> Global Variables
+echo ---Global Variables
 echo "SIRMIONE_ALIAS: $SIRMIONE_ALIAS"
 echo "DEFAULT_LOCATION: $DEFAULT_LOCATION"
 echo "DBADMIN_USER: $DBADMIN_USER"
@@ -13,7 +13,7 @@ echo
 # set local variables
 appservice_webapp_sku="S1 Standard"
 database_edition="Basic"
-echo >> Local Variables
+echo ---Local Variables
 echo "App service Sku: $appservice_webapp_sku"
 echo "Database Edition: $database_edition"
 echo 
@@ -27,7 +27,7 @@ resourceGroupName="${applicationName}-rg"
 limoneBaseUrl="${LIMONE_ALIAS}-api.azurewebsites.net"
 scorpioBaseUrl="${SCORPIO_ALIAS}-api.azurewebsites.net"
 
-echo >> Derived Variables
+echo ---Derived Variables
 echo "Application Name: $applicationName"
 echo "Resource Group Name: $resourceGroupName"
 echo "Web App Name: $webAppName"
