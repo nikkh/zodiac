@@ -1,30 +1,43 @@
 name: Scorpio-api
+env:
+  DEFAULT_LOCATION: ${{ secrets.DEFAULT_LOCATION }}
+  SCORPIO_ALIAS: ${{ secrets.SCORPIO_ALIAS }}
 
 on:
   push:
     paths:
     - scorpio-api/Application/**
-      
-
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-  
+                
     - name: Checkout Repo
       uses: actions/checkout@v2
-      
+
+    - name: Setup .NET Core 3.1.101
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.101
+        
+    - name: Build Application
+      run: dotnet build scorpio-api/Application/scorpio-api.csproj --configuration Release
+
+    - name: Publish Application
+      run: |
+        dotnet publish scorpio-api/Application/scorpio-api.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp 
+        
     - name: Login to Azure
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-       
-    - name: 'Test Thing'
-      run: |
-        chmod +x $GITHUB_WORKSPACE/deployment_scripts/set_env_vars.sh
-        source $GITHUB_WORKSPACE/deployment_scripts/test_env_vars.sh
-        
-    - name: 'Test Thing 2'
-      run: echo $DEFAULT_LOCATION 
+   
+    - name: 'Deploy Web Application'
+      uses: azure/webapps-deploy@v1
+      with: 
+        app-name: ${{env.SCORPIO_ALIAS}}-web
+        package: ${{env.DOTNET_ROOT}}/myapp 
+
+
         
