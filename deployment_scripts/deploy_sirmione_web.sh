@@ -48,3 +48,6 @@ echo "Creating app service $webAppName in group $resourceGroupName"
 #        databaseServerName=$dbServerName databaseUsername=$DBADMIN_USER databasePassword=$DBADMIN_USER_PASSWORD_DO_DIFFERENTLY databaseLocation=$DEFAULT_LOCATION \
 #        databaseName=$dbName \
 #        sku="${appservice_webapp_sku}" databaseEdition=$database_edition
+
+echo "Updating App Settings for $webAppName"
+az webapp config appsettings set -g $resourceGroupName -n $webAppName --settings LimoneBaseUrl=$limoneBaseUrl ScorpioBaseUrl=$scorpioBaseUrl
