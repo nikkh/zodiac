@@ -1,4 +1,6 @@
 #!/bin/bash
+echo Deploying sirmione-web...
+echo "I dont do anything"
 echo Global Variables...
 echo "SIRMIONE_ALIAS: $SiRMIONE_ALIAS"
 echo "DEFAULT_LOCATION: $DEFAULT_LOCATION"
