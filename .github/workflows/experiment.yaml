@@ -3,7 +3,10 @@ on:
     paths:
     - global/**
  
-name: Experiment
+name: Deploy Infrastructure
+env:
+  DEFAULT_LOCATION: ${{ secrets.DEFAULT_LOCATION }}
+  SIRMIONE_ALIAS: ${{ secrets.SIRMIONE_ALIAS }}
 
 jobs:
   job1:
@@ -16,5 +19,15 @@ jobs:
         run: |
                 chmod +x .github/workflows/experiment.sh
                 source .github/workflows/experiment.sh
-                echo $SIRMIONE_ALIAS
-
+                
+      - name: Setup .NET Core 3.1.101
+        uses: actions/setup-dotnet@v1
+        with:
+        dotnet-version: 3.1.101
+        
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+   
+    - 
