@@ -24,7 +24,6 @@ echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
 az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  Application=zodiac Micrososervice=$applicationName PendingDelete=true
 
 echo "Creating storage account $storageAccountName in $resourceGroupName"
-Create an Azure storage account in the resource group.
 az storage account create \
 --name $storageAccountName \
 --location $DEFAULT_LOCATION \
