@@ -11,7 +11,7 @@ echo
 applicationName="${LIBRA_ALIAS}"
 resourceGroupName="${applicationName}-rg"
 storageAccountName=${applicationName}$RANDOM
-functionAppName=${applicationName-fa}
+functionAppName="${applicationName}-func"
 
 echo ---Derived Variables
 echo "Application Name: $applicationName"
