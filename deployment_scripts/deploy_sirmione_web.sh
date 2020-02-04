@@ -5,8 +5,8 @@ echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo ---Global Variables
 echo "SIRMIONE_ALIAS: $SIRMIONE_ALIAS"
 echo "DEFAULT_LOCATION: $DEFAULT_LOCATION"
-echo "DBADMIN_USER: $DBADMIN_USER"
-echo "DBADMIN_USER_PASSWORD_DO_DIFFERENTLY: $DBADMIN_USER_PASSWORD_DO_DIFFERENTLY"
+echo "DB_ADMIN_USER: $DB_ADMIN_USER"
+echo "DB_ADMIN_PASSWORD: $DB_ADMIN_PASSWORD"
 echo "LIMONE_ALIAS: $LIMONE_ALIAS"
 echo "SCORPIO_ALIAS: $SCORPIO_ALIAS"
 echo
@@ -45,7 +45,7 @@ echo "Creating app service $webAppName in group $resourceGroupName"
  az group deployment create -g $resourceGroupName \
     --template-file sirmione-web/ArmTemplates/windows-webapp-sql-template.json  \
     --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=$DEFAULT_LOCATION \
-        databaseServerName=$dbServerName databaseUsername=$DBADMIN_USER databasePassword=$DBADMIN_USER_PASSWORD_DO_DIFFERENTLY databaseLocation=$DEFAULT_LOCATION \
+        databaseServerName=$dbServerName databaseUsername=$DB_ADMIN_USER databasePassword=$DB_ADMIN_PASSWORD databaseLocation=$DEFAULT_LOCATION \
         databaseName=$dbName \
         sku="${appservice_webapp_sku}" databaseEdition=$database_edition
 
