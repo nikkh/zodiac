@@ -25,7 +25,7 @@ jobs:
 
     - name: Publish Application
       run: |
-        dotnet LibraQueueHandler/LibraQueueHandler/LibraQueueHandler.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp 
+        dotnet publish LibraQueueHandler/LibraQueueHandler/LibraQueueHandler.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp 
         
     - name: Login to Azure
       uses: azure/login@v1
