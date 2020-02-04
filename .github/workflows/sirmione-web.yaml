@@ -11,8 +11,7 @@ on:
 
 name: Sirmione-Web
 env:
-  GITHUB_ROOT_NAME: zodiac
-  GITHUB_LOCATION: uksouth
+   LOCATION: uksouth
 
 jobs:
   build_and_deploy:
@@ -21,7 +20,8 @@ jobs:
   
     - name: Checkout Repo
       uses: actions/checkout@v2
-      
+
+    
     - name: Setup .NET Core 3.1.101
       uses: actions/setup-dotnet@v1
       with:
@@ -39,24 +39,10 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
    
-    - name: Deploy Web Infrastructure (App service)
-      env:
-        GITHUB_SKU: S1 Standard
-        GITHUB_DB_USER: dbadmin
-        GITHUB_DB_PASSWORD: ${{ secrets.DB_ADMIN_PASSWORD }}
-        GITHUB_LIMONE_BASE_URL: https://zodiac-limone-api.azurewebsites.net/   
-      uses: azure/CLI@v1
-      with:
-        azcliversion: latest
-        inlineScript: |
-          chmod +x $GITHUB_WORKSPACE/deployment_scripts/deploy_sirmione_web_infrastructure.sh
-          $GITHUB_WORKSPACE/deployment_scripts/deploy_sirmione_web_infrastructure.sh        
- 
     - name: 'Deploy Web Application'
       uses: azure/webapps-deploy@v1
       with: 
         app-name: ${{env.GITHUB_ROOT_NAME}}-web
         package: ${{env.DOTNET_ROOT}}/myapp 
        
-    - name: 'Test Thing'
-      run:  az webapp config appsettings set -g ${{env.GITHUB_ROOT_NAME}}-rg -n ${{env.GITHUB_ROOT_NAME}}-web --settings NICKS_TEST_SETTING=test mySetting=value
+    
