@@ -40,7 +40,7 @@ echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
 az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags Application=zodiac Micrososervice=$applicationName PendingDelete=true
 
 echo "Creating service bus namespace $serviceBusNamespace in group $resourceGroupName"
-az servicebus namespace create -g $scorpio_rg -n $scorpio_servicebus_namespace
+az servicebus namespace create -g $resourceGroupName -n $serviceBusNamespace
 
 echo "Creating storage account $storageAccountName in $resourceGroupName"
  az storage account create \
