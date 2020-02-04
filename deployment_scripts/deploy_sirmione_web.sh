@@ -2,9 +2,8 @@
 echo Deploying sirmione-web...
 echo "I dont do anything"
 echo Global Variables...
-echo "SIRMIONE_ALIAS: $SiRMIONE_ALIAS"
+echo "SIRMIONE_ALIAS: $SIRMIONE_ALIAS"
 echo "DEFAULT_LOCATION: $DEFAULT_LOCATION"
-echo "SKU: $GITHUB_SKU"
 echo "DBADMIN_USER: $DBADMIN_USER"
 echo "DBADMIN_USER_PASSWORD_DO_DIFFERENTLY: $DBADMIN_USER_PASSWORD_DO_DIFFERENTLY"
 
@@ -40,4 +39,4 @@ echo "I dont do anything else"
 #    --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=$GITHUB_LOCATION \
 #        databaseServerName=$dbServerName databaseUsername=$GITHUB_DB_USER databasePassword=$GITHUB_DB_PASSWORD databaseLocation=$GITHUB_LOCATION \
 #        databaseName=$dbName \
-#        sku="${GITHUB_SKU}" databaseEdition=$database_edition
+#        sku="${appservice_webapp_sku}" databaseEdition=$database_edition
