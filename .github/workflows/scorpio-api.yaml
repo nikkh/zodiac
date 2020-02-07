@@ -1,8 +1,7 @@
 name: Scorpio-api
 env:
-  DEFAULT_LOCATION: ${{ secrets.DEFAULT_LOCATION }}
-  SCORPIO_ALIAS: ${{ secrets.SCORPIO_ALIAS }}
-
+  DEFAULT_LOCATION: uksouth
+  SCORPIO_ALIAS: scorpio
 on:
   push:
     paths:
