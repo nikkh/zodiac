@@ -1,5 +1,6 @@
 # This workflow will deploy the front end component of the application.
 # To get this workflow to trigger you need to edit one of the files in the Sirmione-Web project.
+# to change the name of the resource edit the ALIAS below
 
 on:
   push:
@@ -8,8 +9,8 @@ on:
 
 name: Sirmione-Web
 env:
-  DEFAULT_LOCATION: ${{ secrets.DEFAULT_LOCATION }}
-  SIRMIONE_ALIAS: ${{ secrets.SIRMIONE_ALIAS }}
+  DEFAULT_LOCATION: uksouth
+  SIRMIONE_ALIAS: tirmione
 
 jobs:
   build_and_deploy:
