@@ -15,20 +15,6 @@
     <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
 
-    
-  
-  <ItemGroup>
-    <Compile Remove="Controllers\AquariusController.cs" />
-    <Compile Remove="Controllers\AriesController.cs" />
-    <Compile Remove="Controllers\CancerController.cs" />
-    <Compile Remove="Controllers\CapricornController.cs" />
-    <Compile Remove="Controllers\LibraController.cs" />
-    <Compile Remove="Controllers\PiscesController.cs" />
-    <Compile Remove="Controllers\SagittariusController.cs" />
-    <Compile Remove="Controllers\TaurusController.cs" />
-    <Compile Remove="Controllers\VirgoController.cs" />
-  </ItemGroup>
-
  
   <ItemGroup>
     <PackageReference Include="Azure.Storage.Blobs" Version="12.2.0" />

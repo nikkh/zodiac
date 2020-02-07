@@ -31,9 +31,7 @@ namespace scorpio_api.Controllers
         private void LogString(string name, string stringToLog)
         {
             _results.Add($"{name}:{stringToLog}");
-            _telemetryClient.TrackTrace($"{name}:{stringToLog}", SeverityLevel.Information);
-            Console.WriteLine($"{name}:{stringToLog}");
-            _logger.LogDebug($"{name}:{stringToLog}");
+           
         }
         // GET: api/SettingsView
         [HttpGet]
@@ -49,8 +47,8 @@ namespace scorpio_api.Controllers
             string myCompoundCustomKeyElement2FormatA = _configuration["MyCompoundCustomKey:Element2"];
             LogString("myCompoundCustomKeyElement2FormatA", myCompoundCustomKeyElement2FormatA);
 
-            var dbConnectionStringFormatA = _configuration["Azure:a3ssDevDb:ConnectionString"];
-            LogString("dbConnectionStringFormatA", dbConnectionStringFormatA);
+            var dbConnectionString = _configuration["Azure:a3ssDevDb:ConnectionString"];
+            LogString("dbConnectionString", dbConnectionString.Substring(0, 15));
 
             return _results;
         }
