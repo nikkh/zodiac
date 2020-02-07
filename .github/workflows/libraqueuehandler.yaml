@@ -1,7 +1,7 @@
 name: Libra Queue Handler
 env:
-  DEFAULT_LOCATION: ${{ secrets.DEFAULT_LOCATION }}
-  LIBRA_ALIAS: ${{ secrets.LIBRA_ALIAS }}
+   DEFAULT_LOCATION: uksouth
+   LIBRA_ALIAS: tibra
 on:
   push:
     paths:
