@@ -1,5 +1,7 @@
 name: Virgo Queue Handler
-
+env:
+  DEFAULT_LOCATION: uksouth
+  VIRGO_ALIAS: tirgo
 on:
   push:
     paths:
