@@ -25,6 +25,7 @@ namespace scorpio_api.Controllers
             _logger = logger;
             _telemetryClient = telemetryClient;
             _configuration = configuration;
+            int i =0;
             
         }
 
