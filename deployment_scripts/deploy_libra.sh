@@ -35,7 +35,8 @@ az functionapp create \
  --name $functionAppName \
  --storage-account $storageAccountName \
  --consumption-plan-location $DEFAULT_LOCATION \
- --resource-group $resourceGroupName
+ --resource-group $resourceGroupName \
+ --functions-version 3
 
 echo "Updating App Settings for $functionAppName"
 storageConnectionString="dummy-value"
