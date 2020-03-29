@@ -1,9 +1,9 @@
 #!/bin/bash
 
-export DEFAULT_LOCATION=norwayeast
-export SIRMIONE_ALIAS=hirmione
-export LIMONE_ALIAS=himone
-export SCORPIO_ALIAS=horpio
-export VIRGO_ALIAS=hirgo
-export LIBRA_ALIAS=hibra
+export DEFAULT_LOCATION=eastus
+export SIRMIONE_ALIAS=firmione
+export LIMONE_ALIAS=fimone
+export SCORPIO_ALIAS=forpio
+export VIRGO_ALIAS=firgo
+export LIBRA_ALIAS=fibra
 export DB_ADMIN_USER=nick
