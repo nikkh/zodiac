@@ -1,0 +1,14 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Debug"
+    }
+  },
+  "IsEncrypted": false,
+  "MonitoringContext": {
+    "MonitoringContainerName": "slot-monitor-files",
+    "RequestHeaderFileName": "reqhdr.txt",
+    "RequestBodyFileName": "reqbdy.json",
+    "NotifyUnavailability": "false"
+  }
+}
