@@ -5,7 +5,7 @@ env:
 on:
   push:
     paths:
-    - LibraQueueHandler/LibraQueueHandler/**
+    - LibraQueueHandler/**
       
 jobs:
   build-and-deploy:
