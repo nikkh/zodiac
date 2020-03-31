@@ -1,11 +1,11 @@
 name: Libra Queue Handler
 env:
    DEFAULT_LOCATION: uksouth
-   LIBRA_ALIAS: tibra
+   LIBRA_ALIAS: xlibra
 on:
   push:
     paths:
-    - LibraQueueHandler/TibraQueueHandler/**
+    - LibraQueueHandler/LibraQueueHandler/**
       
 jobs:
   build-and-deploy:
@@ -26,7 +26,7 @@ jobs:
         # If your function app project is not located in your repository's root
         # Please consider using pushd to change your path
         pushd LibraQueueHandler/LibraQueueHandler
-        dotnet build --configuration Release --output ./output
+        dotnet build --configuration Debug --output ./output
         popd 
         
     - name: Login to Azure
