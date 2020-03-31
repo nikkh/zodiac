@@ -41,7 +41,7 @@ namespace LibraQueueHandler
                 {
                     try
                     {
-                       // Metric test = telemetryClient.GetMetric("LibraSeconds");
+                       // Metric test = telemetryClient.GetMetric("LibraSeconds");x
                        // test.TrackValue(second, "Seconds");
                         // dont do anything else with this message
                     }
