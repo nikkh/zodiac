@@ -8,18 +8,18 @@ Sirmione is the main Zodiac website.  It's an asp.net core application (netcorea
 
 [documentation](/sirmione-web/README.md) 
 
-## Limone
+## limone-api
 
 [documentation](/limone-api/README.md) 
 
-## Scorpio
+## scorpio-api
 
 [documentation](/scorpio-api/README.md) 
 
-## Virgo
+## virgoqueuehandler
 
 [documentation](/VirgoQueueHandler/README.md) 
 
-## Libra
+## libraqueuehandler
 
 [documentation](/LibraQueueHandler/README.md) 
