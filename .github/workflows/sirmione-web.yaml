@@ -9,8 +9,8 @@ on:
 
 name: Sirmione-Web
 env:
-  DEFAULT_LOCATION: uksouth
-  SIRMIONE_ALIAS: tirmione
+  DEFAULT_LOCATION: centralus
+  SIRMIONE_ALIAS: xsirmione
 
 jobs:
   build_and_deploy:
