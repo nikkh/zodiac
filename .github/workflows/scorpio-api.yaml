@@ -1,7 +1,7 @@
 name: Scorpio-api
 env:
   DEFAULT_LOCATION: uksouth
-  SCORPIO_ALIAS: torpio
+  SCORPIO_ALIAS: xscorpio
 on:
   push:
     paths:
@@ -21,11 +21,11 @@ jobs:
         dotnet-version: 3.1.101
         
     - name: Build Application
-      run: dotnet build scorpio-api/Application/scorpio-api.csproj --configuration Release
+      run: dotnet build scorpio-api/Application/scorpio-api.csproj --configuration Debug
 
     - name: Publish Application
       run: |
-        dotnet publish scorpio-api/Application/scorpio-api.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp 
+        dotnet publish scorpio-api/Application/scorpio-api.csproj -c Debug -o ${{env.DOTNET_ROOT}}/myapp 
         
     - name: Login to Azure
       uses: azure/login@v1
