@@ -10,3 +10,5 @@ Zodiac is a microservices application that exists solely to generate telemetry f
 ![zodiac architecture](docs/zodiac-architecture.jpg)
 
 I have decided to make this available as an open source project on GitHub and in doing so learn a little more about GitHub actions. Over time, it would be great if others could contribute and build out to cover different hosting options and more of the infrastructure monitoring :-)
+
+To create your own working instance of zodiac, see the [deployment_scripts](.)
