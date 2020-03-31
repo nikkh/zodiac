@@ -200,11 +200,21 @@ namespace LibraQueueHandler
         }
         private static List<DeliverySlot> ParseSlots(string jsonToParse)
         {
+            JObject jsonContent;
+            JToken slotDays;
             List<DeliverySlot> deliverySlots = new List<DeliverySlot>();
-            var jsonContent = JObject.Parse(jsonToParse);
-            Console.WriteLine($"Response:");
-            Console.WriteLine($"end_date_for_subscribers={jsonContent["data"]["grid"]["end_date_for_subscribers"]}");
-            var slotDays = jsonContent["data"]["slot_days"];
+            try
+            {
+                
+                jsonContent = JObject.Parse(jsonToParse);
+                slotDays = jsonContent["data"]["slot_days"];
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Error parsing json response {e.Message}.  See inner exception for details", e);
+            }
+
+            
             foreach (var slotDay in slotDays.Children())
             {
                 foreach (var day in slotDay.Children())
