@@ -6,9 +6,20 @@ The Zodiac application comprises of 5 microservices.  These are briefly describe
 
 Sirmione is the main Zodiac website.  It's an asp.net core application (netcoreapp3.1).  It is essentially a single page which allows the user to invoke each of the 12 different api calls (these are sread over the microsrvices).  The api is invoked, and the results are displayed.  Each api call does something different (maybe throw an exception, maybe take a long time) and the technologies bhind the apis is also different - this makes it easy to demonstrate how application insights can monitor such an application with many different parts.
 
-[sirmione documentation](/sirmione-web/README.md) 
+[documentation](/sirmione-web/README.md) 
 
 ## Limone
+
+[documentation](/limone-api/README.md) 
+
 ## Scorpio
+
+[documentation](/scorpio-api/README.md) 
+
 ## Virgo
+
+[documentation](/VirgoQueueHandler/README.md) 
+
 ## Libra
+
+[documentation](/LibraQueueHandler/README.md) 
