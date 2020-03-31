@@ -29,8 +29,15 @@ Zodiac has two sorts of workflow (this distinction is mine):
 ### Infrastructure
 The infrastructure deployment workflow creates all the necessary infrastructure on which to deploy the application.  You can [see the workflow here](/.github/workflows/deploy_infrastructure.yaml).  This workflow is little more than a shell.  It has a trigger so that any change to the path **/global** will trigger the workflow to run.  Since you dont want the infrastrucutre to be updated every time you check in it makes sense to just edit the trigger.md file in global when you want to trigger it.
 
-I said it was just a shell.  All it does is check out the zodiac repo onto the build agent, ensure the deployment scripts are executable, and run the master script [deploy_infrastructure.sh](/deployment_scripts/deploy_infrastructure.sh).  The [deployment scripts](/deployment_scripts/README.md) are stored together in a separate folder.
+I said it was just a shell.  All it does is check out the zodiac repo onto the build agent, ensure the deployment scripts are executable, and run the master script [deploy_infrastructure.sh](/deployment_scripts/deploy_infrastructure.sh).  See [deployment scripts](/deployment_scripts/README.md) for more details on the infrastructure that is created.
 
 ### Application Deployment
 
-## Deployment scripts
+There are a number of application deployment workflows, one for each microservice in the overall Zodiac application.  These workflows are triggered when any changes are detected to the source code for any given service.  For example, if you make a change to the source code for the LibraQueueHandler, that application will be redeployed.
+
+**Important Note**
+
+> Each application deployment workflow contains some environment variables that set (possibly amongst other things) the DEFAULT_LOCATION and XXXX_ALIAS.  The main deployment script [deploy_infrastructure.sh](/deployment_scripts/deploy_infrastructure.sh) calls a secondary script [deploy_infrastructure.sh](/deployment_scripts/set_environment.sh).  This script also sets up variables for the same items that are set in the workflows. **It is important that these variables match in both places - or your deployments will fail!**.  It's aslo important that you set the values to something that it likely to be unique.  Many of the resources have public endpoints, and if the name already exists the infrastructure deployment will fail.
+
+(I couldn't find a way to defiine this in one place at the time I created Zodiac, and it's a hangover from that.  When I get a minute, I will see if I can resolve this).
+
