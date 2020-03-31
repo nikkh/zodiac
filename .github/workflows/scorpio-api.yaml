@@ -1,6 +1,6 @@
 name: Scorpio-api
 env:
-  DEFAULT_LOCATION: uksouth
+  DEFAULT_LOCATION: centralus
   SCORPIO_ALIAS: xscorpio
 on:
   push:
