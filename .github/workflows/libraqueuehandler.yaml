@@ -1,7 +1,7 @@
 name: Libra Queue Handler
 env:
-   DEFAULT_LOCATION: uksouth
-   LIBRA_ALIAS: xlibra
+   DEFAULT_LOCATION: westeurope
+   LIBRA_ALIAS: alibra
 on:
   push:
     paths:
