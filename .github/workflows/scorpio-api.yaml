@@ -1,7 +1,7 @@
 name: Scorpio-api
 env:
-  DEFAULT_LOCATION: centralus
-  SCORPIO_ALIAS: xscorpio
+  DEFAULT_LOCATION: westeurope
+  SCORPIO_ALIAS: ascorpio
 on:
   push:
     paths:
