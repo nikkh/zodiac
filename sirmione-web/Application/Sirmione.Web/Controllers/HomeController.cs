@@ -37,6 +37,7 @@ namespace Sirmione.Web.Controllers
 
         public IActionResult Index()
         {
+            ViewData["Title"] = "Home Page";
             var vm = new IndexViewModel();
             vm.Signs.Add("ARIES", new SignPartialViewModel { Name = "Aries", 
                 Description = "The most simple transaction. Simply calls a RESTful service in different Web Application, different AppInsights instance", 
@@ -51,7 +52,7 @@ namespace Sirmione.Web.Controllers
             vm.Signs.Add("LIBRA", new SignPartialViewModel { Name = "Libra", Description = "writes to service bus queue which triggers azure function, using the same AI instance", Image = "/images/libra.svg" });
             vm.Signs.Add("SCORPIO", new SignPartialViewModel { Name = "Scorpio", Description = "[calls a restful service that does lot and lots of stuff, including SQL database and Cosmos]", Image = " /images/scorpio.svg" });
             vm.Signs.Add("SAGITTARIUS", new SignPartialViewModel { Name = "Sagittarius", Description = "[Like Taurus, also called from Availability Tests.  Occasionally takes a really long time]", Image = "/images/sagittarius.svg" });
-            vm.Signs.Add("CAPRICORN", new SignPartialViewModel { Name = "Capricorn", Description = "calls a RESTful service running in Service Fabric", Image = "/images/capricorn.svg" });
+            vm.Signs.Add("CAPRICORN", new SignPartialViewModel { Name = "Capricorn", Description = "Starts an interactive UI journey (requires authentication)", Image = "/images/capricorn.svg" });
             vm.Signs.Add("AQUARIUS", new SignPartialViewModel { Name = "Aquarius", Description = "calls a restful service that is instrumented with lots of custom metrics and stuff", Image = "/images/aquarius.svg" });
             vm.Signs.Add("PISCES", new SignPartialViewModel { Name = "Pisces", Description = "calls a service that uses a lot of CPU", Image = "/images/pisces.svg" });
             return View(vm);
@@ -59,6 +60,7 @@ namespace Sirmione.Web.Controllers
 
         public IActionResult Privacy()
         {
+            
             return View();
         }
 
@@ -92,9 +94,11 @@ namespace Sirmione.Web.Controllers
         {
             var traceGuid = Guid.NewGuid().ToString();
             var vm = new CapricornViewModel();
-            vm.ResponseData = await CallRestApi(_limoneBaseUrl, $"api/capricorn?traceGuid={traceGuid}");
+            // vm.ResponseData = await CallRestApi(_limoneBaseUrl, $"api/capricorn?traceGuid={traceGuid}");
+            vm.ResponseData = "This will be the user journey stuff";
             vm.TraceGuid = traceGuid;
-            return View("CapricornResult", vm);
+            return RedirectToAction("Index", "Capricorn");
+            // return View("CapricornResult", vm);
         }
 
         public async Task<IActionResult> Sagittarius()

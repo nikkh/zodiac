@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewData["Title"] = "Capricorn - Green";
+}
+<h1>You are following the Green Route</h1>
+
+<p>Your challenge is to display the victory screen.  Pick your next step</p>
+
+<p>@Html.ActionLink("Green Step A", "greenstepa", null, null, new { @class = "btn btn-primary" })</p>
+<p>@Html.ActionLink("Blue Step B", "bluestepb", null, null, new { @class = "btn btn-primary" })</p>
+<p>@Html.ActionLink("Switch to Red Route", "redroute", null, null, new { @class = "btn btn-primary" })</p>
+<p>@Html.ActionLink("Shortcut to Victory", "victoryshortcut", null, null, new { @class = "btn btn-primary" })</p>

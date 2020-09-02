@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Capricorn - Go";
+}
+
+<h1>Welcome to Capricorn!</h1>
+
+<p>Your challenge is to display the victory screen.  Pick your route</p>
+
+<p>@Html.ActionLink("Red Route", "redroute", null, null, new { @class = "btn btn-primary" })</p>
+<p>@Html.ActionLink("Blue Route", "blueroute", null, null, new { @class = "btn btn-primary" })</p>
+<p>@Html.ActionLink("Green Route", "greenroute", null, null, new { @class = "btn btn-primary" })</p>
+<p>@Html.ActionLink("Rainbow Route", "rainbowroute", null, null, new { @class = "btn btn-primary" })</p>
+
+<img src="/images/maze.png" alt="a maze" />

@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Capricorn - Chance";
+}
+<h1>Chance</h1>
+
+@{
+    if (ViewBag.Proceed)
+    {
+        <p>@Html.ActionLink("Proceed", "victory", null, null, new { @class = "btn btn-primary" })</p>
+    }
+    else
+    {
+        <p>@Html.ActionLink("Proceed", "go", null, null, new { @class = "btn btn-primary" })</p>
+    }
+}

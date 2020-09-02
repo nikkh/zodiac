@@ -12,8 +12,7 @@ namespace SirmioneInsightsGenerator
     {
         const int NUMBER_OF_CALLS = 100;
         const string baseUrl = "https://sirmione-web.azurewebsites.net/home/";
-        const string scorpioUrl = "https://scorpio-api.azurewebsites.net/api/";
-
+        
         static void Main(string[] args)
         {
 
@@ -53,16 +52,9 @@ namespace SirmioneInsightsGenerator
 
             foreach (var page in pages)
             {
-                //Parameters p = new Parameters { Operation = page, Url=baseUrl };
-                //if ((page.ToLower().StartsWith("scorpio")) || (page.ToLower().StartsWith("gemini"))) 
-                //{
-                //    p.Url = scorpioUrl;
-                //}
-
                 RestApi.Call(baseUrl, page);
                 Thread.Sleep(100);
-                //Thread newThread = new Thread(Program.InvokeAsync);
-                //newThread.Start(p);
+                
 
             }
 
@@ -79,16 +71,8 @@ namespace SirmioneInsightsGenerator
             return false;
         }
 
-        public static void InvokeAsync(object parameters)
-        {
-            Parameters p = (Parameters)parameters;
-            Console.WriteLine(RestApi.Call(p.Url, p.Operation));
-        }
+     
     }
 
-    class Parameters
-    {
-        public string Operation { get; internal set; }
-        public string Url { get; internal set; }
-    }
+   
 }
