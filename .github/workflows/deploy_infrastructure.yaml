@@ -1,7 +1,4 @@
-on:
-  push:
-    paths:
-    - global/**
+on: [workflow_dispatch]
  
 name: Deploy Infrastructure
 env:

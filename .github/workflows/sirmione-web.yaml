@@ -2,15 +2,17 @@
 # To get this workflow to trigger you need to edit one of the files in the Sirmione-Web project.
 # to change the name of the resource edit the ALIAS below
 
-on:
-  push:
-    paths:
-    - sirmione-web/Application/Sirmione.Web/**
+#on:
+#  push:
+#    paths:
+#    - sirmione-web/Application/Sirmione.Web/**
+
+on: [workflow_dispatch]
 
 name: Sirmione-Web
 env:
-  DEFAULT_LOCATION: uksouth
-  SIRMIONE_ALIAS: tirmione
+  DEFAULT_LOCATION: westeurope
+  SIRMIONE_ALIAS: asirmione
 
 jobs:
   build_and_deploy:
