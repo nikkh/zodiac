@@ -6,10 +6,10 @@
 @{
     if (ViewBag.Proceed)
     {
-        <p>@Html.ActionLink("Proceed", "victory", null, null, new { @class = "btn btn-primary" })</p>
+        <p>@Html.ActionLink("Proceed", "victory", null, null, new { @class = "btn btn-primary", Id="cap006"})</p>
     }
     else
     {
-        <p>@Html.ActionLink("Proceed", "go", null, null, new { @class = "btn btn-primary" })</p>
+        <p>@Html.ActionLink("Proceed", "go", null, null, new { @class = "btn btn-primary", Id="cap006" })</p>
     }
 }
