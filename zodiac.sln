@@ -11,11 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "scorpio-api", "scorpio-api\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sirmione.Web", "sirmione-web\Application\Sirmione.Web\Sirmione.Web.csproj", "{A5E7139A-B687-4032-B927-4D9806D31AC5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SirmioneInsightsGenerator", "sirmione-web\Application\SirmioneInsightsGenerator\SirmioneInsightsGenerator.csproj", "{E6086E7A-4077-4CA3-A3E7-B204EE8BC813}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirgoQueueHandler", "VirgoQueueHandler\VirgoQueueHandler\VirgoQueueHandler.csproj", "{11F98137-5800-4FCA-9CA9-9413E55A2E96}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zodiac.Models", "Zodiac.Models\Zodiac.Models.csproj", "{0CBDC29E-6969-4E1A-9F1A-B4CA4D5C9541}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zodiac.Generator", "Zodiac.Generator\Zodiac.Generator.csproj", "{A7B7CBC1-E7BC-4B34-BBC3-F836029E0D66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,14 +57,6 @@ Global
 		{A5E7139A-B687-4032-B927-4D9806D31AC5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A5E7139A-B687-4032-B927-4D9806D31AC5}.Release|x64.ActiveCfg = Release|Any CPU
 		{A5E7139A-B687-4032-B927-4D9806D31AC5}.Release|x64.Build.0 = Release|Any CPU
-		{E6086E7A-4077-4CA3-A3E7-B204EE8BC813}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E6086E7A-4077-4CA3-A3E7-B204EE8BC813}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E6086E7A-4077-4CA3-A3E7-B204EE8BC813}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{E6086E7A-4077-4CA3-A3E7-B204EE8BC813}.Debug|x64.Build.0 = Debug|Any CPU
-		{E6086E7A-4077-4CA3-A3E7-B204EE8BC813}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E6086E7A-4077-4CA3-A3E7-B204EE8BC813}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E6086E7A-4077-4CA3-A3E7-B204EE8BC813}.Release|x64.ActiveCfg = Release|Any CPU
-		{E6086E7A-4077-4CA3-A3E7-B204EE8BC813}.Release|x64.Build.0 = Release|Any CPU
 		{11F98137-5800-4FCA-9CA9-9413E55A2E96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{11F98137-5800-4FCA-9CA9-9413E55A2E96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11F98137-5800-4FCA-9CA9-9413E55A2E96}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -81,6 +73,14 @@ Global
 		{0CBDC29E-6969-4E1A-9F1A-B4CA4D5C9541}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0CBDC29E-6969-4E1A-9F1A-B4CA4D5C9541}.Release|x64.ActiveCfg = Release|Any CPU
 		{0CBDC29E-6969-4E1A-9F1A-B4CA4D5C9541}.Release|x64.Build.0 = Release|Any CPU
+		{A7B7CBC1-E7BC-4B34-BBC3-F836029E0D66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7B7CBC1-E7BC-4B34-BBC3-F836029E0D66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7B7CBC1-E7BC-4B34-BBC3-F836029E0D66}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A7B7CBC1-E7BC-4B34-BBC3-F836029E0D66}.Debug|x64.Build.0 = Debug|Any CPU
+		{A7B7CBC1-E7BC-4B34-BBC3-F836029E0D66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7B7CBC1-E7BC-4B34-BBC3-F836029E0D66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7B7CBC1-E7BC-4B34-BBC3-F836029E0D66}.Release|x64.ActiveCfg = Release|Any CPU
+		{A7B7CBC1-E7BC-4B34-BBC3-F836029E0D66}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

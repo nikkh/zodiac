@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "Zodiac.Generator": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "httpPort": 34725,
+      "useSSL": false
+    }
+  }
+}
