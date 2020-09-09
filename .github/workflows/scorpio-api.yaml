@@ -1,12 +1,13 @@
 name: Scorpio-api
 env:
-  DEFAULT_LOCATION: westeurope
-  SCORPIO_ALIAS: ascorpio
-on:
-  push:
-    paths:
-    - scorpio-api/Application/**
+  DEFAULT_LOCATION: uksouth
+  SCORPIO_ALIAS: scorpioz
+#on:
+#  push:
+#    paths:
+#    - scorpio-api/Application/**
 
+on: [workflow_dispatch]
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
