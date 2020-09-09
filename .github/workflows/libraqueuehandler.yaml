@@ -1,7 +1,7 @@
 name: Libra Queue Handler
 env:
    DEFAULT_LOCATION: westeurope
-   LIBRA_ALIAS: alibra
+   LIBRA_ALIAS: griperx
 on:
   push:
     paths:
