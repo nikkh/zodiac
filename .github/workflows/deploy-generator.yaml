@@ -6,12 +6,12 @@
 # 5. Add this yaml file to your project's .github/workflows/
 # 6. Push your local project to your GitHub Repository
 
-name: Linux_Container_Workflow
+name: Deploy Zodiac Generator (Containerized)
 
 on:
   push:
-    branches:
-    - master
+    paths:
+    - Zodiac.Generator/**
 
 jobs:
   build-and-deploy:
