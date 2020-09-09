@@ -8,10 +8,12 @@
 
 name: Deploy Zodiac Generator (Containerized)
 
-on:
-  push:
-    paths:
-    - Zodiac.Generator/**
+#on:
+#  push:
+#    paths:
+#    - Zodiac.Generator/**
+
+on: [workflow_dispatch]
 
 jobs:
   build-and-deploy:
