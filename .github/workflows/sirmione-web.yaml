@@ -11,8 +11,8 @@ on: [workflow_dispatch]
 
 name: Sirmione-Web
 env:
-  DEFAULT_LOCATION: westeurope
-  SIRMIONE_ALIAS: sirmione
+  DEFAULT_LOCATION: uksouth
+  SIRMIONE_ALIAS: sirmionez
 
 jobs:
   build_and_deploy:
