@@ -1,6 +1,6 @@
 name: Virgo Queue Handler
 env:
-  DEFAULT_LOCATION: westeurope
+  DEFAULT_LOCATION: uksouth
   VIRGO_ALIAS: virgoz
 on:
   push:
