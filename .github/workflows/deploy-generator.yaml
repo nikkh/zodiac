@@ -9,7 +9,7 @@
 name: Deploy Zodiac Generator (Containerized)
 env:
    DEFAULT_LOCATION: uksouth
-   ZODIAC_GENERATOR_ALIAS: azodgen
+   ZODIAC_GENERATOR_ALIAS: zodgen
 
 #on:
 #  push:
