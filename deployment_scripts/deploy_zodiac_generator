@@ -11,7 +11,7 @@ echo
 applicationName="${ZODIAC_GENERATOR_ALIAS}"
 resourceGroupName="${applicationName}-rg"
 storageAccountName=${applicationName}$RANDOM
-functionAppName="${applicationName}-func"
+functionAppName="${applicationName}-gen-func"
 acrName="${applicationName}acr"
 
 echo ---Derived Variables
@@ -45,7 +45,7 @@ echo "Updating App Settings for $functionAppName"
 
 echo "Creating azure container registry $acrName in $resourceGroupName"
 az acr create -l $DEFAULT_LOCATION --sku basic -n $acrName --admin-enabled -g $resourceGroupName
-acrUser=$(az acr credential show -n nicktestacr --query username -o tsv)
-acrPassword=$(az acr credential show -n nicktestacr --query passwords[0].value -o tsv)
+acrUser=$(az acr credential show -n $acrName --query username -o tsv)
+acrPassword=$(az acr credential show -n $acrName --query passwords[0].value -o tsv)
 echo "ACR User Name: $acrUser"
 echo "ACR Password: $acrPassword"
