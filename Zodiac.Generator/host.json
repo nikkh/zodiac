@@ -4,7 +4,7 @@
     "fileLoggingMode": "debugOnly",
     "logLevel": {
       "Function": "Debug",
-      "default": "Information"
+      "default": "Trace"
     },
     "applicationInsights": {
       "samplingSettings": {

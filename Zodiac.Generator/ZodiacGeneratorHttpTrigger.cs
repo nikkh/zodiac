@@ -10,15 +10,15 @@ using Microsoft.Extensions.Configuration;
 
 namespace Zodiac.Generator
 {
-    public class ZodiacGeneratorHttp
+    public class ZodiacGeneratorHttpTrigger
     {
         private readonly ZodiacContext _zodiacContext;
-        public ZodiacGeneratorHttp(IConfiguration config, ZodiacContext zodiacContext)
+        public ZodiacGeneratorHttpTrigger(IConfiguration config, ZodiacContext zodiacContext)
         {
             _zodiacContext = zodiacContext;
         }
 
-        [FunctionName("ZodiacGeneratorHttp")]
+        [FunctionName("ZodiacGeneratorHttpTrigger")]
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get",  Route = null)] HttpRequest req,
              ILogger log, ExecutionContext ec)

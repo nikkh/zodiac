@@ -5,26 +5,26 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Zodiac.Generator.UI;
 
-
-namespace Zodiac.Generator
+namespace Zodiac.Generator.UI
 {
-    public class ZodiacGenerator
+    public class UIControllerTimerTrigger
     {
         private readonly ZodiacContext _zodiacContext;
 
-        public ZodiacGenerator(IConfiguration config, ZodiacContext zodiacContext)
+        public UIControllerTimerTrigger(IConfiguration config, ZodiacContext zodiacContext)
         {
             _zodiacContext = zodiacContext;
         }
 
-        [FunctionName("ZodiacGenerator")]
-        public async Task Run([TimerTrigger("0 0 01-06 * * *")]TimerInfo myTimer, ILogger log, ExecutionContext ec)
+        [FunctionName("UIControllerTimerTrigger")]
+        public async Task Run([TimerTrigger("0 * * * * *")]TimerInfo myTimer, ILogger log, ExecutionContext ec)
         {
             try
             {
                 log.LogInformation($"{ec.FunctionName} (timer trigger) function executed at: {DateTime.UtcNow}");
-                var worker = new ZodiacGeneratorWorker(_zodiacContext);
+                var worker = new UIControllerWorker(_zodiacContext);
                 await worker.Run(log, ec.FunctionName);
                 return;
             }
