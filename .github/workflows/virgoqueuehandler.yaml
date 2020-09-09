@@ -1,7 +1,7 @@
 name: Virgo Queue Handler
 env:
   DEFAULT_LOCATION: westeurope
-  VIRGO_ALIAS: avirgo
+  VIRGO_ALIAS: virgoz
 on:
   push:
     paths:
