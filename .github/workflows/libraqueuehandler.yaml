@@ -1,6 +1,6 @@
 name: Libra Queue Handler
 env:
-   DEFAULT_LOCATION: westeurope
+   DEFAULT_LOCATION: uksouth
    LIBRA_ALIAS: libraz
 on:
   push:
