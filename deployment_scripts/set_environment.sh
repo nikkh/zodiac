@@ -1,12 +1,12 @@
 #!/bin/bash
 
 export DEFAULT_LOCATION=uksouth
-export SIRMIONE_ALIAS=sirmionec
-export LIMONE_ALIAS=limonec
-export SCORPIO_ALIAS=scorpioc
-export VIRGO_ALIAS=virgoc
-export LIBRA_ALIAS=librac
-export ZODIAC_GENERATOR_ALIAS=zodgenc
+export SIRMIONE_ALIAS=sirmioned
+export LIMONE_ALIAS=limoned
+export SCORPIO_ALIAS=scorpiod
+export VIRGO_ALIAS=virgod
+export LIBRA_ALIAS=librad
+export ZODIAC_GENERATOR_ALIAS=zodgend
 export DB_ADMIN_USER=nick
 
 echo "DEFAULT_LOCATION:$DEFAULT_LOCATION" >> deployment-log.txt
