@@ -1,4 +1,4 @@
-name: Deploy Infrastructure
+name: Deploy All Infrastructure
 env:
    DB_ADMIN_PASSWORD: ${{ secrets.DB_ADMIN_PASSWORD }}
 
