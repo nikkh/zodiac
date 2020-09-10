@@ -6,6 +6,7 @@ echo ---Global Variables
 echo "ZODIAC_GENERATOR_ALIAS: $ZODIAC_GENERATOR_ALIAS"
 echo "DEFAULT_LOCATION: $DEFAULT_LOCATION"
 echo
+echo "starting deploy_zodiac_generator.sh" >> deployment-log.txt
 # set local variables
 # Derive as many variables as possible
 applicationName="${ZODIAC_GENERATOR_ALIAS}"
@@ -46,9 +47,9 @@ az functionapp create \
  --name $functionAppName \
   --storage-account $storageAccountName \
   --plan $planName \
-  --resource-group $resourceGroupName
-  --functions-version 3
-  --docker-registry-server-user $acrUser
+  --resource-group $resourceGroupName \
+  --functions-version 3 \
+  --docker-registry-server-user $acrUser \
   --docker-registry-server-password $acrPassword
 
 echo "Updating App Settings for $functionAppName"
