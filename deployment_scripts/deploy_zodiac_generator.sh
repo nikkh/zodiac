@@ -1,6 +1,6 @@
 #!/bin/bash
-echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-echo         Deploying Zodiac Generator Infrastructure
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" 
+echo         Deploying Zodiac Generator Infrastructure 
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo ---Global Variables
 echo "ZODIAC_GENERATOR_ALIAS: $ZODIAC_GENERATOR_ALIAS"
@@ -38,8 +38,8 @@ echo "Creating azure container registry $acrName in $resourceGroupName"
 az acr create -l $DEFAULT_LOCATION --sku basic -n $acrName --admin-enabled -g $resourceGroupName
 acrUser=$(az acr credential show -n $acrName --query username -o tsv)
 acrPassword=$(az acr credential show -n $acrName --query passwords[0].value -o tsv)
-echo "ACR User Name: $acrUser"
-echo "ACR Password: $acrPassword"
+echo "ACR User Name: $acrUser" >> deployment-log.txt
+echo "ACR Password: $acrPassword" >> deployment-log.txt
 
 echo "Creating serverless function app $functionAppName in $resourceGroupName"
 az functionapp plan create --resource-group $resourceGroupName --name $planName --location $DEFAULT_LOCATION --number-of-workers 1 --sku EP1 --is-linux
