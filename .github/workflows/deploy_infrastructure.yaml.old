@@ -1,4 +1,4 @@
-name: [obsolete] Deploy Infrastructure
+name: obsolete Deploy Infrastructure
 env:
    DB_ADMIN_PASSWORD: ${{ secrets.DB_ADMIN_PASSWORD }}
 
