@@ -1,7 +1,7 @@
 name: Scorpio-api
 env:
   DEFAULT_LOCATION: uksouth
-  SCORPIO_ALIAS: scorpioz
+  SCORPIO_ALIAS: scorpiox
 #on:
 #  push:
 #    paths:
