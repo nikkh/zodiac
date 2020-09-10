@@ -53,7 +53,7 @@ jobs:
       id: fa
       with:
         app-name: ${{env.ZODIAC_GENERATOR_ALIAS}}-gen-func
-        image: ${{env.ZODIAC_GENERATOR_ALIAS}}.azurecr.io/zodiac/generator:${{github.run_number}}
+        image: ${{env.ZODIAC_GENERATOR_ALIAS}}acr.azurecr.io/zodiac/generator:${{github.run_number}}
     
     - name: Azure logout
       run: |
