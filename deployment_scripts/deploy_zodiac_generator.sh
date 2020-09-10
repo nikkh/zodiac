@@ -34,6 +34,10 @@ az storage account create \
  --resource-group $resourceGroupName \
  --sku Standard_LRS
 
+# We'll use this storage account to hold the log and secrets generated during infrastructure creation.
+connectionString=$(az storage account show-connection-string -n $storageAccountName -g $resourceGroupName --query connectionString -o tsv)
+export AZURE_STORAGE_CONNECTION_STRING=$connectionString
+
 echo "Creating azure container registry $acrName in $resourceGroupName"
 az acr create -l $DEFAULT_LOCATION --sku basic -n $acrName --admin-enabled -g $resourceGroupName
 acrUser=$(az acr credential show -n $acrName --query username -o tsv)
