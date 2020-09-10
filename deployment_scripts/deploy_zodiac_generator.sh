@@ -50,7 +50,8 @@ az functionapp create \
   --resource-group $resourceGroupName \
   --functions-version 3 \
   --docker-registry-server-user $acrUser \
-  --docker-registry-server-password $acrPassword
+  --docker-registry-server-password $acrPassword \
+  --runtime dotnet
 
 echo "Updating App Settings for $functionAppName"
 #storageConnectionString="dummy-value"
