@@ -1,7 +1,7 @@
 name: Deploy Generator 
 env:
    DEFAULT_LOCATION: uksouth
-   ZODIAC_GENERATOR_ALIAS: zodgenz
+   ZODIAC_GENERATOR_ALIAS: zodgenx
 
 #on:
 #  push:
