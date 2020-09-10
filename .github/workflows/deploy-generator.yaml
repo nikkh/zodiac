@@ -1,4 +1,4 @@
-name: Deploy Zodiac Generator (Containerized)
+name: Deploy Generator 
 env:
    DEFAULT_LOCATION: uksouth
    ZODIAC_GENERATOR_ALIAS: zodgenz
