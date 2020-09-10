@@ -44,7 +44,7 @@ jobs:
         # If your function app project is not located in your repository's root
         # Please change the path to your directory for docker build
         #pushd Zodiac.Generator
-        docker build .. -t ${{env.ZODIAC_GENERATOR_ALIAS}}.azurecr.io/zodiac/generator:${{github.run_number}}
+        docker build -f Zodiac.Generator/Dockerfile -t ${{env.ZODIAC_GENERATOR_ALIAS}}.azurecr.io/zodiac/generator:${{github.run_number}} .
         docker push ${{env.ZODIAC_GENERATOR_ALIAS}}.azurecr.io/generator/zodiac/generator${{github.run_number}}
         #popd
 
