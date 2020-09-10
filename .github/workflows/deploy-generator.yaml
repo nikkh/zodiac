@@ -26,8 +26,8 @@ jobs:
       uses: azure/docker-login@v1
       with:
         login-server: ${{env.ZODIAC_GENERATOR_ALIAS}}.azurecr.io
-        username: ${{ secrets.REGISTRY_USERNAME }}
-        password: ${{ secrets.REGISTRY_PASSWORD }}
+        username: ${{env.ZODIAC_GENERATOR_ALIAS}}acr
+        password: ${{ secrets.ACR_PASSWORD }}
 
     - name: 'Compose Customized Docker Image'
       shell: bash
