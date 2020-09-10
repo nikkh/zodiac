@@ -52,7 +52,7 @@ jobs:
       uses: Azure/functions-container-action@v1
       id: fa
       with:
-        app-name: ${{env.ZODIAC_GENERATOR_ALIAS}}-func
+        app-name: ${{env.ZODIAC_GENERATOR_ALIAS}}-gen-func
         image: ${{env.ZODIAC_GENERATOR_ALIAS}}.azurecr.io/zodiac/generator:${{github.run_number}}
     
     - name: Azure logout
