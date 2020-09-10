@@ -13,6 +13,7 @@ resourceGroupName="${applicationName}-rg"
 storageAccountName=${applicationName}$RANDOM
 functionAppName="${applicationName}-gen-func"
 acrName="${applicationName}acr"
+planName="${applicationName}-plan"
 
 echo ---Derived Variables
 echo "Application Name: $applicationName"
@@ -32,20 +33,26 @@ az storage account create \
  --resource-group $resourceGroupName \
  --sku Standard_LRS
 
-echo "Creating serverless function app $functionAppName in $resourceGroupName"
-az functionapp create \
- --name $functionAppName \
-  --storage-account $storageAccountName \
-  --consumption-plan-location $DEFAULT_LOCATION \
-  --resource-group $resourceGroupName
-
-echo "Updating App Settings for $functionAppName"
-#storageConnectionString="dummy-value"
-#az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings AzureWebJobsStorage=$storageConnectionString
-
 echo "Creating azure container registry $acrName in $resourceGroupName"
 az acr create -l $DEFAULT_LOCATION --sku basic -n $acrName --admin-enabled -g $resourceGroupName
 acrUser=$(az acr credential show -n $acrName --query username -o tsv)
 acrPassword=$(az acr credential show -n $acrName --query passwords[0].value -o tsv)
 echo "ACR User Name: $acrUser"
 echo "ACR Password: $acrPassword"
+
+echo "Creating serverless function app $functionAppName in $resourceGroupName"
+az functionapp plan create --resource-group $resourceGroupName --name $planName --location $DEFAULT_LOCATION --number-of-workers 1 --sku EP1 --is-linux
+az functionapp create \
+ --name $functionAppName \
+  --storage-account $storageAccountName \
+  --plan $planName \
+  --resource-group $resourceGroupName
+  --functions-version 3
+  --docker-registry-server-user $acrUser
+  --docker-registry-server-password $acrPassword
+
+echo "Updating App Settings for $functionAppName"
+#storageConnectionString="dummy-value"
+#az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings AzureWebJobsStorage=$storageConnectionString
+
+
