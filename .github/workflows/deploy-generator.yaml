@@ -28,6 +28,13 @@ jobs:
         login-server: ${{env.ZODIAC_GENERATOR_ALIAS}}.azurecr.io
         username: ${{env.ZODIAC_GENERATOR_ALIAS}}acr
         password: ${{ secrets.ACR_PASSWORD }}
+        
+    - name: Run Deployment Scripts
+      run: | 
+             ls
+             cd Zodiac.Generator
+             ls
+             cd ..
 
     - name: 'Compose Customized Docker Image'
       shell: bash
