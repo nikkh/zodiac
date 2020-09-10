@@ -35,8 +35,8 @@ jobs:
         # If your function app project is not located in your repository's root
         # Please change the path to your directory for docker build
         pushd Zodiac.Generator
-        docker build . -t ${{env.ZODIAC_GENERATOR_ALIAS}}.azurecr.io/zodiac/generator:${{env.GITHUB_RUN_NUMBER}}
-        docker push ${{env.ZODIAC_GENERATOR_ALIAS}}.azurecr.io/generator/zodiac/generator${{env.GITHUB_RUN_NUMBER}}
+        docker build . -t ${{env.ZODIAC_GENERATOR_ALIAS}}.azurecr.io/zodiac/generator:${{github.run_number}}
+        docker push ${{env.ZODIAC_GENERATOR_ALIAS}}.azurecr.io/generator/zodiac/generator${{github.run_number}}
         popd
 
     - name: 'Run Azure Functions Container Action'
@@ -44,7 +44,7 @@ jobs:
       id: fa
       with:
         app-name: ${{env.ZODIAC_GENERATOR_ALIAS}}-func
-        image: ${{env.ZODIAC_GENERATOR_ALIAS}}.azurecr.io/zodiac/generator:${{env.GITHUB_RUN_NUMBER}}
+        image: ${{env.ZODIAC_GENERATOR_ALIAS}}.azurecr.io/zodiac/generator:${{github.run_number}}
     
     - name: Azure logout
       run: |
