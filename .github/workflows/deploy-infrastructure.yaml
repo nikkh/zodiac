@@ -1,4 +1,4 @@
-name: Deploy Infrastructure Quango
+name: Deploy Infrastructure
 env:
    DB_ADMIN_PASSWORD: ${{ secrets.DB_ADMIN_PASSWORD }}
 
