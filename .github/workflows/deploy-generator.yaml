@@ -31,7 +31,9 @@ jobs:
         
     - name: Run Deployment Scripts
       run: | 
+             echo listing current working directory
              ls
+             echo listing Zodiac.Generator directory
              cd Zodiac.Generator
              ls
              cd ..
@@ -42,7 +44,7 @@ jobs:
         # If your function app project is not located in your repository's root
         # Please change the path to your directory for docker build
         #pushd Zodiac.Generator
-        docker build ./Zodiac.Generator -t ${{env.ZODIAC_GENERATOR_ALIAS}}.azurecr.io/zodiac/generator:${{github.run_number}}
+        docker build .. -t ${{env.ZODIAC_GENERATOR_ALIAS}}.azurecr.io/zodiac/generator:${{github.run_number}}
         docker push ${{env.ZODIAC_GENERATOR_ALIAS}}.azurecr.io/generator/zodiac/generator${{github.run_number}}
         #popd
 
