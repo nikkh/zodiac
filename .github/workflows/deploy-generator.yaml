@@ -1,11 +1,3 @@
-# Action Requires
-# 1. Setup the AZURE_CREDENTIALS secrets in your GitHub Repository
-# 2. Setup the REGISTRY_USERNAME secrets in your GitHub Repository
-# 3. Setup the REGISTRY_PASSWORD secrets in your GitHub Repository
-# 4. Replace REGISTRY, NAMESPACE, IMAGE, TAG in the following template with proper values
-# 5. Add this yaml file to your project's .github/workflows/
-# 6. Push your local project to your GitHub Repository
-
 name: Deploy Zodiac Generator (Containerized)
 env:
    DEFAULT_LOCATION: uksouth
