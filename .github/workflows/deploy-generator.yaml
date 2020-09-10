@@ -45,7 +45,7 @@ jobs:
         # Please change the path to your directory for docker build
         #pushd Zodiac.Generator
         docker build -f Zodiac.Generator/Dockerfile -t ${{env.ZODIAC_GENERATOR_ALIAS}}.azurecr.io/zodiac/generator:${{github.run_number}} .
-        docker push ${{env.ZODIAC_GENERATOR_ALIAS}}.azurecr.io/generator/zodiac/generator${{github.run_number}}
+        docker push ${{env.ZODIAC_GENERATOR_ALIAS}}.azurecr.io/zodiac/generator:${{github.run_number}}
         #popd
 
     - name: 'Run Azure Functions Container Action'
