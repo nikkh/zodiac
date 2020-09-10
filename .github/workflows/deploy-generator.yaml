@@ -25,7 +25,7 @@ jobs:
     - name: 'Docker Login'
       uses: azure/docker-login@v1
       with:
-        login-server: ${{env.ZODIAC_GENERATOR_ALIAS}}.azurecr.io
+        login-server: ${{env.ZODIAC_GENERATOR_ALIAS}}acr.azurecr.io
         username: ${{env.ZODIAC_GENERATOR_ALIAS}}acr
         password: ${{ secrets.ACR_PASSWORD }}
         
@@ -44,8 +44,8 @@ jobs:
         # If your function app project is not located in your repository's root
         # Please change the path to your directory for docker build
         #pushd Zodiac.Generator
-        docker build -f Zodiac.Generator/Dockerfile -t ${{env.ZODIAC_GENERATOR_ALIAS}}.azurecr.io/zodiac/generator:${{github.run_number}} .
-        docker push ${{env.ZODIAC_GENERATOR_ALIAS}}.azurecr.io/zodiac/generator:${{github.run_number}}
+        docker build -f Zodiac.Generator/Dockerfile -t ${{env.ZODIAC_GENERATOR_ALIAS}}acr.azurecr.io/zodiac/generator:${{github.run_number}} .
+        docker push ${{env.ZODIAC_GENERATOR_ALIAS}}acr.azurecr.io/zodiac/generator:${{github.run_number}}
         #popd
 
     - name: 'Run Azure Functions Container Action'
