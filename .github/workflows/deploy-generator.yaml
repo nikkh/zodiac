@@ -29,31 +29,25 @@ jobs:
         username: ${{env.ZODIAC_GENERATOR_ALIAS}}acr
         password: ${{ secrets.ACR_PASSWORD }}
         
-    - name: Run Deployment Scripts
-      run: | 
-             echo listing current working directory
-             ls
-             echo listing Zodiac.Generator directory
-             cd Zodiac.Generator
-             ls
-             cd ..
-
     - name: 'Compose Customized Docker Image'
       shell: bash
       run: |
-        # If your function app project is not located in your repository's root
-        # Please change the path to your directory for docker build
-        #pushd Zodiac.Generator
         docker build -f Zodiac.Generator/Dockerfile -t ${{env.ZODIAC_GENERATOR_ALIAS}}acr.azurecr.io/zodiac/generator:${{github.run_number}} .
         docker push ${{env.ZODIAC_GENERATOR_ALIAS}}acr.azurecr.io/zodiac/generator:${{github.run_number}}
-        #popd
 
-    - name: 'Run Azure Functions Container Action'
-      uses: Azure/functions-container-action@v1
-      id: fa
-      with:
-        app-name: ${{env.ZODIAC_GENERATOR_ALIAS}}-gen-func
-        image: ${{env.ZODIAC_GENERATOR_ALIAS}}acr.azurecr.io/zodiac/generator:${{github.run_number}}
+
+    - name: 'Set Function App Docker Image'
+      shell: bash
+      run: |
+        az functionapp config container set --docker-custom-image-name ${{env.ZODIAC_GENERATOR_ALIAS}}acr.azurecr.io/zodiac/generator:${{github.run_number}} \
+             --docker-registry-server-password ${{ secrets.ACR_PASSWORD }} \
+             --docker-registry-server-url https://${{env.ZODIAC_GENERATOR_ALIAS}}acr.azurecr.io \
+             --docker-registry-server-user ${{env.ZODIAC_GENERATOR_ALIAS}}acr \
+             --name ${{env.ZODIAC_GENERATOR_ALIAS}}-gen-func \
+             --resource-group ${{env.ZODIAC_GENERATOR_ALIAS}}-rg
+        az webapp log config --docker-container-logging filesystem \
+             --name ${{env.ZODIAC_GENERATOR_ALIAS}}-gen-func \
+             --resource-group ${{env.ZODIAC_GENERATOR_ALIAS}}-rg
     
     - name: Azure logout
       run: |
