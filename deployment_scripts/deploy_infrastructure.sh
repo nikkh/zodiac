@@ -7,7 +7,7 @@ deployment_scripts/deploy_limone_api.sh
 deployment_scripts/deploy_virgo.sh
 deployment_scripts/deploy_libra.sh
 deployment_scripts/deploy_zodiac_generator.sh
-echo finished >> deployment-log.txt
+
 
 blobName="deployment-log.txt"
 cat $blobName
@@ -24,9 +24,18 @@ az storage account create \
  --resource-group $resourceGroupName \
  --sku Standard_LRS
 
+# We'll use this storage account to hold external configuration for users and sessions in user simulation processing
+az storage container create -n "zodiac-generator-config" --public-access off
+echo "" > GeneratorParameters.json
+az storage blob upload -c "zodiac-generator-config" -f GeneratorParameters.json -n GeneratorParameters.json
+echo "GeneratorParameters.json was written to $storageAccountName, container=zodiac-generator-config, blob=GeneratorParameters.json" >> deployment-log.txt
+
 # We'll use this storage account to hold the log and secrets generated during infrastructure creation.
 connectionString=$(az storage account show-connection-string -n $storageAccountName -g $resourceGroupName --query connectionString -o tsv)
 export AZURE_STORAGE_CONNECTION_STRING=$connectionString
+echo "Generator storage account: $storageAccountName" >> deployment-log.txt
+echo "Generator storage account connection string: $connectionString" >> deployment-log.txt
+echo finished >> deployment-log.txt
 
 az storage container create -n "results" --public-access off
 az storage blob upload -c "results" -f $blobName -n $blobName
