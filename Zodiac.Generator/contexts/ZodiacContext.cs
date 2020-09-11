@@ -11,26 +11,8 @@ namespace Zodiac.Generator
         public int NumberOfUserJourneys { get; set; }
         public string BaseUrl { get; set; }
 
-        public User[] Users { get; set; }
-
-        public Session[] Sessions { get; set; }
-
-    }
-
-    public class User
-    {
-        public string Id { get; set; }
-        public string Password { get; set; }
-    }
-
-    public class Session
-    {
-        public Step[] Steps { get; set; }
-        
-    }
-
-    public class Step
-    {
-        public string StepId { get; set; }
+        public bool UserSimulationEnabled { get; set; }
+        public string UserTestingParametersStorageConnectionString { get; set; }
+        public int MinimumThinkTimeInMilliseconds { get; set; }
     }
 }

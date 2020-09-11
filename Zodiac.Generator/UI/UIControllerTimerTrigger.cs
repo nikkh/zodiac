@@ -21,17 +21,19 @@ namespace Zodiac.Generator.UI
         [FunctionName("UIControllerTimerTrigger")]
         public async Task Run([TimerTrigger("0 * * * * *")]TimerInfo myTimer, ILogger log, ExecutionContext ec)
         {
+            int numSimulations=0;
             try
             {
                 log.LogInformation($"{ec.FunctionName} (timer trigger) function executed at: {DateTime.UtcNow}");
                 var worker = new UIControllerWorker(_zodiacContext);
-                await worker.Run(log, ec.FunctionName);
+                numSimulations = await worker.Run(log, ec.FunctionName);
                 return;
             }
             catch (Exception e)
             {
                 log.LogError($"Exeception during execution of {ec.FunctionName}. Message: {e.Message}. Check Inner Exception", e);
             }
+            log.LogInformation($"{ec.FunctionName} ran {numSimulations} simulations");
 
         }
        

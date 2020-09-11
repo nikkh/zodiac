@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Microsoft.Extensions.Configuration;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace Zodiac.Generator.UI
 {
@@ -15,10 +17,12 @@ namespace Zodiac.Generator.UI
     {
 
         private readonly ZodiacContext _zodiacContext;
-        
+       
+
         public UIControllerHttpTrigger(IConfiguration config, ZodiacContext zodiacContext)
         {
             _zodiacContext = zodiacContext;
+            
         }
 
         [FunctionName("UIControllerHttpTrigger")]
@@ -27,8 +31,25 @@ namespace Zodiac.Generator.UI
             ILogger log, ExecutionContext ec)
         {
             log.LogInformation($"{ec.FunctionName} (http trigger) function executed at: {DateTime.UtcNow}");
+            int numSimulations;
             var worker = new UIControllerWorker(_zodiacContext);
-            var responseMessage = await worker.Run(log, ec.FunctionName, 1);
+            try
+            {
+                if (Int32.TryParse(req.Query["NumberOfSimulations"], out int numRequests))
+                {
+                    numSimulations = await worker.Run(log, ec.FunctionName, numRequests);
+                }
+                else
+                {
+                    numSimulations = await worker.Run(log, ec.FunctionName);
+                }
+            }
+            catch (Exception e)
+            {
+                log.LogError($"Exeception during execution of {ec.FunctionName}. Message: {e.Message}. Check Inner Exception", e);
+                return new StatusCodeResult(500);
+            }
+            var responseMessage = $"{ec.FunctionName} performed {numSimulations} simulations";
             return new OkObjectResult(responseMessage);
         }
     }

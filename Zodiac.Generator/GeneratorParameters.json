@@ -1,0 +1,17 @@
+{
+  "Users": [
+    {
+      "Id": "neves@xekina.onmicrosoft.com",
+      "Password": "Boldmere1883@@@"
+    },
+    {
+      "Id": "joao@xekina.onmicrosoft.com",
+      "Password": "Boldmere1883@@@"
+    }
+  ],
+  "Sessions": [
+    { "Steps": [ "capricorn-go-red", "cap021", "cap023", "cap024" ] },
+    { "Steps": [ "capricorn-go-rainbow", "cap013", "cap019", "cap006" ] },
+    { "Steps": [ "capricorn-go-blue", "cap003" ] }
+  ]
+}
