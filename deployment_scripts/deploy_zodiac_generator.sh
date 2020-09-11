@@ -53,8 +53,10 @@ az functionapp create \
   --docker-registry-server-password $acrPassword \
   --runtime dotnet
 
-#echo "Updating App Settings for $functionAppName"
+echo "Updating App Settings for $functionAppName"
+settings="ZodiacContext__MinimumThinkTimeInMilliseconds=1000 ZodiacContext__UserSimulationEnabled=false" 
 #storageConnectionString="dummy-value"
-#az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings AzureWebJobsStorage=$storageConnectionString
-
+az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings $settings
+echo "TODO: change above command so that it doesnt output results or save to a variable and write to secure output"
+echo "TODO: set ZodiacContext__UserTestingParametersStorageConnectionString in appsettings
 
