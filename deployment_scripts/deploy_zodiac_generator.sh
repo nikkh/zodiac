@@ -53,7 +53,7 @@ az functionapp create \
   --docker-registry-server-password $acrPassword \
   --runtime dotnet
 
-echo "Updating App Settings for $functionAppName"
+#echo "Updating App Settings for $functionAppName"
 #storageConnectionString="dummy-value"
 #az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings AzureWebJobsStorage=$storageConnectionString
 
