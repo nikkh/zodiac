@@ -7,6 +7,8 @@
   },
   "ZodiacContext": {
     "UserSimulationEnabled": true,
-    "UserTestingParametersStorageConnectionString": ""
+    "UserTestingParametersStorageConnectionString": "",
+    "MinimumThinkTimeInMilliseconds": 1000
+
   }
 }

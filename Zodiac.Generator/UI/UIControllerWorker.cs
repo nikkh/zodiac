@@ -24,7 +24,7 @@ namespace Zodiac.Generator.UI
         {
             _zodiacContext = zodiacContext;
             util = new UIControllerUtil(_zodiacContext);
-            if (util.UserSimnulationEnabled())
+            if (util.UserSimulationEnabled())
             {
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.AddArgument("--start-maximized");
@@ -57,7 +57,7 @@ namespace Zodiac.Generator.UI
 
         internal async Task<int> Run(ILogger log, string triggerFunction, int calls = 0)
         {
-            if (util.UserSimnulationEnabled(log))
+            if (util.UserSimulationEnabled(log))
             {
                 parameters = await new UIControllerUtil(_zodiacContext).GetParameters(log);
                 Random random = new Random();

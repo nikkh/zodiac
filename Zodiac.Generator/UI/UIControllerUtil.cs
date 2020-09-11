@@ -31,7 +31,7 @@ namespace Zodiac.Generator.UI
             return parameters;
         }
 
-        internal bool UserSimnulationEnabled(ILogger log = null)
+        internal bool UserSimulationEnabled(ILogger log = null)
         {
             if (_zodiacContext.UserSimulationEnabled)
             {

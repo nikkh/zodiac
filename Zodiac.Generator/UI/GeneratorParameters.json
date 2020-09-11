@@ -1,12 +1,12 @@
 {
   "Users": [
     {
-      "Id": "neves@xekina.onmicrosoft.com",
-      "Password": "Boldmere1883@@@"
+      "Id": "<user1@tenant.onmicrosoft.com",
+      "Password": "password"
     },
     {
-      "Id": "joao@xekina.onmicrosoft.com",
-      "Password": "Boldmere1883@@@"
+      "Id": "user2@tenant.onmicrosoft.com",
+      "Password": "password"
     }
   ],
   "Sessions": [
