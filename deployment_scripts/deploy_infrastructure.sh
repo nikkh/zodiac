@@ -13,6 +13,7 @@ blobName="deployment-log.txt"
 cat $blobName
 echo "<<<< Temporary"
 
+echo "TODO: Move this to the Zodiac generator script!"
 resourceGroupName="${ZODIAC_GENERATOR_ALIAS}-rg"
 echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
 az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  Application=zodiac Micrososervice=$applicationName PendingDelete=true -o none
@@ -44,10 +45,8 @@ echo finished >> deployment-log.txt
 az storage container create -n "results" --public-access off
 az storage blob upload -c "results" -f $blobName -n $blobName
 today=$(date +%F)T
-longStartTime=$(date --date="-1 hour" +%T)
-longExpiryTime=$(date --date="2 hour" +%T)
-startTime=${longStartTime:0:5}Z
-expiryTime=${longExpiryTime:0:5}Z
+startTime=$(date --date="-1 hour" +%T)Z
+expiryTime=$(date --date="2 hour" +%T)Z
 start="$today$startTime"
 expiry="$today$expiryTime"
 echo $start
@@ -55,4 +54,6 @@ expiry=$(date --date="1 day" +%F)
 echo $expiry
 url=$(az storage blob url -c "results" -n $blobName -o tsv)
 sas=$(az storage blob generate-sas -c "private" -n $blobName --permissions r -o tsv --expiry $expiry --https-only --start $start)
-echo "Click here to access a concise list of parameter that may be useful: $url?$sas".
+echo "TODO: Check the SAS url below works!"
+echo "Click here to access a concise list of parameter that may be useful: $url?$sas"
+
