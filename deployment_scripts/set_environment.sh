@@ -1,14 +1,14 @@
 #!/bin/bash
 
 export DEFAULT_LOCATION=uksouth
-export SIRMIONE_ALIAS=sirmionee
-export LIMONE_ALIAS=limonee
-export SCORPIO_ALIAS=scorpioe
-export VIRGO_ALIAS=virgoe
-export LIBRA_ALIAS=librae
-export ZODIAC_GENERATOR_ALIAS=zodgene
+export SIRMIONE_ALIAS=sirmionef
+export LIMONE_ALIAS=limonef
+export SCORPIO_ALIAS=scorpiof
+export VIRGO_ALIAS=virgof
+export LIBRA_ALIAS=libraf
+export ZODIAC_GENERATOR_ALIAS=zodgenf
 export DB_ADMIN_USER=nick
-
+echo "Creating Infrastructure using the following environment variables" >> deployment-log.txt
 echo "DEFAULT_LOCATION:$DEFAULT_LOCATION" >> deployment-log.txt
 echo "SIRMIONE_ALIAS:$SIRMIONE_ALIAS" >> deployment-log.txt
 echo "LIMONE_ALIAS:$LIMONE_ALIAS" >> deployment-log.txt
