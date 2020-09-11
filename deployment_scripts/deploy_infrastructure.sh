@@ -44,8 +44,10 @@ echo finished >> deployment-log.txt
 az storage container create -n "results" --public-access off
 az storage blob upload -c "results" -f $blobName -n $blobName
 today=$(date +%F)T
-startTime=$(date --date="-1 hour" +%T)T
-expiryTime=$(date --date="2 hour" +%T)T
+longStartTime=$(date --date="-1 hour" +%T)
+longExpiryTime=$(date --date="2 hour" +%T)
+startTime=${longStartTime:0:5}Z
+expiryTime=${longExpiryTime:0:5}Z
 start="$today$startTime"
 expiry="$today$expiryTime"
 echo $start
