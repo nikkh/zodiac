@@ -26,7 +26,8 @@ az storage account create \
 
 # We'll use this storage account to hold external configuration for users and sessions in user simulation processing
 az storage container create -n "zodiac-generator-config" --public-access off
-echo "" > GeneratorParameters.json
+sampleGeneratorParameters="{"Users": [{"Id": "user1@tenant.onmicrosoft.com", "Password": "password"},{"Id": "user2@tenant.onmicrosoft.com","Password": "password"}],"Sessions": [{"Steps": ["capricorn-go-red", "cap021", "cap023", "cap024" ] }, { "Steps": [ "capricorn-go-rainbow", "cap013", "cap019", "cap006" ] },{ "Steps": [ "capricorn-go-blue", "cap003" ] }]}"
+echo "$sampleGeneratorParameters" > GeneratorParameters.json
 az storage blob upload -c "zodiac-generator-config" -f GeneratorParameters.json -n GeneratorParameters.json
 echo "GeneratorParameters.json was written to $storageAccountName, container=zodiac-generator-config, blob=GeneratorParameters.json" >> deployment-log.txt
 
