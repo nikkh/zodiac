@@ -13,6 +13,43 @@ resourceGroupName="${applicationName}-rg"
 storageAccountName=${applicationName}$RANDOM
 functionAppName="${applicationName}-func"
 
+
+echo "LIMONE_ALIAS: $LIMONE_ALIAS"
+limoneApplicationName="${LIMONE_ALIAS}"
+limoneResourceGroupName="${limoneApplicationName}-rg"
+limoneServiceBusNamespace="${limoneApplicationName}sb"
+limoneServiceBusConnectionString=$(az servicebus namespace authorization-rule keys list -g $limoneResourceGroupName --namespace-name $limoneServiceBusNamespace -n RootManageSharedAccessKey --query 'primaryConnectionString' -o tsv)
+
+echo ---Derived Variables
+echo "Application Name: $applicationName"
+echo "Resource Group Name: $resourceGroupName"
+echo "Storage Account Name: $storageAccountName"
+echo "Function App Name: $functionAppName"
+echo
+
+echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
+az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  Application=zodiac Micrososervice=$applicationName PendingDelete=true
+
+echo "Creating storage account $storageAccountName in $resourceGroupName"
+az storage account create \
+--name $storageAccountName \
+--location $DEFAULT_LOCATION \
+--resource-group $resourceGroupName \
+--sku Standard_LRS
+
+echo "Creating serverless function app $functionAppName in $resourceGroupName"
+az functionapp create \
+ --name $functionAppName \
+ --storage-account $storageAccountName \
+ --consumption-plan-location $DEFAULT_LOCATION \
+ --resource-group $resourceGroupName \
+ --functions-version 3
+
+echo "Updating App Settings for $functionAppName"
+storageConnectionString="dummy-value"
+az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings ServiceBusConnection=$limoneServiceBusConnectionString
+
+
 echo ---Derived Variables
 echo "Application Name: $applicationName"
 echo "Resource Group Name: $resourceGroupName"
@@ -40,4 +77,4 @@ az functionapp create \
 echo "Updating App Settings for $functionAppName"
 storageConnectionString="dummy-value"
 serviceBusConnectionString="dummy-value"
- az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings AzureWebJobsStorage=$storageConnectionString ServiceBusConnection=$serviceBusConnectionString
+ az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings AzureWebJobsStorage=$storageConnectionString ServiceBusConnection=$limoneServiceBusConnectionString
