@@ -45,5 +45,4 @@ az functionapp create \
  --functions-version 3
 
 echo "Updating App Settings for $functionAppName"
-storageConnectionString="dummy-value"
 az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings ServiceBusConnection=$limoneServiceBusConnectionString
