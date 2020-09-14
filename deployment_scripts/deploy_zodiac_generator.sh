@@ -3,13 +3,13 @@ echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo         Deploying Zodiac Generator Infrastructure 
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo ---Global Variables
-echo "ZODIAC_GENERATOR_ALIAS: $ZODIAC_GENERATOR_ALIAS"
+echo "ZODIAC_ALIAS: $ZODIAC_ALIAS"
 echo "DEFAULT_LOCATION: $DEFAULT_LOCATION"
 echo
 echo "starting deploy_zodiac_generator.sh" >> deployment-log.txt
 # set local variables
 # Derive as many variables as possible
-applicationName="${ZODIAC_GENERATOR_ALIAS}"
+applicationName="${ZODIAC_ALIAS}"
 resourceGroupName="${applicationName}-rg"
 storageAccountName=${applicationName}$RANDOM
 functionAppName="${applicationName}-gen-func"
