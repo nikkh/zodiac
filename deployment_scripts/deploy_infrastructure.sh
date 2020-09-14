@@ -6,7 +6,7 @@ deployment_scripts/deploy_scorpio_api.sh
 deployment_scripts/deploy_limone_api.sh
 deployment_scripts/deploy_virgo.sh
 deployment_scripts/deploy_libra.sh
-deployment_scripts/deploy_zodiac_generator.sh
+deployment_scripts/deploy_zodiac.sh
 echo finished >> deployment-log.txt
 
 echo ">>>> Temporary"
