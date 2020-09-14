@@ -32,11 +32,11 @@ jobs:
         dotnet-version: 3.1.101
         
     - name: Build Application
-      run: dotnet build sirmione-web/Application/Sirmione.Web/Sirmione.Web.csproj --configuration Release
+      run: dotnet build sirmione-web/Application/Sirmione.Web/Sirmione.Web.csproj --configuration Debug
 
     - name: Publish Application
       run: |
-        dotnet publish sirmione-web/Application/Sirmione.Web/Sirmione.Web.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp 
+        dotnet publish sirmione-web/Application/Sirmione.Web/Sirmione.Web.csproj -c Debug -o ${{env.DOTNET_ROOT}}/myapp 
         
     - name: Login to Azure
       uses: azure/login@v1
