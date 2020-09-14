@@ -1,7 +1,7 @@
 name: Libra Queue Handler
 env:
    DEFAULT_LOCATION: uksouth
-   LIBRA_ALIAS: librax
+   LIBRA_ALIAS: librag
 on:
   push:
     paths:
