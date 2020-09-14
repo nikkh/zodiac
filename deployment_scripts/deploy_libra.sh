@@ -13,6 +13,12 @@ resourceGroupName="${applicationName}-rg"
 storageAccountName=${applicationName}$RANDOM
 functionAppName="${applicationName}-func"
 
+echo "LIMONE_ALIAS: $LIMONE_ALIAS"
+limoneApplicationName="${LIMONE_ALIAS}"
+limoneResourceGroupName="${limoneApplicationName}-rg"
+limoneServiceBusNamespace="${limoneApplicationName}sb"
+limoneServiceBusConnectionString=$(az servicebus namespace authorization-rule keys list -g $limoneResourceGroupName --namespace-name $limoneServiceBusNamespace -n RootManageSharedAccessKey --query 'primaryConnectionString' -o tsv)
+
 echo ---Derived Variables
 echo "Application Name: $applicationName"
 echo "Resource Group Name: $resourceGroupName"
@@ -40,5 +46,4 @@ az functionapp create \
 
 echo "Updating App Settings for $functionAppName"
 storageConnectionString="dummy-value"
-serviceBusConnectionString="dummy-value"
-az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings AzureWebJobsStorage=$storageConnectionString ServiceBusConnection=$serviceBusConnectionString
+az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings ServiceBusConnection=$limoneServiceBusConnectionString
