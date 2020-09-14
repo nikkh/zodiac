@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" 
-echo         Deploying Zodiac Generator Infrastructure 
+echo         Deploying Zodiac Infrastructure 
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo ---Global Variables
 echo "ZODIAC_ALIAS: $ZODIAC_ALIAS"
