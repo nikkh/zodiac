@@ -15,6 +15,7 @@ using Microsoft.ApplicationInsights.Channel;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Http;
 using Microsoft.ApplicationInsights.DataContracts;
+using Microsoft.IdentityModel.Logging;
 
 namespace Sirmione.Web
 {
@@ -83,6 +84,7 @@ namespace Sirmione.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            IdentityModelEventSource.ShowPII = true;
             services.AddAuthentication(AzureADDefaults.AuthenticationScheme).AddAzureAD(options => Configuration.Bind("AzureAd", options));
             services.AddControllersWithViews();
             var appInsightsKey = Configuration["ApplicationInsights:InstrumentationKey"];
