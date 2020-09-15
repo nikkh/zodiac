@@ -46,7 +46,7 @@ jobs:
              --name ${{env.LIMONE_ALIAS}}-api \
              --resource-group ${{env.LIMONE_ALIAS}}-rg
         az webapp log config --docker-container-logging filesystem \
-             --name ${{env.LIMONE_ALIAS}}-func \
+             --name ${{env.LIMONE_ALIAS}}-api \
              --resource-group ${{env.LIMONE_ALIAS}}-rg
     
     - name: Azure logout
