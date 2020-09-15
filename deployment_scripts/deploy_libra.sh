@@ -50,6 +50,6 @@ az functionapp create \
 
 echo "Updating App Settings for $functionAppName"
 settings="ServiceBusConnection=$limoneServiceBusConnectionString"
-az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings $settings -o none
+az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings "ServiceBusConnection=$limoneServiceBusConnectionString" -o none
 echo "Update settings for function app $functionAppName: $settings" >> deployment-log.txt
 echo "Libra Deploy has completed." >> deployment-log.txt
