@@ -16,8 +16,8 @@ echo "<<<< Temporary"
 
 # Upload the deployment log to the zodiac storage account 
 resourceGroupName="$ZODIAC_ALIAS-rg"
-storageAccountName=$(az storage account list -g zodgeng-rg --query [0].name -o tsv)
-connectionString=$(az storage account show-connection-string -n $storageAccountName -g $resourceGroupName --query connectionString -o tsv)
+storageAccountName=$(az storage account list -g $resourceGroupName --query [0].name -o tsv)
+AZURE_STORAGE_CONNECTION_STRING=$(az storage account show-connection-string -n $storageAccountName -g $resourceGroupName --query connectionString -o tsv)
 az storage container create -n "results" --public-access off
 az storage blob upload -c "results" -f $blobName -n $blobName
 
