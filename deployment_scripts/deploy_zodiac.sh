@@ -1,15 +1,15 @@
 #!/bin/bash
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" 
-echo         Deploying Zodiac Generator Infrastructure 
+echo         Deploying Zodiac Infrastructure 
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo ---Global Variables
-echo "ZODIAC_GENERATOR_ALIAS: $ZODIAC_GENERATOR_ALIAS"
+echo "ZODIAC_ALIAS: $ZODIAC_ALIAS"
 echo "DEFAULT_LOCATION: $DEFAULT_LOCATION"
 echo
 echo "starting deploy_zodiac_generator.sh" >> deployment-log.txt
 # set local variables
 # Derive as many variables as possible
-applicationName="${ZODIAC_GENERATOR_ALIAS}"
+applicationName="${ZODIAC_ALIAS}"
 resourceGroupName="${applicationName}-rg"
 storageAccountName=${applicationName}$RANDOM
 functionAppName="${applicationName}-gen-func"
@@ -53,10 +53,23 @@ az functionapp create \
   --docker-registry-server-password $acrPassword \
   --runtime dotnet
 
+connectionString=$(az storage account show-connection-string -n $storageAccountName -g $resourceGroupName --query connectionString -o tsv)
+export AZURE_STORAGE_CONNECTION_STRING="$connectionString"
+echo "Zodiac storage account: $storageAccountName" >> deployment-log.txt
+echo "Zodiac storage account connection string: $connectionString" >> deployment-log.txt
+
+# We'll use this storage account to hold external configuration for users and sessions in user simulation processing
+az storage container create -n "zodiac-generator-config" --public-access off
+sampleGeneratorParameters="{"Users": [{"Id": "user1@tenant.onmicrosoft.com", "Password": "password"},{"Id": "user2@tenant.onmicrosoft.com","Password": "password"}],"Sessions": [{"Steps": ["capricorn-go-red", "cap021", "cap023", "cap024" ] }, { "Steps": [ "capricorn-go-rainbow", "cap013", "cap019", "cap006" ] },{ "Steps": [ "capricorn-go-blue", "cap003" ] }]}"
+echo "$sampleGeneratorParameters" > GeneratorParameters.json
+az storage blob upload -c "zodiac-generator-config" -f GeneratorParameters.json -n GeneratorParameters.json
+echo "GeneratorParameters.json was written to $storageAccountName, container=zodiac-generator-config, blob=GeneratorParameters.json" >> deployment-log.txt
+echo "!! You will need to edit GeneratorParameters.json" >> deployment-log.txt
+
 echo "Updating App Settings for $functionAppName"
-settings="ZodiacContext__MinimumThinkTimeInMilliseconds=1000 ZodiacContext__UserSimulationEnabled=false" 
-#storageConnectionString="dummy-value"
+settings="ZodiacContext__MinimumThinkTimeInMilliseconds=1000 ZodiacContext__UserSimulationEnabled=false ZodiacContext__UserTestingParametersStorageConnectionString=$storageConnectionString" 
 az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings $settings
+
 echo "TODO: change above command so that it doesnt output results or save to a variable and write to secure output"
-echo "TODO: set ZodiacContext__UserTestingParametersStorageConnectionString in appsettings
+
 

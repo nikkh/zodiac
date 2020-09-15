@@ -1,7 +1,7 @@
-name: Deploy Generator 
+name: Deploy Zodiac 
 env:
    DEFAULT_LOCATION: uksouth
-   ZODIAC_GENERATOR_ALIAS: zodgeng
+   ZODIAC_ALIAS: zzzodiac
 
 #on:
 #  push:
@@ -25,15 +25,15 @@ jobs:
     - name: 'Docker Login'
       uses: azure/docker-login@v1
       with:
-        login-server: ${{env.ZODIAC_GENERATOR_ALIAS}}acr.azurecr.io
-        username: ${{env.ZODIAC_GENERATOR_ALIAS}}acr
+        login-server: ${{env.ZODIAC_ALIAS}}acr.azurecr.io
+        username: ${{env.ZODIAC_ALIAS}}acr
         password: ${{ secrets.ACR_PASSWORD }}
         
     - name: 'Compose Customized Docker Image'
       shell: bash
       run: |
-        docker build -f Zodiac.Generator/Dockerfile -t ${{env.ZODIAC_GENERATOR_ALIAS}}acr.azurecr.io/zodiac/generator:${{github.run_number}} .
-        docker push ${{env.ZODIAC_GENERATOR_ALIAS}}acr.azurecr.io/zodiac/generator:${{github.run_number}}
+        docker build -f Zodiac.Generator/Dockerfile -t ${{env.ZODIAC_ALIAS}}acr.azurecr.io/zodiac/generator:${{github.run_number}} .
+        docker push ${{env.ZODIAC_ALIAS}}acr.azurecr.io/zodiac/generator:${{github.run_number}}
 
 
     - name: 'Set Function App Docker Image'
@@ -41,17 +41,16 @@ jobs:
       run: |
         az functionapp config container set --docker-custom-image-name ${{env.ZODIAC_GENERATOR_ALIAS}}acr.azurecr.io/zodiac/generator:${{github.run_number}} \
              --docker-registry-server-password ${{ secrets.ACR_PASSWORD }} \
-             --docker-registry-server-url https://${{env.ZODIAC_GENERATOR_ALIAS}}acr.azurecr.io \
-             --docker-registry-server-user ${{env.ZODIAC_GENERATOR_ALIAS}}acr \
-             --name ${{env.ZODIAC_GENERATOR_ALIAS}}-gen-func \
-             --resource-group ${{env.ZODIAC_GENERATOR_ALIAS}}-rg
+             --docker-registry-server-url https://${{env.ZODIAC_ALIAS}}acr.azurecr.io \
+             --docker-registry-server-user ${{env.ZODIAC_ALIAS}}acr \
+             --name ${{env.ZODIAC_ALIAS}}-gen-func \
+             --resource-group ${{env.ZODIAC_ALIAS}}-rg
         az webapp log config --docker-container-logging filesystem \
-             --name ${{env.ZODIAC_GENERATOR_ALIAS}}-gen-func \
-             --resource-group ${{env.ZODIAC_GENERATOR_ALIAS}}-rg
+             --name ${{env.ZODIAC_ALIAS}}-gen-func \
+             --resource-group ${{env.ZODIAC_ALIAS}}-rg
     
     - name: Azure logout
       run: |
         az logout
 
-# For more information on GitHub Actions:
-#   https://help.github.com/en/categories/automating-your-workflow-with-github-actions
+

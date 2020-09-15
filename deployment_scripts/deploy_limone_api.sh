@@ -41,6 +41,9 @@ az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags Applicati
 
 echo "Creating service bus namespace $serviceBusNamespace in group $resourceGroupName"
 az servicebus namespace create -g $resourceGroupName -n $serviceBusNamespace
+az servicebus queue create -g $resourceGroupName --namespace-name $serviceBusNamespace --name libra-queue
+az servicebus queue create -g $resourceGroupName --namespace-name $serviceBusNamespace --name virgo-queue
+serviceBusConnectionString=$(az servicebus namespace authorization-rule keys list -g $resourceGroupName --namespace-name $serviceBusNamespace -n RootManageSharedAccessKey --query 'primaryConnectionString' -o tsv)
 
 echo "Creating storage account $storageAccountName in $resourceGroupName"
  az storage account create \
@@ -62,7 +65,7 @@ echo "Creating app service $webAppName in group $resourceGroupName"
 
 echo "Updating App Settings for $webAppName"
 storageConnectionString="dummy-value"
-serviceBusConnectionString="dummy-value"
+
 az webapp config appsettings set -g $resourceGroupName -n $webAppName --settings AZURE_STORAGE_CONNECTIONSTRING=$storageConnectionString AZURE_SERVICEBUS_CONNECTIONSTRING=$serviceBusConnectionString 
   
   

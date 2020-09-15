@@ -1,12 +1,14 @@
 name: Libra Queue Handler
 env:
    DEFAULT_LOCATION: uksouth
-   LIBRA_ALIAS: librax
-on:
-  push:
-    paths:
-    - LibraQueueHandler/LibraQueueHandler/**
-      
+   LIBRA_ALIAS: zzlibra
+#on:
+#  push:
+#    paths:
+#    - LibraQueueHandler/LibraQueueHandler/**
+
+on: [workflow_dispatch]
+
 jobs:
   build-and-deploy:
 
