@@ -1,7 +1,7 @@
 name: Virgo Queue Handler
 env:
    DEFAULT_LOCATION: uksouth
-   VIRGO_ALIAS: virgog
+   VIRGO_ALIAS: zzvirgo
 #on:
 #  push:
 #    paths:
