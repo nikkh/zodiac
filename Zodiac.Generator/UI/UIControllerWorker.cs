@@ -60,29 +60,34 @@ namespace Zodiac.Generator.UI
             if (util.UserSimulationEnabled(log))
             {
                 parameters = await new UIControllerUtil(_zodiacContext).GetParameters(log);
-                Random random = new Random();
-                log.LogDebug($"User Simulation {calls} journeys requested");
-                if (calls == 0)
+
+                if (parameters.Users[0].Id != @"user1@tenant.onmicrosoft.com")
                 {
-                    calls = random.Next(1, _zodiacContext.NumberOfUserJourneys);
-                    log.LogDebug($"Number of simulations unspecified, randomly selecting {calls} simulations");
-                }
-                driver.Navigate().GoToUrl(_zodiacContext.BaseUrl);
-                AADLogin(GetRandomUser(), log);
-                try
-                {
-                    for (int i = 0; i < calls; i++)
+
+                    Random random = new Random();
+                    log.LogDebug($"User Simulation {calls} journeys requested");
+                    if (calls == 0)
                     {
-                        log.LogDebug($"Simulation session {i+1} of {calls}");
-                        EnactSession(GetRandomSession(), i+1, log);
+                        calls = random.Next(1, _zodiacContext.NumberOfUserJourneys);
+                        log.LogDebug($"Number of simulations unspecified, randomly selecting {calls} simulations");
                     }
+                    driver.Navigate().GoToUrl(_zodiacContext.BaseUrl);
+                    AADLogin(GetRandomUser(), log);
+                    try
+                    {
+                        for (int i = 0; i < calls; i++)
+                        {
+                            log.LogDebug($"Simulation session {i + 1} of {calls}");
+                            EnactSession(GetRandomSession(), i + 1, log);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        log.LogError($"Exception while generating synthetic user traffic! Message: {e}");
+                    }
+                    return calls;
                 }
-                catch (Exception e)
-                {
-                    log.LogError($"Exception while generating synthetic user traffic! Message: {e}");
-                }
-                return calls;
-                
+                log.LogWarning($"Simulation not possible.  Default user still in simulation configuration {parameters.Users[0].Id}");
             }
             return 0;
         }

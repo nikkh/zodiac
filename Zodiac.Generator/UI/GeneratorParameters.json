@@ -1,7 +1,7 @@
 {
   "Users": [
     {
-      "Id": "<user1@tenant.onmicrosoft.com",
+      "Id": "user1@tenant.onmicrosoft.com",
       "Password": "password"
     },
     {

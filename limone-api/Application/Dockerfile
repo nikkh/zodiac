@@ -1,29 +1,22 @@
-FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
+#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM microsoft/dotnet:2.2-sdk AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["limone-api.csproj", ""]
-RUN dotnet restore "limone-api.csproj"
+COPY ["limone-api/Application/limone-api.csproj", "limone-api/Application/"]
+RUN dotnet restore "limone-api/Application/limone-api.csproj"
 COPY . .
-WORKDIR "/src/"
-RUN dotnet build "limone-api.csproj" -c Release -o /app
+WORKDIR "/src/limone-api/Application"
+RUN dotnet build "limone-api.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "limone-api.csproj" -c Release -o /app
+RUN dotnet publish "limone-api.csproj" -c Release -o /app/publish
 
 FROM base AS final
-# Create an argument to allow docker builder to passing in application insights key.
-# For example: docker build . --build-arg APPINSIGHTS_KEY=YOUR_APPLICATIONINSIGHTS_INSTRUMENTATION_KEY
-#ARG APPINSIGHTS_KEY
-# Making sure the argument is set. Fail the build of the container otherwise.
-#RUN test -n "$APPINSIGHTS_KEY"
-
-# Light up Application Insights and Service Profiler
-#ENV APPINSIGHTS_INSTRUMENTATIONKEY $APPINSIGHTS_KEY
-#ENV ASPNETCORE_HOSTINGSTARTUPASSEMBLIES Microsoft.ApplicationInsights.Profiler.AspNetCore
 WORKDIR /app
-COPY --from=publish /app .
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "limone-api.dll"]

@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
@@ -30,7 +31,7 @@ namespace limone_api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddServiceProfiler(); // Add this line of code to Enable Profiler
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Limone API", Version = "v1" });
@@ -52,7 +53,7 @@ namespace limone_api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -74,7 +75,7 @@ namespace limone_api
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Limone");
                 c.RoutePrefix = string.Empty;
             });
-            app.UseMvc();
+            // app.UseMvc();
         }
     }
 }
