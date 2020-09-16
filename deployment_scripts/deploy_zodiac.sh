@@ -68,7 +68,7 @@ echo "GeneratorParameters.json was written to $storageAccountName, container=zod
 echo "!! You will need to edit GeneratorParameters.json" >> deployment-log.txt
 
 echo "Updating App Settings for $functionAppName"
-sirmioneBaseUrl="https://$SIRMIONE_ALIAS.azurewebsites.net/home/"
+sirmioneBaseUrl="https://$SIRMIONE_ALIAS-web.azurewebsites.net/home/"
 settings="ZodiacContext__MinimumThinkTimeInMilliseconds=1000 ZodiacContext__UserSimulationEnabled=false ZodiacContext__UserTestingParametersStorageConnectionString=$connectionString ZodiacContext__BaseUrl=$sirmioneBaseUrl" 
 az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings $settings >> deployment-log.txt
 
