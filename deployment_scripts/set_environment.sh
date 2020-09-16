@@ -2,11 +2,11 @@
 
 export DEFAULT_LOCATION=uksouth
 export SIRMIONE_ALIAS=zxsirmione
-export LIMONE_ALIAS=zxlimone
-export SCORPIO_ALIAS=zxscorpio
-export VIRGO_ALIAS=zxvirgo
-export LIBRA_ALIAS=zxlibra
-export ZODIAC_ALIAS=zxzodiac
+export LIMONE_ALIAS=qlimone
+export SCORPIO_ALIAS=qscorpio
+export VIRGO_ALIAS=qvirgo
+export LIBRA_ALIAS=qlibra
+export ZODIAC_ALIAS=qzodiac
 export DB_ADMIN_USER=nick
 export AAD_DOMAIN=xekina.onmicrosoft.com
 export AAD_TENANTID=3bc03625-3a0a-48c5-8aa5-12f22e401fff
