@@ -39,7 +39,7 @@ jobs:
     - name: 'Set Function App Docker Image'
       shell: bash
       run: |
-        az functionapp config container set --docker-custom-image-name ${{env.ZODIAC_GENERATOR_ALIAS}}acr.azurecr.io/zodiac/generator:${{github.run_number}} \
+        az functionapp config container set --docker-custom-image-name ${{env.ZODIAC_ALIAS}}acr.azurecr.io/zodiac/generator:${{github.run_number}} \
              --docker-registry-server-password ${{ secrets.ACR_PASSWORD }} \
              --docker-registry-server-url https://${{env.ZODIAC_ALIAS}}acr.azurecr.io \
              --docker-registry-server-user ${{env.ZODIAC_ALIAS}}acr \
