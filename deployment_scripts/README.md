@@ -58,21 +58,26 @@ added the limone key as per existing settings:
 
 original limone dockerfile had 
 
-# Light up Application Insights and Service Profiler
+--- Light up Application Insights and Service Profiler
 #ENV APPINSIGHTS_INSTRUMENTATIONKEY $APPINSIGHTS_KEY
 #ENV ASPNETCORE_HOSTINGSTARTUPASSEMBLIES Microsoft.ApplicationInsights.Profiler.AspNetCore
 
 probably needs t go back in?
 
-# Create an argument to allow docker builder to passing in application insights key.
-# For example: docker build . --build-arg APPINSIGHTS_KEY=YOUR_APPLICATIONINSIGHTS_INSTRUMENTATION_KEY
-#ARG APPINSIGHTS_KEY
-# Making sure the argument is set. Fail the build of the container otherwise.
-#RUN test -n "$APPINSIGHTS_KEY"
+---Create an argument to allow docker builder to passing in application insights key.
+---For example: docker build . --build-arg APPINSIGHTS_KEY=YOUR_APPLICATIONINSIGHTS_INSTRUMENTATION_KEY
+---ARG APPINSIGHTS_KEY
+---Making sure the argument is set. Fail the build of the container otherwise.
+---RUN test -n "$APPINSIGHTS_KEY"
 
 # Light up Application Insights and Service Profiler
 #ENV APPINSIGHTS_INSTRUMENTATIONKEY $APPINSIGHTS_KEY
 #ENV ASPNETCORE_HOSTINGSTARTUPASSEMBLIES Microsoft.ApplicationInsights.Profiler.AspNetCore
+
+also this was in csproj:
+
+<DockerfileBuildArguments>APPINSIGHTS_KEY=0220f791-8d97-401c-9916-164d4481cde9</DockerfileBuildArguments>
+    <DockerfileRunArguments>APPINSIGHTS_KEY=0220f791-8d97-401c-9916-164d4481cde9</DockerfileRunArguments>
 
 
 
