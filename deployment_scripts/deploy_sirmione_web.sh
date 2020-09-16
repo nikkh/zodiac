@@ -39,7 +39,7 @@ echo "Scorpio base url: $scorpioBaseUrl"
 echo
 
 echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
-az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  Application=zodiac Micrososervice=$applicationName PendingDelete=true
+az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  Application=zodiac MicrososerviceName=sirmione MicroserviceID=$applicationName PendingDelete=true
 
 echo "Creating app service $webAppName in group $resourceGroupName"
  az group deployment create -g $resourceGroupName \
