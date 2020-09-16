@@ -1,7 +1,7 @@
 name: Deploy Virgo App
 env:
    DEFAULT_LOCATION: uksouth
-   VIRGO_ALIAS: jvirgo
+   VIRGO_ALIAS: zvirgo
 #on:
 #  push:
 #    paths:
