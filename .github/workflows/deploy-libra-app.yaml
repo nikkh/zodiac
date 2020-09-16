@@ -1,7 +1,7 @@
 name: Deploy Libra App
 env:
    DEFAULT_LOCATION: uksouth
-   LIBRA_ALIAS: zlibra
+   LIBRA_ALIAS: xlibra
 #on:
 #  push:
 #    paths:
