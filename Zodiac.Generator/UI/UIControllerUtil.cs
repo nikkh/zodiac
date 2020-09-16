@@ -24,7 +24,7 @@ namespace Zodiac.Generator.UI
         internal async Task<UIParameters> GetParameters(ILogger log)
         {
             CloudBlobClient blobClient = cloudStorageAccount.CreateCloudBlobClient();
-            CloudBlobContainer container = blobClient.GetContainerReference("zodiac-generator");
+            CloudBlobContainer container = blobClient.GetContainerReference("zodiac-generator-config");
             var dllBlob = container.GetBlockBlobReference("GeneratorParameters.json");
             var parametersAsString = await dllBlob.DownloadTextAsync();
             var parameters = JsonConvert.DeserializeObject<UIParameters>(parametersAsString);
