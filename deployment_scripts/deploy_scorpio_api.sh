@@ -22,8 +22,8 @@ webAppName="${applicationName}-api"
 hostingPlanName="${applicationName}-plan"
 resourceGroupName="${applicationName}-rg"
 databaseConnectionString="Server=tcp:$dbServerName.database.windows.net;Database=$dbName;User ID=$DB_ADMIN_USER;Password=$DB_ADMIN_PASSWORD;Encrypt=True;Connection Timeout=30;"
-dbServerName="${applicationName}-db-server"
-dbName="${applicationName}-web-db"
+dbServerName="${SIRMIONE_ALIAS}-db-server"
+dbName="${SIRMIONE_ALIAS}-web-db"
 storageAccountName=${applicationName}$RANDOM
 
 echo ---Derived Variables
