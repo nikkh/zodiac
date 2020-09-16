@@ -9,10 +9,10 @@
 
 on: [workflow_dispatch]
 
-name: Sirmione-Web
+name: Deploy Sirmione App
 env:
   DEFAULT_LOCATION: uksouth
-  SIRMIONE_ALIAS: zxsirmione
+  SIRMIONE_ALIAS: qsirmione
 
 jobs:
   build_and_deploy:
