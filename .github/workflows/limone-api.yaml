@@ -7,8 +7,8 @@ name: Limone-api
       
 env:
    DEFAULT_LOCATION: uksouth
-   LIMONE_ALIAS: zzlimone
-   ZODIAC_ALIAS: zzzodiac
+   LIMONE_ALIAS: zxlimone
+   ZODIAC_ALIAS: zxzodiac
 
 on: [workflow_dispatch]
 
