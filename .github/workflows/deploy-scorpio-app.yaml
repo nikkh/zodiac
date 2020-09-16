@@ -1,7 +1,7 @@
 name: Deploy Scorpio App
 env:
   DEFAULT_LOCATION: uksouth
-  SCORPIO_ALIAS: qscorpio
+  SCORPIO_ALIAS: jscorpio
 #on:
 #  push:
 #    paths:
