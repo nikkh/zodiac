@@ -24,14 +24,15 @@ az storage blob upload -c "results" -f $blobName -n $blobName
 
 # Generate a SAS Token for direct access to the deployment log
 today=$(date +%F)T
+tomorrow=$(date --date="1 day" +%F)T
 startTime=$(date --date="-1 hour" +%T)Z
 expiryTime=$(date --date="1 hour" +%T)Z
 start="$today$startTime"
-expiry="$today$expiryTime"
+expiry="$tomorrow$expiryTime"
 echo $start
 echo $expiry
 url=$(az storage blob url -c "results" -n $blobName -o tsv)
 sas=$(az storage blob generate-sas -c "private" -n $blobName --permissions r -o tsv --expiry $expiry --https-only --start $start)
 echo "TODO: Check the SAS url below works!"
-echo "Click here to access a concise list of parameter that may be useful: $url?$sas"
+
 
