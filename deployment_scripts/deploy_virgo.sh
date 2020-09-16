@@ -29,7 +29,7 @@ echo
 
 echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
 echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION" >> deployment-log.txt
-az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  Application=zodiac Micrososervice=$applicationName PendingDelete=true
+az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  Application=zodiac MicrososerviceName=virgo MicroserviceID=$applicationName PendingDelete=true
 
 echo "Creating storage account $storageAccountName in $resourceGroupName"
 echo "Creating storage account $storageAccountName in $resourceGroupName" >> deployment-log.txt
