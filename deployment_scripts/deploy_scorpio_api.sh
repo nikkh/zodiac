@@ -46,6 +46,7 @@ echo "Creating storage account $storageAccountName in group $resourceGroupName"
   --location $DEFAULT_LOCATION \
   --resource-group $resourceGroupName \
   --sku Standard_LRS
+storageConnectionString=$(az storage account show-connection-string -n $storageAccountName -g $resourceGroupName --query connectionString -o tsv)
 
 echo "Creating app service $webAppName in group $resourceGroupName "
  az group deployment create -g $resourceGroupName \
@@ -53,9 +54,19 @@ echo "Creating app service $webAppName in group $resourceGroupName "
     --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=$DEFAULT_LOCATION \
         sku="${appservice_webapp_sku}" databaseConnectionString="{$databaseConnectionString}"
 
+
+# Build SQL connecion string
+xbaseDbConnectionString=$(az sql db show-connection-string -c ado.net -s $dbServerName -n $dbName -o tsv)
+xdbConnectionStringWithUser="${xbaseDbConnectionString/<username>/$DB_ADMIN_USER}"
+xsqlConnectionString="${xdbConnectionStringWithUser/<password>/$DB_ADMIN_PASSWORD}"
+
+echo "************* SQL CONNECTION STRINGS *********************"
+echo "xsqlConnectionString=$xsqlConnectionString"
+echo "databaseConnectionString=$databaseConnectionString"
+echo "**********************************************************"
+
 echo "Updating App Settings for $webAppName"
-storageConnectionString="dummy-value"
 serviceBusConnectionString="dummy-value"
 databaseConnectionString="dummy-value"
  az webapp config appsettings set -g $resourceGroupName -n $webAppName \
- --settings AZURE__STORAGE__CONNECTIONSTRING=$storageConnectionString AZURE__SERVICEBUS__CONNECTIONSTRING=$serviceBusConnectionString AZURE__A3SSDEVDB__CONNECTIONSTRING=$databaseConnectionString
+ --settings AZURE__STORAGE__CONNECTIONSTRING=$storageConnectionString AZURE__A3SSDEVDB__CONNECTIONSTRING=$xsqlConnectionString
