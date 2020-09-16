@@ -46,7 +46,7 @@ namespace scorpio_api
             aiOptions.EnableAdaptiveSampling = false;
             aiOptions.InstrumentationKey = appInsightsKey;
             services.AddApplicationInsightsTelemetry(aiOptions);
-            services.AddScoped<ServiceBusSender>();
+            // services.AddScoped<ServiceBusSender>();
           
 
         }
