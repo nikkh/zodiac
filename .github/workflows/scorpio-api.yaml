@@ -1,7 +1,7 @@
-name: Scorpio-api
+name: Deploy Scorpio App
 env:
   DEFAULT_LOCATION: uksouth
-  SCORPIO_ALIAS: zxscorpio
+  SCORPIO_ALIAS: qscorpio
 #on:
 #  push:
 #    paths:
