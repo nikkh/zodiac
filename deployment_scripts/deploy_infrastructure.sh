@@ -28,12 +28,12 @@ tomorrow=$(date --date="1 day" +%F)T
 startTime=$(date --date="-2 hour" +%T)Z
 expiryTime=$(date --date="2 hour" +%T)Z
 start="$today$startTime"
-expiry="$tomorrow$expiryTime"
+expiry="$today$expiryTime"
 echo $start
 echo $expiry
 url=$(az storage blob url -c "results" -n $blobName -o tsv)
-sas=$(az storage blob generate-sas -c "private" -n $blobName --permissions r -o tsv --expiry $expiry --https-only --start $start)
+sas=$(az storage blob generate-sas -c "results" -n $blobName --permissions r -o tsv --expiry $expiry --https-only --start $start)
 echo "TODO: Check the SAS url below works!"
-echo "$url?$sas"
+curl "$url?$sas"
 
 
