@@ -1,4 +1,4 @@
-#!/bin/bash
+h#!/bin/bash
 echo starting >> deployment-log.txt
 source deployment_scripts/set_environment.sh
 deployment_scripts/deploy_sirmione_web.sh
@@ -34,6 +34,6 @@ echo $expiry
 url=$(az storage blob url -c "results" -n $blobName -o tsv)
 sas=$(az storage blob generate-sas -c "results" -n $blobName --permissions r -o tsv --expiry $expiry --https-only --start $start)
 echo "TODO: Check the SAS url below works!"
-curl "$url?$sas"
+echo "$url?$sas"
 
 
