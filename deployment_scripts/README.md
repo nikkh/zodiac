@@ -17,6 +17,8 @@ need to add trackexception to zodiac (exceptions are being traced)
  
 need to create availability test in setup
 
+** need to enaure application insights are set up correctly... for each component of the solution.
+
 
 
 
