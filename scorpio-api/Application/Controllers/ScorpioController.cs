@@ -33,6 +33,7 @@ namespace scorpio_api.Controllers
             _logger = logger;
             _telemetryClient = telemetryClient;
             _configuration = configuration;
+            CheckAndCreateDatabaseIfNecessary();
         }
 
          
@@ -94,12 +95,54 @@ namespace scorpio_api.Controllers
             return blobClient.Uri.ToString();
         }
 
+        private void CheckAndCreateDatabaseIfNecessary() 
+        {
+            _telemetryClient.TrackTrace($"CheckAndCreateDatabaseIfNecessary()", SeverityLevel.Information);
+            var sqlConnectionString = _configuration["Azure:a3ssDevDb:ConnectionString"];
+            using (SqlConnection connection = new SqlConnection(sqlConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                SqlDataReader reader;
+                command.Connection = connection;
+                command.CommandText = "select name from sysobjects where name = 'ZodiacTable'";
+                using (reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        _telemetryClient.TrackTrace("Table ZodiacTable exists no need to create database tables");
+                        return;
+                    }
+                }
+
+                _telemetryClient.TrackTrace($"Database tables ZodiacTable will be created...");
+
+                SqlTransaction transaction = connection.BeginTransaction("InitializeDatabase");
+                command.Transaction = transaction;
+
+                var commandStr = "If not exists (select name from sysobjects where name = 'ZodiacTable')" +
+                 "CREATE TABLE [dbo].[ZodiacTable]([Id][int] IDENTITY(1, 1) NOT NULL, [Column1] [nvarchar](15) NOT NULL, [Column2] [int] NOT NULL " +
+                 "PRIMARY KEY CLUSTERED ([Id] ASC)WITH(STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF) ON[PRIMARY]) ON[PRIMARY] ";
+                command.CommandText = commandStr;
+                command.ExecuteNonQuery();
+                _telemetryClient.TrackTrace($"Table ModelTraining was created.");
+                for (int i = 0; i < 25; i++)
+                {
+                    command.CommandText =
+                       $"Insert into ZodiacTable (Column1, Column2) " +
+                       $"VALUES ('This is row {i}', '{i}')";
+                    command.ExecuteNonQuery();
+
+                }
+                transaction.Commit();
+            }
+        }
 
         private async Task<List<string>> AccessDatabase()
         {
             _telemetryClient.TrackTrace($"AccessDatabase()", SeverityLevel.Information);
             List<string> records = new List<string>();
-            string queryString = @"SELECT Description FROM [dbo].[RequestEvents] where Description like '%approved%'";
+            string queryString = @"SELECT Column1 FROM [dbo].[ZodiacTable]";
             var dbConnectionString = _configuration["Azure:a3ssDevDb:ConnectionString"];
             _telemetryClient.TrackTrace($"ConnectionString has been retrieved from configuration");
             
