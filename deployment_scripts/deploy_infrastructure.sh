@@ -28,7 +28,7 @@ tomorrow=$(date --date="1 day" +%F)T
 startTime=$(date --date="-2 hour" +%T)Z
 expiryTime=$(date --date="2 hour" +%T)Z
 start="$today$startTime"
-expiry="$today$expiryTime"
+expiry="$tomorrow$expiryTime"
 echo $start
 echo $expiry
 url=$(az storage blob url -c "results" -n $blobName -o tsv)
