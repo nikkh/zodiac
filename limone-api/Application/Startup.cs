@@ -31,7 +31,8 @@ namespace limone_api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddServiceProfiler(); // Add this line of code to Enable Profiler
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
+            services.AddMvc(options => options.EnableEndpointRouting = false);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Limone API", Version = "v1" });
@@ -48,7 +49,9 @@ namespace limone_api
             aiOptions.InstrumentationKey = appInsightsKey;
             services.AddApplicationInsightsTelemetry(aiOptions);
             services.AddScoped<ServiceBusSender>();
-          
+            
+
+
 
         }
 
@@ -64,7 +67,7 @@ namespace limone_api
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            
             app.UseHttpsRedirection();
             app.UseSwagger();
 
@@ -75,7 +78,7 @@ namespace limone_api
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Limone");
                 c.RoutePrefix = string.Empty;
             });
-            // app.UseMvc();
+            app.UseMvc();
         }
     }
 }

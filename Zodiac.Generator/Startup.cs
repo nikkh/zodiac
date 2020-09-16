@@ -26,6 +26,7 @@ namespace Zodiac.Generator
             builder.Services.AddSingleton(configuration);
             builder.Services.AddSingleton(configuration.GetSection("ZodiacContext").Get<ZodiacContext>());
 
+
         }
     }
 }
