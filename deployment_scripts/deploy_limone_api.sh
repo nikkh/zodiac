@@ -52,12 +52,12 @@ echo "Creating storage account $storageAccountName in $resourceGroupName"
   --resource-group $resourceGroupName \
   --sku Standard_LRS
   
-connectionString=$(az storage account show-connection-string -n $storageAccountName -g $resourceGroupName --query connectionString -o tsv)
+storageConnectionString=$(az storage account show-connection-string -n $storageAccountName -g $resourceGroupName --query connectionString -o tsv)
 
-echo "Creating azure container registry $acrRegistryName in group $resourceGroupName"
- az group deployment create -g $resourceGroupName \
-    --template-file limone-api/ArmTemplates/containerRegistry-template.json  \
-    --parameters registryName=$acrRegistryName registryLocation=$DEFAULT_LOCATION registrySku=$acrSku
+#echo "Creating azure container registry $acrRegistryName in group $resourceGroupName"
+# az group deployment create -g $resourceGroupName \
+#    --template-file limone-api/ArmTemplates/containerRegistry-template.json  \
+#    --parameters registryName=$acrRegistryName registryLocation=$DEFAULT_LOCATION registrySku=$acrSku
 
 echo "Creating app service $webAppName in group $resourceGroupName"
  az group deployment create -g $resourceGroupName \
