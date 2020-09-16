@@ -11,8 +11,12 @@ set zodiac appsettings ZodiacContext__UserSimulationEnabled=true
 
 ## Observations
 
- ASPNETCORE_ENVIRONMENT=Development in Sirmione
+ ASPNETCORE_ENVIRONMENT=Development in Sirmione, Scorpio, Limone, Virgo and Libra
+ 
  Base Urls in sirmione not set correctly
 
+ Database connection string in scorpoi sets db name as scorpio zscorpio-db-server.database.windows.net not zsirmione-db-server.database.windows.net
+ 
+ need to create availability test in setup
 
 
