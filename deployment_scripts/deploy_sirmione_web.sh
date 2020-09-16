@@ -24,8 +24,8 @@ hostingPlanName="${applicationName}-plan"
 dbServerName="${applicationName}-db-server"
 dbName="${applicationName}-web-db"
 resourceGroupName="${applicationName}-rg"
-limoneBaseUrl="${LIMONE_ALIAS}-api.azurewebsites.net"
-scorpioBaseUrl="${SCORPIO_ALIAS}-api.azurewebsites.net"
+limoneBaseUrl="https://${LIMONE_ALIAS}-api.azurewebsites.net/"
+scorpioBaseUrl="https://${SCORPIO_ALIAS}-api.azurewebsites.net/"
 
 echo ---Derived Variables
 echo "Application Name: $applicationName"
