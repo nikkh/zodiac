@@ -4,6 +4,7 @@ echo         Deploying Zodiac Infrastructure
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo ---Global Variables
 echo "ZODIAC_ALIAS: $ZODIAC_ALIAS"
+echo "ZODIAC_ALIAS: $SIRMIONE_ALIAS"
 echo "DEFAULT_LOCATION: $DEFAULT_LOCATION"
 echo
 echo "starting deploy_zodiac_generator.sh" >> deployment-log.txt
@@ -67,9 +68,9 @@ echo "GeneratorParameters.json was written to $storageAccountName, container=zod
 echo "!! You will need to edit GeneratorParameters.json" >> deployment-log.txt
 
 echo "Updating App Settings for $functionAppName"
-settings="ZodiacContext__MinimumThinkTimeInMilliseconds=1000 ZodiacContext__UserSimulationEnabled=false ZodiacContext__UserTestingParametersStorageConnectionString=$storageConnectionString" 
-az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings $settings
+sirmioneBaseUrl="https://$SIRMIONE_ALIAS.azurewebsites.net/home/"
+settings="ZodiacContext__MinimumThinkTimeInMilliseconds=1000 ZodiacContext__UserSimulationEnabled=false ZodiacContext__UserTestingParametersStorageConnectionString=$connectionString ZodiacContext__BaseUrl=$sirmioneBaseUrl" 
+az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings $settings >> deployment-log.txt
 
-echo "TODO: change above command so that it doesnt output results or save to a variable and write to secure output"
 
 
