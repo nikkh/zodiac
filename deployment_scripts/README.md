@@ -9,7 +9,10 @@ update the zodiac-generator-config blob to have the user ids and passwords from 
 
 set zodiac appsettings ZodiacContext__UserSimulationEnabled=true
 
+## Observations
 
+ ASPNETCORE_ENVIRONMENT=Development in Sirmione
+ Base Urls in sirmione not set correctly
 
 
 
