@@ -8,6 +8,8 @@ export VIRGO_ALIAS=zxvirgo
 export LIBRA_ALIAS=zxlibra
 export ZODIAC_ALIAS=zxzodiac
 export DB_ADMIN_USER=nick
+export AAD_DOMAIN=xekina.onmicrosoft.com
+export AAD_TENANTID=3bc03625-3a0a-48c5-8aa5-12f22e401fff
 echo "Creating Infrastructure using the following environment variables" >> deployment-log.txt
 echo "DEFAULT_LOCATION:$DEFAULT_LOCATION" >> deployment-log.txt
 echo "SIRMIONE_ALIAS:$SIRMIONE_ALIAS" >> deployment-log.txt
