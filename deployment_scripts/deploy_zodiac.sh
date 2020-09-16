@@ -7,7 +7,7 @@ echo "ZODIAC_ALIAS: $ZODIAC_ALIAS"
 echo "ZODIAC_ALIAS: $SIRMIONE_ALIAS"
 echo "DEFAULT_LOCATION: $DEFAULT_LOCATION"
 echo
-echo "starting deploy_zodiac_generator.sh" >> deployment-log.txt
+echo "starting deploy_zodiac.sh" >> deployment-log.txt
 # set local variables
 # Derive as many variables as possible
 applicationName="${ZODIAC_ALIAS}"
