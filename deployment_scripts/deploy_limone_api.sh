@@ -51,6 +51,8 @@ echo "Creating storage account $storageAccountName in $resourceGroupName"
   --location $DEFAULT_LOCATION \
   --resource-group $resourceGroupName \
   --sku Standard_LRS
+  
+connectionString=$(az storage account show-connection-string -n $storageAccountName -g $resourceGroupName --query connectionString -o tsv)
 
 echo "Creating azure container registry $acrRegistryName in group $resourceGroupName"
  az group deployment create -g $resourceGroupName \
@@ -64,9 +66,7 @@ echo "Creating app service $webAppName in group $resourceGroupName"
         sku="${appservice_webapp_sku}" registryName=$acrRegistryName imageName="$imageName" registryLocation="$DEFAULT_LOCATION" registrySku="$acrSku"
 
 echo "Updating App Settings for $webAppName"
-storageConnectionString="dummy-value"
-
-az webapp config appsettings set -g $resourceGroupName -n $webAppName --settings AZURE_STORAGE_CONNECTIONSTRING=$storageConnectionString AZURE_SERVICEBUS_CONNECTIONSTRING=$serviceBusConnectionString 
+az webapp config appsettings set -g $resourceGroupName -n $webAppName --settings AZURE__STORAGE__CONNECTIONSTRING=$storageConnectionString AZURE__SERVICEBUS__CONNECTIONSTRING=$serviceBusConnectionString 
   
   
 
