@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "<h2>Limone Infrastructure</h2>" >> deployment-log.html
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo         Deploying limone-api
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
