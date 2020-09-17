@@ -65,8 +65,10 @@ echo "Creating app service $webAppName in group $resourceGroupName"
     --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=$DEFAULT_LOCATION \
         sku="${appservice_webapp_sku}" registryName=$acrRegistryName imageName="$imageName" registryLocation="$DEFAULT_LOCATION" registrySku="$acrSku"
 
+limoneAIKey=$(az monitor app-insights component show --app $webAppName-api -g $resourceGroupName --query instrumentationKey -o tsv)
+
 echo "Updating App Settings for $webAppName"
-az webapp config appsettings set -g $resourceGroupName -n $webAppName --settings AZURE__STORAGE__CONNECTIONSTRING=$storageConnectionString AZURE__SERVICEBUS__CONNECTIONSTRING=$serviceBusConnectionString ASPNETCORE_ENVIRONMENT=Development
+az webapp config appsettings set -g $resourceGroupName -n $webAppName --settings AZURE__STORAGE__CONNECTIONSTRING=$storageConnectionString AZURE__SERVICEBUS__CONNECTIONSTRING=$serviceBusConnectionString ASPNETCORE_ENVIRONMENT=Development APPINSIGHTS_KEY=$limoneAIKey 
   
   
 
