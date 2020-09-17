@@ -66,7 +66,8 @@ echo "<p>App Service (Web App): $webAppName</p>" >> deployment-log.html
 limoneAIKey=$(az monitor app-insights component show --app $webAppName -g $resourceGroupName --query instrumentationKey -o tsv)
 
 echo "Updating App Settings for $webAppName"
+echo "<p>Web App Settings:" >> deployment-log.html
 az webapp config appsettings set -g $resourceGroupName -n $webAppName --settings AZURE__STORAGE__CONNECTIONSTRING=$storageConnectionString AZURE__SERVICEBUS__CONNECTIONSTRING=$serviceBusConnectionString ASPNETCORE_ENVIRONMENT=Development APPINSIGHTS_KEY=$limoneAIKey 
-  
+echo "</p>" >> deployment-log.html
   
 
