@@ -58,7 +58,7 @@ echo "Creating app service $webAppName in group $resourceGroupName "
  az group deployment create -g $resourceGroupName \
     --template-file scorpio-api/ArmTemplates/windows-webapp-template.json  \
     --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=$DEFAULT_LOCATION \
-        sku="${appservice_webapp_sku}" databaseConnectionString="{$databaseConnectionString}"
+        sku="${appservice_webapp_sku}" databaseConnectionString="{$databaseConnectionString}" -o none
 echo "<p>App Service (Web App): $webAppName</p>" >> deployment-log.html
 
 
