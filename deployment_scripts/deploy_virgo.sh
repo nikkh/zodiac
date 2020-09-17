@@ -29,28 +29,28 @@ echo "Function App Name: $functionAppName"
 echo
 
 echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
-echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION" >> deployment-log.txt
-az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  Application=zodiac MicrososerviceName=virgo MicroserviceID=$applicationName PendingDelete=true
+az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  Application=zodiac MicrososerviceName=virgo MicroserviceID=$applicationName PendingDelete=true -o none
+echo "<p>Resource Group: $resourceGroupName</p>" >> deployment-log.html
 
 echo "Creating storage account $storageAccountName in $resourceGroupName"
-echo "Creating storage account $storageAccountName in $resourceGroupName" >> deployment-log.txt
 az storage account create \
 --name $storageAccountName \
 --location $DEFAULT_LOCATION \
 --resource-group $resourceGroupName \
---sku Standard_LRS
+--sku Standard_LRS -o none
+echo "<p>Storage Account: $storageAccountName</p>" >> deployment-log.html
 
 echo "Creating function app $functionAppName in $resourceGroupName"
-echo "Creating function app $functionAppName in $resourceGroupName" >> deployment-log.txt
 az functionapp create \
  --name $functionAppName \
  --storage-account $storageAccountName \
  --consumption-plan-location $DEFAULT_LOCATION \
  --resource-group $resourceGroupName \
  --functions-version 3
+echo "<p>Function App: $functionAppName</p>" >> deployment-log.html
 
 echo "Updating App Settings for $functionAppName"
 settings="ServiceBusConnection=$limoneServiceBusConnectionString"
-az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings $settings -o none
-echo "Update settings for function app $functionAppName: $settings" >> deployment-log.txt
-echo "Virgo Deploy has completed." >> deployment-log.txt
+echo "<p>Function App Settings:" >> deployment-log.html
+az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings "$settings"  >> deployment-log.html
+echo "</p>" >> deployment-log.html
