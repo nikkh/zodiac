@@ -75,6 +75,6 @@ settings="ZodiacContext__MinimumThinkTimeInMilliseconds=1000 ZodiacContext__User
 
 echo "Updating App Settings for $functionAppName"
 echo "<p>Function App Settings:" >> deployment-log.html
-az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings $settings >> deployment-log.txt 
+az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings $settings >> deployment-log.html 
 echo "</p>" >> deployment-log.html
 
