@@ -46,6 +46,7 @@ acrUser=$(az acr credential show -n $acrName --query username -o tsv)
 acrPassword=$(az acr credential show -n $acrName --query passwords[0].value -o tsv)
 echo "<p>ACR: $acrName</p>" >> deployment-log.html 
 echo "<p>ACR User Name: $acrUser</p>" >> deployment-log.html 
+echo '<p style="color:Tomato;">It is very important that you set the ACR Password into your GitHub secret called ACR_PASSWORD</p>' >> deployment-log.html
 echo "<p>ACR Password: $acrPassword</p>" >> deployment-log.html 
 
 echo "Creating serverless function app $functionAppName in $resourceGroupName"
