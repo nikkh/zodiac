@@ -57,10 +57,9 @@ az functionapp create \
 echo "<p>Function App: $functionAppName</p>" >> deployment-log.html
 
 # libra application insights info
-libraAIKey=$(az monitor app-insights component show --app $functionAppName -g $resourceGroupName --query instrumentationKey -o tsv)
 # Attempt to get App Insights configured without the need for the portal
-APPLICATIONINSIGHTS_CONNECTION_STRING="InstrumentationKey=$libraAIKey;"
-APPINSIGHTS_INSTRUMENTATIONKEY=$libraAIKey
+APPLICATIONINSIGHTS_CONNECTION_STRING="InstrumentationKey=$limoneAIKey;"
+APPINSIGHTS_INSTRUMENTATIONKEY=$limoneAIKey
 ApplicationInsightsAgent_EXTENSION_VERSION='~2'
 
 echo "Updating App Settings for $functionAppName"
