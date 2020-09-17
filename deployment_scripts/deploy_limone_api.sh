@@ -38,34 +38,31 @@ echo "Storage account name: $storageAccountName"
 echo
 
 echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
-az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags Application=zodiac MicrososerviceName=limone MicroserviceID=$applicationName PendingDelete=true 
-
+az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags Application=zodiac MicrososerviceName=limone MicroserviceID=$applicationName PendingDelete=true -o none
+echo "<p>Resource Group: $resourceGroupName</p>" >> deployment-log.html
 echo "Creating service bus namespace $serviceBusNamespace in group $resourceGroupName"
-az servicebus namespace create -g $resourceGroupName -n $serviceBusNamespace
-az servicebus queue create -g $resourceGroupName --namespace-name $serviceBusNamespace --name libra-queue
-az servicebus queue create -g $resourceGroupName --namespace-name $serviceBusNamespace --name virgo-queue
+az servicebus namespace create -g $resourceGroupName -n $serviceBusNamespace -o none
+az servicebus queue create -g $resourceGroupName --namespace-name $serviceBusNamespace --name libra-queue -o none
+az servicebus queue create -g $resourceGroupName --namespace-name $serviceBusNamespace --name virgo-queue -o none
+echo "<p>Service Bus Namespace: $serviceBusNamespace</p>" >> deployment-log.html
 serviceBusConnectionString=$(az servicebus namespace authorization-rule keys list -g $resourceGroupName --namespace-name $serviceBusNamespace -n RootManageSharedAccessKey --query 'primaryConnectionString' -o tsv)
-
+echo "<p>Service Bus Connection String: $serviceBusConnectionString</p>" >> deployment-log.html
 echo "Creating storage account $storageAccountName in $resourceGroupName"
  az storage account create \
   --name $storageAccountName \
   --location $DEFAULT_LOCATION \
   --resource-group $resourceGroupName \
-  --sku Standard_LRS
-  
+  --sku Standard_LRS -o none
+echo "<p>Storage Account Name: $storageAccountName</p>" >> deployment-log.html  
 storageConnectionString=$(az storage account show-connection-string -n $storageAccountName -g $resourceGroupName --query connectionString -o tsv)
-
-#echo "Creating azure container registry $acrRegistryName in group $resourceGroupName"
-# az group deployment create -g $resourceGroupName \
-#    --template-file limone-api/ArmTemplates/containerRegistry-template.json  \
-#    --parameters registryName=$acrRegistryName registryLocation=$DEFAULT_LOCATION registrySku=$acrSku
+echo "<p>Storage Connection String: $storageConnectionString</p>" >> deployment-log.html 
 
 echo "Creating app service $webAppName in group $resourceGroupName"
  az group deployment create -g $resourceGroupName \
     --template-file limone-api/ArmTemplates/container-webapp-template.json  \
     --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=$DEFAULT_LOCATION \
         sku="${appservice_webapp_sku}" registryName=$acrRegistryName imageName="$imageName" registryLocation="$DEFAULT_LOCATION" registrySku="$acrSku"
-
+echo "<p>App Service (Web App): $webAppName</p>" >> deployment-log.html
 limoneAIKey=$(az monitor app-insights component show --app $webAppName -g $resourceGroupName --query instrumentationKey -o tsv)
 
 echo "Updating App Settings for $webAppName"
