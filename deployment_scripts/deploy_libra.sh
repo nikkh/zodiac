@@ -21,8 +21,8 @@ limoneServiceBusNamespace="${limoneApplicationName}sb"
 limoneServiceBusConnectionString=$(az servicebus namespace authorization-rule keys list -g $limoneResourceGroupName --namespace-name $limoneServiceBusNamespace -n RootManageSharedAccessKey --query 'primaryConnectionString' -o tsv)
 
 # limone application insights info
-limoneWebAppName= $limoneApplicationName-api
-limoneAIKey=$(az monitor app-insights component show --app $limoneWebAppName-api -g $limoneResourceGroupName --query instrumentationKey -o tsv)
+limoneWebAppName=$limoneApplicationName-api
+limoneAIKey=$(az monitor app-insights component show --app $limoneWebAppName -g $limoneResourceGroupName --query instrumentationKey -o tsv)
 
 
 echo ---Derived Variables
