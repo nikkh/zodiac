@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Starting Libra Deploy..." >> deployment-log.txt
+echo "<h1>Deploying Libra Infrastructure</h1>" >> deployment-log.html
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo         Deploying Libra
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
@@ -33,19 +33,17 @@ echo "Function App Name: $functionAppName"
 echo
 
 echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
-echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION" >> deployment-log.txt
 az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  Application=zodiac MicrososerviceName=libra MicroserviceID=$applicationName PendingDelete=true 
 
 echo "Creating storage account $storageAccountName in $resourceGroupName"
-echo "Creating storage account $storageAccountName in $resourceGroupName" >> deployment-log.txt
 az storage account create \
 --name $storageAccountName \
 --location $DEFAULT_LOCATION \
 --resource-group $resourceGroupName \
---sku Standard_LRS
+--sku Standard_LRS 
 
 echo "Creating function app $functionAppName in $resourceGroupName"
-echo "Creating function app $functionAppName in $resourceGroupName" >> deployment-log.txt
+
 az functionapp create \
  --name $functionAppName \
  --storage-account $storageAccountName \
@@ -53,10 +51,11 @@ az functionapp create \
  --resource-group $resourceGroupName \
  --functions-version 3 \
  --app-insights $limoneWebAppName \
- --app-insights-key $limoneAIKey
+ --app-insights-key $limoneAIKey \
+ -o none
 
 echo "Updating App Settings for $functionAppName"
 settings="ServiceBusConnection=$limoneServiceBusConnectionString"
-az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings "ServiceBusConnection=$limoneServiceBusConnectionString" -o none
-echo "Update settings for function app $functionAppName: $settings" >> deployment-log.txt
-echo "Libra Deploy has completed." >> deployment-log.txt
+echo "Function App Settings for $functionAppName:" >> deployment-log.html
+az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings "ServiceBusConnection=$limoneServiceBusConnectionString" >> deployment-log.html
+echo "Libra Deploy has completed." >> deployment-log.html
