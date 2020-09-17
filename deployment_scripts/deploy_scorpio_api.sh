@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "<h2>Scorpio Infrastructure</h2>" >> deployment-log.html
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo         Deploying scorpio-api
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
