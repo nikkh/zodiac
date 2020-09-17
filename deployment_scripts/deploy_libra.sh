@@ -56,9 +56,15 @@ az functionapp create \
  
 echo "<p>Function App: $functionAppName</p>" >> deployment-log.html
 
-echo "Updating App Settings for $functionAppName"
-settings="ServiceBusConnection=$limoneServiceBusConnectionString"
-echo "<p>Function App Settings:" >> deployment-log.html
-az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings "ServiceBusConnection=$limoneServiceBusConnectionString" >> deployment-log.html
-echo "</p>" >> deployment-log.html
+# libra application insights info
+libraAIKey=$(az monitor app-insights component show --app $functionAppName -g $resourceGroupName --query instrumentationKey -o tsv)
+# Attempt to get App Insights configured without the need for the portal
+APPLICATIONINSIGHTS_CONNECTION_STRING="InstrumentationKey=$libraAIKey;"
+APPINSIGHTS_INSTRUMENTATIONKEY=$libraAIKey
+ApplicationInsightsAgent_EXTENSION_VERSION='~2'
 
+echo "Updating App Settings for $functionAppName"
+settings="ServiceBusConnection=$limoneServiceBusConnectionString APPLICATIONINSIGHTS_CONNECTION_STRING=$APPLICATIONINSIGHTS_CONNECTION_STRING APPINSIGHTS_INSTRUMENTATIONKEY=$APPINSIGHTS_INSTRUMENTATIONKEY ApplicationInsightsAgent_EXTENSION_VERSION=$ApplicationInsightsAgent_EXTENSION_VERSION"
+echo "<p>Function App Settings:" >> deployment-log.html
+az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings "$settings"  >> deployment-log.html
+echo "</p>" >> deployment-log.html
