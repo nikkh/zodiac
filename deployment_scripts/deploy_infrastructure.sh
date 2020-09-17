@@ -3,7 +3,7 @@ az extension add --name application-insights
 blobName="deployment-log.html"
 echo '<!DOCTYPE html><html><head></head><body>' >> $blobName
 echo '<h1>Deployment Log</h1>' >> deployment-log.html
-echo '<p style="color:Tomato;">It is very important that you set the ACR Password into your GitHub secret called ACR_PASSWORD</p>' >> deployment-log.txt
+echo '<p style="color:Tomato;">It is very important that you set the ACR Password into your GitHub secret called ACR_PASSWORD</p>' >> deployment-log.html
 source deployment_scripts/set_environment.sh
 deployment_scripts/deploy_sirmione_web.sh
 deployment_scripts/deploy_scorpio_api.sh
