@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "<h2>Sirmione Infrastructure</h2>" >> deployment-log.html
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo         Deploying sirmione-web
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
