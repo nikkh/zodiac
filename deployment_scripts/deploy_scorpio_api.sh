@@ -69,5 +69,9 @@ xsqlConnectionString="${xdbConnectionStringWithUser/<password>/$DB_ADMIN_PASSWOR
 echo "<p>SQL Connection string for db=$dbName: $xsqlConnectionString</p>" >> deployment-log.html
 
 echo "Updating App Settings for $webAppName"
+echo "<p>Web App Settings:" >> deployment-log.html
 az webapp config appsettings set -g $resourceGroupName -n $webAppName \
- --settings AZURE__STORAGE__CONNECTIONSTRING=$storageConnectionString "AZURE__A3SSDEVDB__CONNECTIONSTRING=$xsqlConnectionString" ASPNETCORE_ENVIRONMENT=Development
+ --settings AZURE__STORAGE__CONNECTIONSTRING=$storageConnectionString "AZURE__A3SSDEVDB__CONNECTIONSTRING=$xsqlConnectionString" ASPNETCORE_ENVIRONMENT=Development >> deployment-log.html
+echo "</p>" >> deployment-log.html
+
+
