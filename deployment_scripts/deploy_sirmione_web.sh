@@ -50,5 +50,13 @@ echo "Creating app service $webAppName in group $resourceGroupName"
         databaseName=$dbName \
         sku="${appservice_webapp_sku}" databaseEdition=$database_edition
 
+
+# sirmione application insights info
+sirmioneAIKey=$(az monitor app-insights component show --app $webAppName -g $resourceGroupName --query instrumentationKey -o tsv)
+# Attempt to get App Insights configured without the needd for the portal
+APPLICATIONINSIGHTS_CONNECTION_STRING="InstrumentationKey=$sirmioneAIKey;"
+APPINSIGHTS_INSTRUMENTATIONKEY=$sirmioneAIKey
+ApplicationInsightsAgent_EXTENSION_VERSION='~2'
+
 echo "Updating App Settings for $webAppName"
- az webapp config appsettings set -g $resourceGroupName -n $webAppName --settings LimoneBaseUrl=$limoneBaseUrl ScorpioBaseUrl=$scorpioBaseUrl ASPNETCORE_ENVIRONMENT=Development AzureAD__Domain=$AAD_DOMAIN AzureAD__TenantId=$AAD_TENANTID AzureAD__ClientId=$AAD_CLIENTID
+ az webapp config appsettings set -g $resourceGroupName -n $webAppName --settings LimoneBaseUrl=$limoneBaseUrl ScorpioBaseUrl=$scorpioBaseUrl ASPNETCORE_ENVIRONMENT=Development AzureAD__Domain=$AAD_DOMAIN AzureAD__TenantId=$AAD_TENANTID AzureAD__ClientId=$AAD_CLIENTID APPLICATIONINSIGHTS_CONNECTION_STRING=$APPLICATIONINSIGHTS_CONNECTION_STRING APPINSIGHTS_INSTRUMENTATIONKEY=$APPINSIGHTS_INSTRUMENTATIONKEY ApplicationInsightsAgent_EXTENSION_VERSION=$ApplicationInsightsAgent_EXTENSION_VERSION 
