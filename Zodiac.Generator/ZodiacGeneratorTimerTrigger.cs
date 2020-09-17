@@ -31,6 +31,7 @@ namespace Zodiac.Generator
             catch (Exception e)
             {
                 log.LogError($"Exeception during execution of {ec.FunctionName}. Message: {e.Message}. Check Inner Exception", e);
+                throw e;
             }
 
         }

@@ -32,6 +32,7 @@ namespace Zodiac.Generator.UI
             catch (Exception e)
             {
                 log.LogError($"Exeception during execution of {ec.FunctionName}. Message: {e.Message}. Check Inner Exception", e);
+                throw e;
             }
             log.LogInformation($"{ec.FunctionName} ran {numSimulations} simulations");
 
