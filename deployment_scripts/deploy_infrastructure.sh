@@ -1,5 +1,7 @@
-h#!/bin/bash
-echo starting >> deployment-log.txt
+#!/bin/bash
+
+echo '<!DOCTYPE html><html><head>Deployment Log</head><body>' >> deployment-log.html
+echo starting >> deployment-log.html
 source deployment_scripts/set_environment.sh
 deployment_scripts/deploy_sirmione_web.sh
 deployment_scripts/deploy_scorpio_api.sh
@@ -8,9 +10,9 @@ deployment_scripts/deploy_virgo.sh
 deployment_scripts/deploy_libra.sh
 deployment_scripts/deploy_zodiac.sh
 echo finished >> deployment-log.txt
-
+echo '</body></html>' >> deployment-log.html
 echo ">>>> Temporary"
-blobName="deployment-log.txt"
+blobName="deployment-log.html"
 cat $blobName
 echo "<<<< Temporary"
 
@@ -21,6 +23,7 @@ storageConnectionString=$(az storage account show-connection-string -n $storageA
 export AZURE_STORAGE_CONNECTION_STRING="$storageConnectionString"
 az storage container create -n "results" --public-access off
 az storage blob upload -c "results" -f $blobName -n $blobName
+echo "Uploaded $blobName to storage account $storageAccountName"
 
 # Generate a SAS Token for direct access to the deployment log
 today=$(date +%F)T
@@ -29,11 +32,8 @@ startTime=$(date --date="-2 hour" +%T)Z
 expiryTime=$(date --date="2 hour" +%T)Z
 start="$today$startTime"
 expiry="$tomorrow$expiryTime"
-echo $start
-echo $expiry
 url=$(az storage blob url -c "results" -n $blobName -o tsv)
 sas=$(az storage blob generate-sas -c "results" -n $blobName --permissions r -o tsv --expiry $expiry --https-only --start $start)
-echo "TODO: Check the SAS url below works!"
-echo "$url?$sas"
+echo "link to deployment-log is $url?$sas"
 
 
