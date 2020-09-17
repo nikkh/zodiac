@@ -1,6 +1,7 @@
 #!/bin/bash
 az extension add --name application-insights
-echo '<!DOCTYPE html><html><head></head><body>' >> deployment-log.html
+blobName="deployment-log.html"
+echo '<!DOCTYPE html><html><head></head><body>' >> $blobName
 echo '<h1>Deployment Log</h1>' >> deployment-log.html
 source deployment_scripts/set_environment.sh
 deployment_scripts/deploy_sirmione_web.sh
@@ -9,7 +10,7 @@ deployment_scripts/deploy_limone_api.sh
 deployment_scripts/deploy_virgo.sh
 deployment_scripts/deploy_libra.sh
 deployment_scripts/deploy_zodiac.sh
-echo '</body></html>' >> deployment-log.html
+echo '</body></html>' >> $blobName
 
 # Upload the deployment log to the zodiac storage account 
 resourceGroupName="$ZODIAC_ALIAS-rg"
