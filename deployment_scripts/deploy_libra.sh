@@ -52,8 +52,8 @@ az functionapp create \
  --resource-group $resourceGroupName \
  --functions-version 3 \
  --app-insights $limoneWebAppName \
- --app-insights-key $limoneAIKey \
- -o none
+ --app-insights-key $limoneAIKey -o none
+ 
 echo "<p>Function App: $functionAppName</p>" >> deployment-log.html
 
 echo "Updating App Settings for $functionAppName"
