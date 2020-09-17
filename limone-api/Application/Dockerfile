@@ -17,11 +17,6 @@ FROM build AS publish
 RUN dotnet publish "limone-api.csproj" -c Release -o /app/publish
 
 FROM base AS final
-ARG APPINSIGHTS_KEY
-RUN ECHO ${$APPINSIGHTS_KEY}
-RUN test -n "$APPINSIGHTS_KEY"
-ENV APPINSIGHTS_INSTRUMENTATIONKEY=${$APPINSIGHTS_KEY}
-ENV ASPNETCORE_HOSTINGSTARTUPASSEMBLIES Microsoft.ApplicationInsights.Profiler.AspNetCore
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "limone-api.dll"]

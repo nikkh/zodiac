@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "<h2>Virgo Infrastructure</h2>" >> deployment-log.html
 echo "Starting Virgo Deploy..." >> deployment-log.txt
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo         Deploying Virgo

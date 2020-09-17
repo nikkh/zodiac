@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "<h2>Zodiac Infrastructure</h2>" >> deployment-log.html
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" 
 echo         Deploying Zodiac Infrastructure 
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"

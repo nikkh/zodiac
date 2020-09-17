@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "<h2>Scorpio Infrastructure</h2>" >> deployment-log.html
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo         Deploying scorpio-api
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
@@ -38,35 +39,39 @@ echo "Storage account name: $storageAccountName"
 echo
 
 echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
-az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  Application=zodiac MicrososerviceName=scorpio MicroserviceID=$applicationName PendingDelete=true
+echo "<p>Resource Group: $resourceGroupName</p>" >> deployment-log.html
+az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  Application=zodiac MicrososerviceName=scorpio MicroserviceID=$applicationName PendingDelete=true -o none
 
 echo "Creating storage account $storageAccountName in group $resourceGroupName"
+echo "<p>Storage Account: $storageAccountName</p>" >> deployment-log.html
  az storage account create \
   --name $storageAccountName \
   --location $DEFAULT_LOCATION \
   --resource-group $resourceGroupName \
-  --sku Standard_LRS
+  --sku Standard_LRS -o none
+  
+
 storageConnectionString=$(az storage account show-connection-string -n $storageAccountName -g $resourceGroupName --query connectionString -o tsv)
+echo "<p>Storage Account Connection String: $storageConnectionString</p>" >> deployment-log.html
 
 echo "Creating app service $webAppName in group $resourceGroupName "
  az group deployment create -g $resourceGroupName \
     --template-file scorpio-api/ArmTemplates/windows-webapp-template.json  \
     --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=$DEFAULT_LOCATION \
         sku="${appservice_webapp_sku}" databaseConnectionString="{$databaseConnectionString}"
+echo "<p>App Service (Web App): $webAppName</p>" >> deployment-log.html
 
 
 # Build SQL connecion string
 xbaseDbConnectionString=$(az sql db show-connection-string -c ado.net -s $dbServerName -n $dbName -o tsv)
 xdbConnectionStringWithUser="${xbaseDbConnectionString/<username>/$DB_ADMIN_USER}"
 xsqlConnectionString="${xdbConnectionStringWithUser/<password>/$DB_ADMIN_PASSWORD}"
-
-echo "************* SQL CONNECTION STRINGS *********************"
-echo "xsqlConnectionString=$xsqlConnectionString"
-echo "databaseConnectionString=$databaseConnectionString"
-echo "**********************************************************"
+echo "<p>SQL Connection string for db=$dbName: $xsqlConnectionString</p>" >> deployment-log.html
 
 echo "Updating App Settings for $webAppName"
-serviceBusConnectionString="dummy-value"
-databaseConnectionString="dummy-value"
- az webapp config appsettings set -g $resourceGroupName -n $webAppName \
- --settings AZURE__STORAGE__CONNECTIONSTRING=$storageConnectionString "AZURE__A3SSDEVDB__CONNECTIONSTRING=$xsqlConnectionString" ASPNETCORE_ENVIRONMENT=Development
+echo "<p>Web App Settings:" >> deployment-log.html
+az webapp config appsettings set -g $resourceGroupName -n $webAppName \
+ --settings AZURE__STORAGE__CONNECTIONSTRING=$storageConnectionString "AZURE__A3SSDEVDB__CONNECTIONSTRING=$xsqlConnectionString" ASPNETCORE_ENVIRONMENT=Development >> deployment-log.html
+echo "</p>" >> deployment-log.html
+
+
