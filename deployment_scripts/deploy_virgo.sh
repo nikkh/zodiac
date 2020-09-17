@@ -46,7 +46,7 @@ az functionapp create \
  --storage-account $storageAccountName \
  --consumption-plan-location $DEFAULT_LOCATION \
  --resource-group $resourceGroupName \
- --functions-version 3
+ --functions-version 3 -o none
 echo "<p>Function App: $functionAppName</p>" >> deployment-log.html
 
 # virgo application insights info
