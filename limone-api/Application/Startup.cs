@@ -41,18 +41,14 @@ namespace limone_api
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
-            
 
-            var appInsightsKey = Configuration["ApplicationInsights:InstrumentationKey"];
+            Console.WriteLine($"APPINSIGHTS_KEY={Environment.GetEnvironmentVariable("APPINSIGHTS_KEY")}");
+            var appInsightsKey = Environment.GetEnvironmentVariable("APPINSIGHTS_KEY");
             var aiOptions = new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions();
             aiOptions.EnableAdaptiveSampling = false;
             aiOptions.InstrumentationKey = appInsightsKey;
             services.AddApplicationInsightsTelemetry(aiOptions);
             services.AddScoped<ServiceBusSender>();
-            
-
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

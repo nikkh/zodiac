@@ -20,7 +20,6 @@ namespace limone_api
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseApplicationInsights()
                 .UseStartup<Startup>()
                 .ConfigureLogging(
                     builder =>
@@ -29,7 +28,7 @@ namespace limone_api
                         // standalone package Microsoft.Extensions.Logging.ApplicationInsights
                         // or if you want to capture logs from early in the application startup
                         // pipeline from Startup.cs or Program.cs itself.
-                        builder.AddApplicationInsights("0220f791-8d97-401c-9916-164d4481cde9");
+                        // builder.AddApplicationInsights("0220f791-8d97-401c-9916-164d4481cde9");
 
 
                     });

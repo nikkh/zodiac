@@ -10,7 +10,8 @@
 
   <PropertyGroup>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    
+	<DockerfileBuildArguments>--build-arg APPINSIGHTS_KEY=0220f791-8d97-401c-9916-164d4481cde9</DockerfileBuildArguments>
+	<DockerfileRunArguments>--env APPINSIGHTS_KEY=0220f791-8d97-401c-9916-164d4481cde9</DockerfileRunArguments>
   </PropertyGroup>
   
   
