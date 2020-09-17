@@ -20,6 +20,11 @@ limoneResourceGroupName="${limoneApplicationName}-rg"
 limoneServiceBusNamespace="${limoneApplicationName}sb"
 limoneServiceBusConnectionString=$(az servicebus namespace authorization-rule keys list -g $limoneResourceGroupName --namespace-name $limoneServiceBusNamespace -n RootManageSharedAccessKey --query 'primaryConnectionString' -o tsv)
 
+# limone application insights info
+limoneWebAppName= $limoneApplicationName-api
+limoneAIKey=$(az monitor app-insights component show --app $limoneWebAppName-api -g $limoneResourceGroupName --query instrumentationKey -o tsv)
+
+
 echo ---Derived Variables
 echo "Application Name: $applicationName"
 echo "Resource Group Name: $resourceGroupName"
@@ -47,7 +52,8 @@ az functionapp create \
  --consumption-plan-location $DEFAULT_LOCATION \
  --resource-group $resourceGroupName \
  --functions-version 3 \
- --disable-app-insights
+ --app-insights $limoneWebAppName \
+ --app-insights-key $limoneAIKey
 
 echo "Updating App Settings for $functionAppName"
 settings="ServiceBusConnection=$limoneServiceBusConnectionString"
