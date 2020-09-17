@@ -46,7 +46,8 @@ az functionapp create \
  --storage-account $storageAccountName \
  --consumption-plan-location $DEFAULT_LOCATION \
  --resource-group $resourceGroupName \
- --functions-version 3
+ --functions-version 3 \
+ --disable-app-insights
 
 echo "Updating App Settings for $functionAppName"
 settings="ServiceBusConnection=$limoneServiceBusConnectionString"
