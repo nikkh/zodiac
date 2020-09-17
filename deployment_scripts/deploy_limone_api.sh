@@ -23,7 +23,7 @@ applicationName="${LIMONE_ALIAS}"
 webAppName="${applicationName}-api"
 hostingPlanName="${applicationName}-plan"
 resourceGroupName="${applicationName}-rg"
-acrRegistryName="${ZODIAC_ALIAS}acr"
+acrRegistryName="${LIMONE_ALIAS}acr"
 serviceBusNamespace="${applicationName}sb"
 storageAccountName=${applicationName}$RANDOM
 
