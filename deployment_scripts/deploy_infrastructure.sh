@@ -1,5 +1,5 @@
 #!/bin/bash
-
+az extension add --name application-insights
 echo '<!DOCTYPE html><html><head>Deployment Log</head><body>' >> deployment-log.html
 echo starting >> deployment-log.html
 source deployment_scripts/set_environment.sh
@@ -11,10 +11,6 @@ deployment_scripts/deploy_libra.sh
 deployment_scripts/deploy_zodiac.sh
 echo finished >> deployment-log.txt
 echo '</body></html>' >> deployment-log.html
-echo ">>>> Temporary"
-blobName="deployment-log.html"
-cat $blobName
-echo "<<<< Temporary"
 
 # Upload the deployment log to the zodiac storage account 
 resourceGroupName="$ZODIAC_ALIAS-rg"
