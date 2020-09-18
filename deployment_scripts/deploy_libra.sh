@@ -41,7 +41,7 @@ az storage account create \
 --name $storageAccountName \
 --location $DEFAULT_LOCATION \
 --resource-group $resourceGroupName \
---sku Standard_LRS 
+--sku Standard_LRS -o none
 echo "<p>Storage Account: $storageAccountName</p>" >> deployment-log.html
 
 echo "Creating function app $functionAppName in $resourceGroupName"
