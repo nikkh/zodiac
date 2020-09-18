@@ -45,6 +45,8 @@ az storage account create \
 echo "<p>Storage Account: $storageAccountName</p>" >> deployment-log.html
 
 echo "Creating function app $functionAppName in $resourceGroupName"
+echo "<p>Function App: $functionAppName</p>" >> deployment-log.html
+echo "<p>Function App Settings:" >> deployment-log.html
 az functionapp create \
  --name $functionAppName \
  --storage-account $storageAccountName \
@@ -52,18 +54,11 @@ az functionapp create \
  --resource-group $resourceGroupName \
  --functions-version 3 \
  --app-insights $limoneWebAppName \
- --app-insights-key $limoneAIKey -o none
+ --app-insights-key $limoneAIKey >> deployment-log.html
+echo "</p>" >> deployment-log.html
  
-echo "<p>Function App: $functionAppName</p>" >> deployment-log.html
-
-# libra application insights info
-# Attempt to get App Insights configured without the need for the portal
-APPLICATIONINSIGHTS_CONNECTION_STRING="InstrumentationKey=$limoneAIKey;"
-APPINSIGHTS_INSTRUMENTATIONKEY=$limoneAIKey
-ApplicationInsightsAgent_EXTENSION_VERSION='~2'
-
 echo "Updating App Settings for $functionAppName"
-settings="ServiceBusConnection=$limoneServiceBusConnectionString APPLICATIONINSIGHTS_CONNECTION_STRING=$APPLICATIONINSIGHTS_CONNECTION_STRING APPINSIGHTS_INSTRUMENTATIONKEY=$APPINSIGHTS_INSTRUMENTATIONKEY ApplicationInsightsAgent_EXTENSION_VERSION=$ApplicationInsightsAgent_EXTENSION_VERSION"
+settings="ServiceBusConnection=$limoneServiceBusConnectionString"
 echo "<p>Function App Settings:" >> deployment-log.html
 az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings "$settings"  >> deployment-log.html
 echo "</p>" >> deployment-log.html
