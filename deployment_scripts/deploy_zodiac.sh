@@ -26,7 +26,7 @@ echo "Function App Name: $functionAppName"
 echo "ACR Name: $acrName"
 
 echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
-az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  Application=zodiac MicrososerviceName=zodiac MicroserviceID=$applicationName PendingDelete=true -o none
+az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  ZodiacInstance=$ZODIAC_INSTANCE Application=zodiac MicrososerviceName=zodiac MicroserviceID=$applicationName PendingDelete=true -o none
 echo "<p>Resource Group: $resourceGroupName</p>" >> deployment-log.html 
 
 echo "Creating storage account $storageAccountName in $resourceGroupName"
