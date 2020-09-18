@@ -23,7 +23,7 @@ applicationName="${LIMONE_ALIAS}"
 webAppName="${applicationName}-api"
 hostingPlanName="${applicationName}-plan"
 resourceGroupName="${applicationName}-rg"
-acrRegistryName="${ZODIAC_ALIAS}acr"
+acrRegistryName="${LIMONE_ALIAS}acr"
 serviceBusNamespace="${applicationName}sb"
 storageAccountName=${applicationName}$RANDOM
 
@@ -61,7 +61,7 @@ echo "Creating app service $webAppName in group $resourceGroupName"
  az group deployment create -g $resourceGroupName \
     --template-file limone-api/ArmTemplates/container-webapp-template.json  \
     --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=$DEFAULT_LOCATION \
-        sku="${appservice_webapp_sku}" registryName=$acrRegistryName imageName="$imageName" registryLocation="$DEFAULT_LOCATION" registrySku="$acrSku"
+        sku="${appservice_webapp_sku}" registryName=$acrRegistryName imageName="$imageName" registryLocation="$DEFAULT_LOCATION" registrySku="$acrSku" -o none
 echo "<p>App Service (Web App): $webAppName</p>" >> deployment-log.html
 limoneAIKey=$(az monitor app-insights component show --app $webAppName -g $resourceGroupName --query instrumentationKey -o tsv)
 

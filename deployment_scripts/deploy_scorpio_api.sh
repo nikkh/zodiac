@@ -58,7 +58,7 @@ echo "Creating app service $webAppName in group $resourceGroupName "
  az group deployment create -g $resourceGroupName \
     --template-file scorpio-api/ArmTemplates/windows-webapp-template.json  \
     --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=$DEFAULT_LOCATION \
-        sku="${appservice_webapp_sku}" databaseConnectionString="{$databaseConnectionString}"
+        sku="${appservice_webapp_sku}" databaseConnectionString="{$databaseConnectionString}" -o none
 echo "<p>App Service (Web App): $webAppName</p>" >> deployment-log.html
 
 
@@ -68,10 +68,17 @@ xdbConnectionStringWithUser="${xbaseDbConnectionString/<username>/$DB_ADMIN_USER
 xsqlConnectionString="${xdbConnectionStringWithUser/<password>/$DB_ADMIN_PASSWORD}"
 echo "<p>SQL Connection string for db=$dbName: $xsqlConnectionString</p>" >> deployment-log.html
 
+# sirmione application insights info
+scorpioAIKey=$(az monitor app-insights component show --app $webAppName -g $resourceGroupName --query instrumentationKey -o tsv)
+# Attempt to get App Insights configured without the needd for the portal
+APPLICATIONINSIGHTS_CONNECTION_STRING="InstrumentationKey=$scorpioAIKey;"
+APPINSIGHTS_INSTRUMENTATIONKEY=$scorpioAIKey
+ApplicationInsightsAgent_EXTENSION_VERSION='~2'
+
 echo "Updating App Settings for $webAppName"
 echo "<p>Web App Settings:" >> deployment-log.html
 az webapp config appsettings set -g $resourceGroupName -n $webAppName \
- --settings AZURE__STORAGE__CONNECTIONSTRING=$storageConnectionString "AZURE__A3SSDEVDB__CONNECTIONSTRING=$xsqlConnectionString" ASPNETCORE_ENVIRONMENT=Development >> deployment-log.html
+ --settings AZURE__STORAGE__CONNECTIONSTRING=$storageConnectionString "AZURE__A3SSDEVDB__CONNECTIONSTRING=$xsqlConnectionString" ASPNETCORE_ENVIRONMENT=Development APPLICATIONINSIGHTS_CONNECTION_STRING=$APPLICATIONINSIGHTS_CONNECTION_STRING APPINSIGHTS_INSTRUMENTATIONKEY=$APPINSIGHTS_INSTRUMENTATIONKEY ApplicationInsightsAgent_EXTENSION_VERSION=$ApplicationInsightsAgent_EXTENSION_VERSION >> deployment-log.txt >> deployment-log.html
 echo "</p>" >> deployment-log.html
 
 

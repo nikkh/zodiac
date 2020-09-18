@@ -40,7 +40,8 @@ echo "Scorpio base url: $scorpioBaseUrl"
 echo
 
 echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
-az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  Application=zodiac MicrososerviceName=sirmione MicroserviceID=$applicationName PendingDelete=true
+az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  Application=zodiac MicrososerviceName=sirmione MicroserviceID=$applicationName PendingDelete=true -o none
+echo "<p>Resource Group: $resourceGroupName</p>" >> deployment-log.html
 
 echo "Creating app service $webAppName in group $resourceGroupName"
  az group deployment create -g $resourceGroupName \
@@ -48,8 +49,8 @@ echo "Creating app service $webAppName in group $resourceGroupName"
     --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=$DEFAULT_LOCATION \
         databaseServerName=$dbServerName databaseUsername=$DB_ADMIN_USER databasePassword=$DB_ADMIN_PASSWORD databaseLocation=$DEFAULT_LOCATION \
         databaseName=$dbName \
-        sku="${appservice_webapp_sku}" databaseEdition=$database_edition
-
+        sku="${appservice_webapp_sku}" databaseEdition=$database_edition -o none
+echo "<p>App Service (Web App): $webAppName</p>" >> deployment-log.html
 
 # sirmione application insights info
 sirmioneAIKey=$(az monitor app-insights component show --app $webAppName -g $resourceGroupName --query instrumentationKey -o tsv)
@@ -59,4 +60,7 @@ APPINSIGHTS_INSTRUMENTATIONKEY=$sirmioneAIKey
 ApplicationInsightsAgent_EXTENSION_VERSION='~2'
 
 echo "Updating App Settings for $webAppName"
- az webapp config appsettings set -g $resourceGroupName -n $webAppName --settings LimoneBaseUrl=$limoneBaseUrl ScorpioBaseUrl=$scorpioBaseUrl ASPNETCORE_ENVIRONMENT=Development AzureAD__Domain=$AAD_DOMAIN AzureAD__TenantId=$AAD_TENANTID AzureAD__ClientId=$AAD_CLIENTID APPLICATIONINSIGHTS_CONNECTION_STRING=$APPLICATIONINSIGHTS_CONNECTION_STRING APPINSIGHTS_INSTRUMENTATIONKEY=$APPINSIGHTS_INSTRUMENTATIONKEY ApplicationInsightsAgent_EXTENSION_VERSION=$ApplicationInsightsAgent_EXTENSION_VERSION 
+echo "<p>Web App Settings:" >> deployment-log.html
+ az webapp config appsettings set -g $resourceGroupName -n $webAppName --settings LimoneBaseUrl=$limoneBaseUrl ScorpioBaseUrl=$scorpioBaseUrl ASPNETCORE_ENVIRONMENT=Development AzureAD__Domain=$AAD_DOMAIN AzureAD__TenantId=$AAD_TENANTID AzureAD__ClientId=$AAD_CLIENTID APPLICATIONINSIGHTS_CONNECTION_STRING=$APPLICATIONINSIGHTS_CONNECTION_STRING APPINSIGHTS_INSTRUMENTATIONKEY=$APPINSIGHTS_INSTRUMENTATIONKEY ApplicationInsightsAgent_EXTENSION_VERSION=$ApplicationInsightsAgent_EXTENSION_VERSION >> deployment-log.txt
+echo "</p>" >> deployment-log.html
+

@@ -3,6 +3,8 @@ az extension add --name application-insights
 blobName="deployment-log.html"
 echo '<!DOCTYPE html><html><head></head><body>' >> $blobName
 echo '<h1>Deployment Log</h1>' >> deployment-log.html
+echo '<p>This page summarizes all the settings created during the deployment. There are some manual acivites that you need to carry out before deploying applications on to your new infrastrucutre.</p>' >> deployment-log.html
+echo '<h2>Next Steps</h2><ol><li>Update GitHub Secret for ACR Password</li><li>Ensure the XXXXXX_ALIAS variables in the github workflows match those you set in set_environment.sh</li><li>Set off all the Deploy * App GitHub actions in parallel</li>You will need to edit GeneratorParameters.json to include the user names and passwords for syntehtic user traffic generation<li>change setting in zodiac configuration to enable user traffic generation</li><li></li></ol>' >> deployment-log.html
 source deployment_scripts/set_environment.sh
 deployment_scripts/deploy_sirmione_web.sh
 deployment_scripts/deploy_scorpio_api.sh

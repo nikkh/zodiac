@@ -41,10 +41,12 @@ az storage account create \
 --name $storageAccountName \
 --location $DEFAULT_LOCATION \
 --resource-group $resourceGroupName \
---sku Standard_LRS 
+--sku Standard_LRS -o none
 echo "<p>Storage Account: $storageAccountName</p>" >> deployment-log.html
 
 echo "Creating function app $functionAppName in $resourceGroupName"
+echo "<p>Function App: $functionAppName</p>" >> deployment-log.html
+echo "<p>Function App Settings:" >> deployment-log.html
 az functionapp create \
  --name $functionAppName \
  --storage-account $storageAccountName \
@@ -52,13 +54,11 @@ az functionapp create \
  --resource-group $resourceGroupName \
  --functions-version 3 \
  --app-insights $limoneWebAppName \
- --app-insights-key $limoneAIKey \
- -o none
-echo "<p>Function App: $functionAppName</p>" >> deployment-log.html
-
+ --app-insights-key $limoneAIKey >> deployment-log.html
+echo "</p>" >> deployment-log.html
+ 
 echo "Updating App Settings for $functionAppName"
 settings="ServiceBusConnection=$limoneServiceBusConnectionString"
 echo "<p>Function App Settings:" >> deployment-log.html
-az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings "ServiceBusConnection=$limoneServiceBusConnectionString" >> deployment-log.html
+az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings "$settings"  >> deployment-log.html
 echo "</p>" >> deployment-log.html
-
