@@ -65,7 +65,7 @@ echo "<p>Function App: $functionAppName</p>" >> deployment-log.html
 
 # We'll use this storage account to hold external configuration for users and sessions in user simulation processing
 az storage container create -n "zodiac-generator-config" --public-access off -o none
-sampleGeneratorParameters="{"Users": [{"Id": "user1@tenant.onmicrosoft.com", "Password": "password"},{"Id": "user2@tenant.onmicrosoft.com","Password": "password"}],"Sessions": [{"Steps": ["capricorn-go-red", "cap021", "cap023", "cap024" ] }, { "Steps": [ "capricorn-go-rainbow", "cap013", "cap019", "cap006" ] },{ "Steps": [ "capricorn-go-blue", "cap003" ] }]}"
+sampleGeneratorParameters='{"Users": [{"Id": "user1@tenant.onmicrosoft.com", "Password": "password"},{"Id": "user2@tenant.onmicrosoft.com","Password": "password"}],"Sessions": [{"Steps": ["capricorn-go-red", "cap021", "cap023", "cap024" ] }, { "Steps": [ "capricorn-go-rainbow", "cap013", "cap019", "cap006" ] },{ "Steps": [ "capricorn-go-blue", "cap003" ] }]}'
 echo "$sampleGeneratorParameters" > GeneratorParameters.json
 az storage blob upload -c "zodiac-generator-config" -f GeneratorParameters.json -n GeneratorParameters.json -o none
 echo "<p>GeneratorParameters.json was written to $storageAccountName, container=zodiac-generator-config, blob=GeneratorParameters.json <b>!! You will need to edit GeneratorParameters.json</b>" >> deployment-log.html
