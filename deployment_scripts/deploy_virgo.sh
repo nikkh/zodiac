@@ -51,13 +51,9 @@ echo "<p>Function App: $functionAppName</p>" >> deployment-log.html
 
 # virgo application insights info
 virgoAIKey=$(az monitor app-insights component show --app $functionAppName -g $resourceGroupName --query instrumentationKey -o tsv)
-# Attempt to get App Insights configured without the need for the portal
-APPLICATIONINSIGHTS_CONNECTION_STRING="InstrumentationKey=$virgoAIKey;"
-APPINSIGHTS_INSTRUMENTATIONKEY=$virgoAIKey
-ApplicationInsightsAgent_EXTENSION_VERSION='~2'
 
 echo "Updating App Settings for $functionAppName"
-settings="ServiceBusConnection=$limoneServiceBusConnectionString APPLICATIONINSIGHTS_CONNECTION_STRING=$APPLICATIONINSIGHTS_CONNECTION_STRING APPINSIGHTS_INSTRUMENTATIONKEY=$APPINSIGHTS_INSTRUMENTATIONKEY ApplicationInsightsAgent_EXTENSION_VERSION=$ApplicationInsightsAgent_EXTENSION_VERSION"
+settings="ServiceBusConnection=$limoneServiceBusConnectionString"
 echo "<p>Function App Settings:" >> deployment-log.html
 az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings "$settings"  >> deployment-log.html
 echo "</p>" >> deployment-log.html
