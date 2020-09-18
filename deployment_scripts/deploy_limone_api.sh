@@ -38,7 +38,7 @@ echo "Storage account name: $storageAccountName"
 echo
 
 echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
-az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags Application=zodiac MicrososerviceName=limone MicroserviceID=$applicationName PendingDelete=true -o none
+az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags ZodiacInstance=$ZODIAC_INSTANCE Application=zodiac MicrososerviceName=limone MicroserviceID=$applicationName PendingDelete=true -o none
 echo "<p>Resource Group: $resourceGroupName</p>" >> deployment-log.html
 echo "Creating service bus namespace $serviceBusNamespace in group $resourceGroupName"
 az servicebus namespace create -g $resourceGroupName -n $serviceBusNamespace -o none
