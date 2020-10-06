@@ -50,10 +50,14 @@ az functionapp create \
 echo "<p>Function App: $functionAppName</p>" >> deployment-log.html
 
 # virgo application insights info
-virgoAIKey=$(az monitor app-insights component show --app $functionAppName -g $resourceGroupName --query instrumentationKey -o tsv)
+# virgoAIKey=$(az monitor app-insights component show --app $functionAppName -g $resourceGroupName --query instrumentationKey -o tsv)
+az functionapp config appsettings delete --name $functionAppName --resource-group $resourceGroupName --setting-names APPINSIGHTS_INSTRUMENTATIONKEY APPLICATIONINSIGHTS_CONNECTION_STRING -o none
+az monitor app-insights component delete --app $functionAppName -g $resourceGroupName -o none
+#
 
 echo "Updating App Settings for $functionAppName"
 settings="ServiceBusConnection=$limoneServiceBusConnectionString"
 echo "<p>Function App Settings:" >> deployment-log.html
+
 az webapp config appsettings set -g $resourceGroupName -n $functionAppName --settings "$settings"  >> deployment-log.html
 echo "</p>" >> deployment-log.html
