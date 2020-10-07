@@ -29,7 +29,7 @@ echo "Function App Name: $functionAppName"
 echo
 
 echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
-az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  ZodiacInstance=$ZODIAC_INSTANCE Application=zodiac MicrososerviceName=virgo MicroserviceID=$applicationName PendingDelete=true -o none
+az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  ZodiacInstance=$ZODIAC_INSTANCE Application=zodiac MicrososerviceName=virgo MicroserviceID=$applicationName PendingDelete=true >> deployment-log.html
 echo "<p>Resource Group: $resourceGroupName</p>" >> deployment-log.html
 
 echo "Creating storage account $storageAccountName in $resourceGroupName"
@@ -52,7 +52,7 @@ echo "<p>Function App: $functionAppName</p>" >> deployment-log.html
 # virgo application insights info
 # virgoAIKey=$(az monitor app-insights component show --app $functionAppName -g $resourceGroupName --query instrumentationKey -o tsv)
 az functionapp config appsettings delete --name $functionAppName --resource-group $resourceGroupName --setting-names APPINSIGHTS_INSTRUMENTATIONKEY APPLICATIONINSIGHTS_CONNECTION_STRING -o none
-az monitor app-insights component delete --app $functionAppName -g $resourceGroupName -o none
+az monitor app-insights component delete --app $functionAppName -g $resourceGroupName ->> deployment-log.html
 #
 
 echo "Updating App Settings for $functionAppName"
