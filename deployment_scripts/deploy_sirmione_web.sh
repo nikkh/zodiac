@@ -40,7 +40,7 @@ echo "Scorpio base url: $scorpioBaseUrl"
 echo
 
 echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
-az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  ZodiacInstance=$ZODIAC_INSTANCE Application=zodiac MicrososerviceName=sirmione MicroserviceID=$applicationName PendingDelete=true -o none
+az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  ZodiacInstance=$ZODIAC_INSTANCE Application=zodiac MicrososerviceName=sirmione MicroserviceID=$applicationName PendingDelete=true >> deployment-log.html
 echo "<p>Resource Group: $resourceGroupName</p>" >> deployment-log.html
 
 echo "Creating app service $webAppName in group $resourceGroupName"
@@ -49,7 +49,7 @@ echo "Creating app service $webAppName in group $resourceGroupName"
     --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=$DEFAULT_LOCATION \
         databaseServerName=$dbServerName databaseUsername=$DB_ADMIN_USER databasePassword=$DB_ADMIN_PASSWORD databaseLocation=$DEFAULT_LOCATION \
         databaseName=$dbName \
-        sku="${appservice_webapp_sku}" databaseEdition=$database_edition -o none
+        sku="${appservice_webapp_sku}" databaseEdition=$database_edition >> deployment-log.html
 echo "<p>App Service (Web App): $webAppName</p>" >> deployment-log.html
 
 # sirmione application insights info
