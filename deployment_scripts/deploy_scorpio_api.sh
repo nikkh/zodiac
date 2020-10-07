@@ -40,7 +40,7 @@ echo
 
 echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
 echo "<p>Resource Group: $resourceGroupName</p>" >> deployment-log.html
-az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  ZodiacInstance=$ZODIAC_INSTANCE Application=zodiac MicrososerviceName=scorpio MicroserviceID=$applicationName PendingDelete=true -o none
+az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  ZodiacInstance=$ZODIAC_INSTANCE Application=zodiac MicrososerviceName=scorpio MicroserviceID=$applicationName PendingDelete=true >> deployment-log.html
 
 echo "Creating storage account $storageAccountName in group $resourceGroupName"
 echo "<p>Storage Account: $storageAccountName</p>" >> deployment-log.html
@@ -48,7 +48,7 @@ echo "<p>Storage Account: $storageAccountName</p>" >> deployment-log.html
   --name $storageAccountName \
   --location $DEFAULT_LOCATION \
   --resource-group $resourceGroupName \
-  --sku Standard_LRS -o none
+  --sku Standard_LRS >> deployment-log.html
   
 
 storageConnectionString=$(az storage account show-connection-string -n $storageAccountName -g $resourceGroupName --query connectionString -o tsv)
@@ -58,7 +58,7 @@ echo "Creating app service $webAppName in group $resourceGroupName "
  az group deployment create -g $resourceGroupName \
     --template-file scorpio-api/ArmTemplates/windows-webapp-template.json  \
     --parameters webAppName=$webAppName hostingPlanName=$hostingPlanName appInsightsLocation=$DEFAULT_LOCATION \
-        sku="${appservice_webapp_sku}" databaseConnectionString="{$databaseConnectionString}" -o none
+        sku="${appservice_webapp_sku}" databaseConnectionString="{$databaseConnectionString}" >> deployment-log.html
 echo "<p>App Service (Web App): $webAppName</p>" >> deployment-log.html
 
 
