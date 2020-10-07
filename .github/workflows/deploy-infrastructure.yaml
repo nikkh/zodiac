@@ -1,9 +1,9 @@
+on: [workflow_dispatch]
+
 name: Deploy All Infrastructure
 env:
    DB_ADMIN_PASSWORD: ${{ secrets.DB_ADMIN_PASSWORD }}
 
-on: [workflow_dispatch]
- 
 jobs:
   job1:
     runs-on: ubuntu-latest
