@@ -26,7 +26,7 @@ echo "Function App Name: $functionAppName"
 echo "ACR Name: $acrName"
 
 echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
-az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  ZodiacInstance=$ZODIAC_INSTANCE Application=zodiac MicrososerviceName=zodiac MicroserviceID=$applicationName PendingDelete=true -o none
+az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  ZodiacInstance=$ZODIAC_INSTANCE Application=zodiac MicrososerviceName=zodiac MicroserviceID=$applicationName PendingDelete=true >> deployment-log.html
 echo "<p>Resource Group: $resourceGroupName</p>" >> deployment-log.html 
 
 echo "Creating storage account $storageAccountName in $resourceGroupName"
@@ -67,7 +67,7 @@ echo "<p>Function App: $functionAppName</p>" >> deployment-log.html
 az storage container create -n "zodiac-generator-config" --public-access off -o none
 sampleGeneratorParameters='{"Users": [{"Id": "user1@tenant.onmicrosoft.com", "Password": "password"},{"Id": "user2@tenant.onmicrosoft.com","Password": "password"}],"Sessions": [{"Steps": ["capricorn-go-red", "cap021", "cap023", "cap024" ] }, { "Steps": [ "capricorn-go-rainbow", "cap013", "cap019", "cap006" ] },{ "Steps": [ "capricorn-go-blue", "cap003" ] }]}'
 echo "$sampleGeneratorParameters" > GeneratorParameters.json
-az storage blob upload -c "zodiac-generator-config" -f GeneratorParameters.json -n GeneratorParameters.json -o none
+az storage blob upload -c "zodiac-generator-config" -f GeneratorParameters.json -n GeneratorParameters.json >> deployment-log.html
 echo "<p>GeneratorParameters.json was written to $storageAccountName, container=zodiac-generator-config, blob=GeneratorParameters.json <b>!! You will need to edit GeneratorParameters.json</b>" >> deployment-log.html
 
 sirmioneBaseUrl="https://$SIRMIONE_ALIAS-web.azurewebsites.net/home/"
