@@ -41,9 +41,9 @@ echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
 az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags ZodiacInstance=$ZODIAC_INSTANCE Application=zodiac MicrososerviceName=limone MicroserviceID=$applicationName PendingDelete=true -o none
 echo "<p>Resource Group: $resourceGroupName</p>" >> deployment-log.html
 echo "Creating service bus namespace $serviceBusNamespace in group $resourceGroupName"
-az servicebus namespace create -g $resourceGroupName -n $serviceBusNamespace -o none
-az servicebus queue create -g $resourceGroupName --namespace-name $serviceBusNamespace --name libra-queue -o none
-az servicebus queue create -g $resourceGroupName --namespace-name $serviceBusNamespace --name virgo-queue -o none
+az servicebus namespace create -g $resourceGroupName -n $serviceBusNamespace >> deployment-log.html
+az servicebus queue create -g $resourceGroupName --namespace-name $serviceBusNamespace --name libra-queue >> deployment-log.html
+az servicebus queue create -g $resourceGroupName --namespace-name $serviceBusNamespace --name virgo-queue >> deployment-log.html
 echo "<p>Service Bus Namespace: $serviceBusNamespace</p>" >> deployment-log.html
 serviceBusConnectionString=$(az servicebus namespace authorization-rule keys list -g $resourceGroupName --namespace-name $serviceBusNamespace -n RootManageSharedAccessKey --query 'primaryConnectionString' -o tsv)
 echo "<p>Service Bus Connection String: $serviceBusConnectionString</p>" >> deployment-log.html
@@ -52,7 +52,7 @@ echo "Creating storage account $storageAccountName in $resourceGroupName"
   --name $storageAccountName \
   --location $DEFAULT_LOCATION \
   --resource-group $resourceGroupName \
-  --sku Standard_LRS -o none
+  --sku Standard_LRS >> deployment-log.html
 echo "<p>Storage Account Name: $storageAccountName</p>" >> deployment-log.html  
 storageConnectionString=$(az storage account show-connection-string -n $storageAccountName -g $resourceGroupName --query connectionString -o tsv)
 echo "<p>Storage Connection String: $storageConnectionString</p>" >> deployment-log.html 
