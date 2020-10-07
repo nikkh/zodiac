@@ -6,6 +6,7 @@ echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo ---Global Variables
 echo "LIBRA_ALIAS: $LIBRA_ALIAS"
 echo "DEFAULT_LOCATION: $DEFAULT_LOCATION"
+echo "OUTPUT: $OUTPUT"
 echo
 # set local variables
 # Derive as many variables as possible
@@ -33,7 +34,7 @@ echo "Function App Name: $functionAppName"
 echo
 
 echo "Creating resource group $resourceGroupName in $DEFAULT_LOCATION"
-az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  ZodiacInstance=$ZODIAC_INSTANCE Application=zodiac MicrososerviceName=libra MicroserviceID=$applicationName PendingDelete=true -o none
+az group create -l "$DEFAULT_LOCATION" --n "$resourceGroupName" --tags  ZodiacInstance=$ZODIAC_INSTANCE Application=zodiac MicrososerviceName=libra MicroserviceID=$applicationName PendingDelete=true >> deployment-log.html
 echo "<p>Resource Group: $resourceGroupName</p>" >> deployment-log.html
 
 echo "Creating storage account $storageAccountName in $resourceGroupName"
@@ -41,7 +42,7 @@ az storage account create \
 --name $storageAccountName \
 --location $DEFAULT_LOCATION \
 --resource-group $resourceGroupName \
---sku Standard_LRS -o none
+--sku Standard_LRS >> deployment-log.html
 echo "<p>Storage Account: $storageAccountName</p>" >> deployment-log.html
 
 echo "Creating function app $functionAppName in $resourceGroupName"
