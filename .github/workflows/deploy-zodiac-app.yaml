@@ -1,6 +1,6 @@
 name: Deploy Zodiac App
 env:
-   DEFAULT_LOCATION: uksouth
+   DEFAULT_LOCATION: ukwest
    ZODIAC_ALIAS: zbpzodiac
 
 #on:
