@@ -6,7 +6,7 @@ name: Deploy Limone App
 #    - limone-api/Application/**
       
 env:
-   DEFAULT_LOCATION: uksouth
+   DEFAULT_LOCATION: ukwest
    LIMONE_ALIAS: zbplimone
    ZODIAC_ALIAS: zbpzodiac
 
