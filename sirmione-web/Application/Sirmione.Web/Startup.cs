@@ -59,16 +59,6 @@ namespace Sirmione.Web
                     item.Context.User.AuthenticatedUserId = context.User.Identity.Name;
                 }
             }
-
-            //item.Context.User.Id = _httpContextAccessor.HttpContext.User.Identity.Name;
-            //for testing purpose, I just add custom property to trace telemetry, you can modify the code as per your need.
-            //if (item is TraceTelemetry traceTelemetry)
-            //{
-            //    // use _httpContextAccessor here...        
-            //    traceTelemetry.Properties.Add("MyCustomProperty555", "MyCustomValue555");
-            //}
-
-            // Send the item to the next TelemetryProcessor
             _next.Process(item);
         }
     }
@@ -96,7 +86,6 @@ namespace Sirmione.Web
             services.AddApplicationInsightsTelemetry(aiOptions);
             services.AddSingleton<ITelemetryInitializer, MyTelemetryInitializer>();
             services.AddSnapshotCollector((configuration) => Configuration.Bind(nameof(SnapshotCollectorConfiguration), configuration));
-            // services.AddSingleton(c => new MyTelemetryProcessor(c, accessor));
             var configDescriptor = services.SingleOrDefault(tc => tc.ServiceType == typeof(TelemetryConfiguration));
             if (configDescriptor?.ImplementationFactory != null)
             {

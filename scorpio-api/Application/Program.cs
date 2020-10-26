@@ -15,6 +15,8 @@ namespace scorpio_api
     {
         public static void Main(string[] args)
         {
+            var aiKey = Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY");
+            Console.WriteLine("AIKey=" + aiKey);
             CreateWebHostBuilder(args).Build().Run();
         }
 
@@ -29,7 +31,7 @@ namespace scorpio_api
                         // standalone package Microsoft.Extensions.Logging.ApplicationInsights
                         // or if you want to capture logs from early in the application startup
                         // pipeline from Startup.cs or Program.cs itself....
-                        builder.AddApplicationInsights("dc02feb8-39cd-4612-802a-e9a602085700");
+                        builder.AddApplicationInsights(Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY"));
 
 
                     });
