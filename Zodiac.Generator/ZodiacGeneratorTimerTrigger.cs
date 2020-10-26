@@ -19,7 +19,7 @@ namespace Zodiac.Generator
         }
 
         [FunctionName("ZodiacGeneratorTimerTrigger")]
-        public async Task Run([TimerTrigger("0 */7 * * * *")]TimerInfo myTimer, ILogger log, ExecutionContext ec)
+        public async Task Run([TimerTrigger("0 */5 * * * *")]TimerInfo myTimer, ILogger log, ExecutionContext ec)
         {
             try
             {
