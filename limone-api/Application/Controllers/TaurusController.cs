@@ -48,6 +48,13 @@ namespace limone_api.Controllers
                 throw new Exception($"Service is not available between {startTime.ToLongTimeString()} and {endTime.ToLongTimeString()}");
             }
 
+            startTime = new DateTime(currentTime.Year, currentTime.Month, currentTime.Day, 23, 0, 0);
+            endTime = startTime.AddMinutes(30);
+            if ((currentTime > startTime) && (currentTime < endTime))
+            {
+                throw new Exception($"Service is not available between {startTime.ToLongTimeString()} and {endTime.ToLongTimeString()}");
+            }
+
             int min = 1;
             int max = 10;
             Random random = new Random();
