@@ -15,7 +15,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirgoQueueHandler", "VirgoQ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zodiac.Models", "Zodiac.Models\Zodiac.Models.csproj", "{0CBDC29E-6969-4E1A-9F1A-B4CA4D5C9541}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zodiac.Generator", "Zodiac.Generator\Zodiac.Generator.csproj", "{A7B7CBC1-E7BC-4B34-BBC3-F836029E0D66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zodiac.Generator", "Zodiac.Generator\Zodiac.Generator.csproj", "{A7B7CBC1-E7BC-4B34-BBC3-F836029E0D66}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7D7B9BAE-B55C-4388-99A1-1A925F0414DF}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\deploy-libra-app.yaml = .github\workflows\deploy-libra-app.yaml
+		.github\workflows\deploy-limone-app.yaml = .github\workflows\deploy-limone-app.yaml
+		.github\workflows\deploy-scorpio-app.yaml = .github\workflows\deploy-scorpio-app.yaml
+		.github\workflows\deploy-sirmione-app.yaml = .github\workflows\deploy-sirmione-app.yaml
+		.github\workflows\deploy-virgo-app.yaml = .github\workflows\deploy-virgo-app.yaml
+		.github\workflows\deploy-zodiac-app.yaml = .github\workflows\deploy-zodiac-app.yaml
+		deployment_scripts\set_environment.sh = deployment_scripts\set_environment.sh
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
