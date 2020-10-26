@@ -6,9 +6,9 @@ name: Deploy Limone App
 #    - limone-api/Application/**
       
 env:
-   DEFAULT_LOCATION: uksouth
-   LIMONE_ALIAS: bplimone
-   ZODIAC_ALIAS: bpzodiac
+   DEFAULT_LOCATION: northeurope
+   LIMONE_ALIAS: zbplimone
+   ZODIAC_ALIAS: zbpzodiac
 
 on: [workflow_dispatch]
 
